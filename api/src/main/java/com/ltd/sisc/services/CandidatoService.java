@@ -2,6 +2,7 @@ package com.ltd.sisc.services;
 
 import com.ltd.sisc.dto.CadastroCandidatoDTO;
 import com.ltd.sisc.entities.CandidatoVO;
+import com.ltd.sisc.exceptions.ExceptionGenerica;
 import com.ltd.sisc.repositories.CandidatoRepository;
 import com.ltd.sisc.utils.UtilSISC;
 import org.springframework.beans.BeanUtils;
@@ -24,7 +25,7 @@ public class CandidatoService {
             BeanUtils.copyProperties(cadastroCandidatoDTO,candidatoVO);
             candidatoRepository.save(candidatoVO);
         }catch (Exception e){
-            throw  new ExpressionException(new StringBuilder().append("Erro ao cadastrar candidato: ").append(e).toString());
+            throw  new ExceptionGenerica(new StringBuilder().append("Erro ao cadastrar candidato: ").append(e).toString());
         }
     }
     public CadastroCandidatoDTO buscaCandidatoPorCpf(String cpf) {
@@ -38,7 +39,7 @@ public class CandidatoService {
                 BeanUtils.copyProperties(candidatoVO,cadastroCandidatoDTO);
             }
         }catch (Exception e){
-            throw  new ExpressionException(new StringBuilder().append("Erro ao buscar candidato por cpf: ").append(e).toString());
+            throw  new ExceptionGenerica(new StringBuilder().append("Erro ao buscar candidato por cpf: ").append(e).toString());
         }
         return cadastroCandidatoDTO;
     }
@@ -48,7 +49,7 @@ public class CandidatoService {
             List<CandidatoVO> listaTodosCandidatos = candidatoRepository.findAll();
             populaListaTodosOsCandidatos(listaCandidatos, listaTodosCandidatos);
         }catch (Exception e){
-            throw  new ExpressionException(new StringBuilder().append("Erro ao buscar todos os candidatos: ").append(e).toString());
+            throw  new ExceptionGenerica(new StringBuilder().append("Erro ao buscar todos os candidatos: ").append(e).toString());
         }
         return listaCandidatos;
     }
@@ -70,7 +71,7 @@ public class CandidatoService {
                 BeanUtils.copyProperties(candidatoVO.get(),cadastroCandidatoDTO);
             }
         }catch (Exception e){
-            throw  new ExpressionException(new StringBuilder().append("Erro ao buscar candidato por cpf: ").append(e).toString());
+            throw  new ExceptionGenerica(new StringBuilder().append("Erro ao buscar candidato por cpf: ").append(e).toString());
         }
         return cadastroCandidatoDTO;
     }

@@ -3,6 +3,7 @@ package com.ltd.sisc.services;
 import com.ltd.sisc.dto.CadastroCursoDTO;
 import com.ltd.sisc.dto.CursoDTO;
 import com.ltd.sisc.entities.CursoVO;
+import com.ltd.sisc.exceptions.ExceptionGenerica;
 import com.ltd.sisc.repositories.CursoRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,7 @@ public class CursoService {
             BeanUtils.copyProperties(cadastroCursoDTO,cursoVO);
             cursoRepository.save(cursoVO);
         }catch (Exception e){
-            throw  new ExpressionException(new StringBuilder().append("Erro ao cadastrar curso: ").append(e).toString());
+            throw  new ExceptionGenerica(new StringBuilder().append("Erro ao cadastrar curso: ").append(e).toString());
         }
     }
 
@@ -33,7 +34,7 @@ public class CursoService {
             List<CursoVO> cursoVOS = cursoRepository.buscaCursosPorNome(nome);
             populaListaCursos(listaCursos, cursoVOS);
         }catch (Exception e){
-            throw  new ExpressionException(new StringBuilder().append("Erro ao buscar cursos por nome: ").append(e).toString());
+            throw  new ExceptionGenerica(new StringBuilder().append("Erro ao buscar cursos por nome: ").append(e).toString());
         }
         return listaCursos;
     }
@@ -55,7 +56,7 @@ public class CursoService {
             List<CursoVO> cursoVOS = cursoRepository.findAll();
             populaListaCursos(listaCursos, cursoVOS);
         }catch (Exception e){
-            throw  new ExpressionException(new StringBuilder().append("Erro ao buscar todos os cursos: ").append(e).toString());
+            throw  new ExceptionGenerica(new StringBuilder().append("Erro ao buscar todos os cursos: ").append(e).toString());
         }
         return listaCursos;
     }
@@ -69,7 +70,7 @@ public class CursoService {
                 cursoDTO.setId(cursoVO.get().getIdCurso());
             }
         }catch (Exception e){
-            throw  new ExpressionException(new StringBuilder().append("Erro ao buscar curso por id: ").append(e).toString());
+            throw  new ExceptionGenerica(new StringBuilder().append("Erro ao buscar curso por id: ").append(e).toString());
         }
         return cursoDTO;
     }

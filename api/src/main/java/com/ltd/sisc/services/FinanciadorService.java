@@ -3,6 +3,7 @@ package com.ltd.sisc.services;
 import com.ltd.sisc.dto.CadastroFinanciadorDTO;
 import com.ltd.sisc.dto.FinanciadorDTO;
 import com.ltd.sisc.entities.FinanciadorVO;
+import com.ltd.sisc.exceptions.ExceptionGenerica;
 import com.ltd.sisc.repositories.FinanciadorRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,7 @@ public class FinanciadorService {
             BeanUtils.copyProperties(cadastroFinanciadorDTO,financiadorVO);
             financiadorRepository.save(financiadorVO);
         }catch (Exception e){
-            throw  new ExpressionException(new StringBuilder().append("Erro ao cadastrar financiador: ").append(e).toString());
+            throw  new ExceptionGenerica(new StringBuilder().append("Erro ao cadastrar financiador: ").append(e).toString());
         }
     }
     public List<FinanciadorDTO> buscaListaFinanciadoresPorNome(String nome) {
@@ -33,7 +34,7 @@ public class FinanciadorService {
             List<FinanciadorVO> financiadorVOS = financiadorRepository.buscaListaFinanciadores(nome);
             populaListaFinanciadores(listaFinanciadores, financiadorVOS);
         }catch (Exception e){
-            throw  new ExpressionException(new StringBuilder().append("Erro ao encontrar financiadores: ").append(e).toString());
+            throw  new ExceptionGenerica(new StringBuilder().append("Erro ao encontrar financiadores: ").append(e).toString());
         }
      return listaFinanciadores;
     }
@@ -57,7 +58,7 @@ public class FinanciadorService {
                 financiadorDTO.setId(financiadorVO.get().getIdFinanciador());
             }
         }catch (Exception e){
-            throw  new ExpressionException(new StringBuilder().append("Erro ao encontrar financiador: ").append(e).toString());
+            throw  new ExceptionGenerica(new StringBuilder().append("Erro ao encontrar financiador: ").append(e).toString());
         }
         return financiadorDTO;
     }
@@ -68,7 +69,7 @@ public class FinanciadorService {
             List<FinanciadorVO> todosFinanciadores = financiadorRepository.findAll();
             populaListaFinanciadores(listaFinanciadores, todosFinanciadores);
         }catch (Exception e){
-            throw  new ExpressionException(new StringBuilder().append("Erro ao encontrar todos os financiadores: ").append(e).toString());
+            throw  new ExceptionGenerica(new StringBuilder().append("Erro ao encontrar todos os financiadores: ").append(e).toString());
 
         }
         return listaFinanciadores;
