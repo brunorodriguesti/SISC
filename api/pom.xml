@@ -11,6 +11,7 @@
 	<groupId>com.ltd</groupId>
 	<artifactId>sisc</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
 	<name>sisc</name>
 	<description>API do projeto do Sistema de Inscrição e Seleção de Candidatos</description>
 	<properties>
