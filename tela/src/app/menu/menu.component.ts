@@ -25,8 +25,8 @@ export class MenuComponent {
       label: 'Home'
     },
     {
-      path: '/cadastro',
-      label: 'Cadastro'
+      path: '/inscricao',
+      label: 'Inscricao'
     },
     {
       path: '/candidatos',

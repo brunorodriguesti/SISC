@@ -8,6 +8,7 @@ services:
       - TZ=America/Sao_Paulo
     build:
       context: .
+      dockerfile: Dockerfile.api
     ports:
       - "8080:8080"
-    restart: always
+    restart: unless-stopped
