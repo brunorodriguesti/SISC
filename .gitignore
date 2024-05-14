@@ -1,0 +1,9 @@
+# IDE
+.vscode
+.idea
+
+node_modules
+dist
+
+# */Dockerfile
+# */docker-compose*.yml

@@ -1,0 +1,14 @@
+version: "3.3"
+
+services:
+  api_spring:
+    hostname: api_spring
+    container_name: api_spring
+    environment:
+      - TZ=America/Sao_Paulo
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    ports:
+      - "8080:8080"
+    restart: unless-stopped
