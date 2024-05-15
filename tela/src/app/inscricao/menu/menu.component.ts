@@ -21,7 +21,7 @@ interface MenuItem {
 export class MenuComponent {
   menuItems: Array<MenuItem> = [
     {
-      path: '/',
+      path: '/inscricao/home',
       label: 'Home'
     },
     {
@@ -29,11 +29,7 @@ export class MenuComponent {
       label: 'Inscricao'
     },
     {
-      path: '/candidatos',
-      label: 'Candidatos'
-    },
-    {
-      path: '/sobre',
+      path: '/inscricao/sobre',
       label: 'Sobre'
     }
   ]

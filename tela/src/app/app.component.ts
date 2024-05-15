@@ -3,7 +3,9 @@ import {CommonModule} from '@angular/common'
 import {RouterOutlet} from '@angular/router'
 import {MatButtonModule} from '@angular/material/button'
 import {MatSlideToggleModule} from '@angular/material/slide-toggle'
-import {HomeComponent} from './home/home.component'
+import {HomeComponent} from './inscricao/nav/nav.component'
+import { FooterComponent } from './footer/footer.component'
+import { HeaderComponent } from './header/header.component'
 
 @Component({
   selector: 'app-root',
@@ -13,7 +15,10 @@ import {HomeComponent} from './home/home.component'
     RouterOutlet,
     MatButtonModule,
     MatSlideToggleModule,
-    HomeComponent],
+    HomeComponent,
+    FooterComponent,
+    HeaderComponent
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
