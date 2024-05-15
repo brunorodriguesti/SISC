@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface CandidatoRepository extends JpaRepository<CandidatoVO,Long> {
+    CandidatoVO findFirstByCpf(String cpf);
 }
