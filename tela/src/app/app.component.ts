@@ -3,7 +3,7 @@ import {CommonModule} from '@angular/common'
 import {RouterOutlet} from '@angular/router'
 import {MatButtonModule} from '@angular/material/button'
 import {MatSlideToggleModule} from '@angular/material/slide-toggle'
-import {HomeComponent} from './inscricao/nav/nav.component'
+import {NavComponent} from './nav/nav.component'
 import { FooterComponent } from './footer/footer.component'
 import { HeaderComponent } from './header/header.component'
 
@@ -15,7 +15,7 @@ import { HeaderComponent } from './header/header.component'
     RouterOutlet,
     MatButtonModule,
     MatSlideToggleModule,
-    HomeComponent,
+    NavComponent,
     FooterComponent,
     HeaderComponent
   ],

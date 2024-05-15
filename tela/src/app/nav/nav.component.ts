@@ -8,9 +8,8 @@ import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
-import { MenuComponent } from '../menu/menu.component'
-import { CandidatosComponent } from '../../admin/candidatos/candidatos.component'
-import {RouterOutlet} from '@angular/router'
+import { MenuComponent } from './menu/menu.component'
+import {RouterOutlet, RouterModule} from '@angular/router'
 
 @Component({
   selector: 'app-nav',
@@ -25,11 +24,10 @@ import {RouterOutlet} from '@angular/router'
     MatIconModule,
     AsyncPipe,
     MenuComponent,
-    CandidatosComponent,
     RouterOutlet
   ]
 })
-export class HomeComponent {
+export class NavComponent {
   private breakpointObserver = inject(BreakpointObserver);
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
