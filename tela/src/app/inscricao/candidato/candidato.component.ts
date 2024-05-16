@@ -3,8 +3,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
 import { CandidatoService } from './candidato.service';
-import { objPessoa } from '../objsinscricao';
-import { firstValueFrom } from 'rxjs';
+import { objPessoa, objPessoaId } from '../objsinscricao';
 
 @Component({
   selector: 'app-candidato',
@@ -18,19 +17,51 @@ export class CandidatoComponent {
   nome: string = "";
   cpf: string = "";
   mensagem: string = "";
+  dataResponse: objPessoaId[] = [];
+  ativarButton: boolean = false;
+  ativarcadastro: boolean = false;
 
   constructor(private candidatoService: CandidatoService) { }
 
-  async handleClick(): Promise<void> {
+  handleCpf(cpf: string): void {
+    this.candidatoService.getCPF(cpf).subscribe(
+      (response) => {
+        if (response) {
+          console.log("handleCpf()", response);
+          this.nome = response.nome;
+          this.cpf = response.cpf;
+          this.ativarButton = true;
+        }
+      },
+      (error) => {
+        console.error('Erro ao buscar dados:', error);
+        console.log("handleCpf()", error);
+        this.ativarButton = true;
+      }
+    );
+  }
+
+  handleCadastro(): void {
+    const objpessoa: objPessoa = { nome: this.nome, cpf: this.cpf };
+    this.candidatoService.postCandidato(objpessoa).subscribe(
+      (response) => {
+        console.log("handleCadastro()", response);
+        this.mensagem = 'Cadastro realizado com sucesso';
+        this.ativarButton = true;
+      },
+      (error) => {
+        console.log("handleCadastro()", error);
+        this.mensagem = 'Erro ao cadastrar candidato';
+        this.ativarButton = false;
+      }
+    );
+  }
+
+  handleClick(): void {
     const objpessoa: objPessoa = { nome: this.nome, cpf: this.cpf };
     if (this.nome !== "" && this.cpf !== "") {
-      try {
-        const response = await firstValueFrom(this.candidatoService.postCandidato(objpessoa));
-        this.mensagem = response.message;
-        this.ativarPerguntas.emit(objpessoa);
-      } catch (error) {
-        this.mensagem = 'Erro ao cadastrar candidato';
-      }
+      console.log("Componente Filho Candidato", objpessoa);
+      this.ativarPerguntas.emit(objpessoa);
     }
   }
 }

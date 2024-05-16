@@ -3,6 +3,8 @@ export interface objPessoa {
     cpf: string
 }
 
-export interface objPergunta {
-    
+export interface objPessoaId {
+    id: number,
+    nome: string,
+    cpf: string
 }

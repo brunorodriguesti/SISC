@@ -1,6 +1,6 @@
 export const environment = {
     production: false,
-    API_URL: 'https://api-temporaria.onrender.com',
+    API_URL: '/api',
     API_FINACIADOR: '/financiador',
     API_FINACIADOR_TODOS: '/financiador/todosFinanciadores',
     API_FINACIADOR_ID: '/financiador/id',

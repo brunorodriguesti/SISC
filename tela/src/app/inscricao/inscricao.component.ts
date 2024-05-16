@@ -18,6 +18,6 @@ export class InscricaoComponent {
   onAtivarPerguntas(objCandidato: objPessoa){
     this.seccaoPerguntas = true;
     this.dadosCandidato = {nome: objCandidato.nome, cpf: objCandidato.cpf};
-    console.log(this.dadosCandidato);
+    console.log("Componente Pai", this.dadosCandidato);
   }
 }
