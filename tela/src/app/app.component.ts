@@ -1,9 +1,12 @@
-import {Component} from '@angular/core'
-import {CommonModule} from '@angular/common'
-import {RouterOutlet} from '@angular/router'
-import {MatButtonModule} from '@angular/material/button'
-import {MatSlideToggleModule} from '@angular/material/slide-toggle'
-import {HomeComponent} from './home/home.component'
+import { Component } from '@angular/core'
+import { CommonModule } from '@angular/common'
+import { RouterOutlet } from '@angular/router'
+import { MatButtonModule } from '@angular/material/button'
+import { MatSlideToggleModule } from '@angular/material/slide-toggle'
+import { HttpClientModule } from '@angular/common/http';
+import { NavComponent } from './nav/nav.component'
+import { FooterComponent } from './footer/footer.component'
+import { HeaderComponent } from './header/header.component'
 
 @Component({
   selector: 'app-root',
@@ -13,7 +16,11 @@ import {HomeComponent} from './home/home.component'
     RouterOutlet,
     MatButtonModule,
     MatSlideToggleModule,
-    HomeComponent],
+    NavComponent,
+    FooterComponent,
+    HeaderComponent,
+    HttpClientModule
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

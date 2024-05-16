@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
+import { PerguntaService } from './pergunta.service';
 
 @Component({
   selector: 'app-pergunta',

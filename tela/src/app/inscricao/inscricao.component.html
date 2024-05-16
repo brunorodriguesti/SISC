@@ -1,5 +1,7 @@
-<div>
+<div class="m-10">
     <h1>Inscriçao</h1>
-    <app-candidato></app-candidato>
-    <app-pergunta></app-pergunta>
+    <app-candidato (ativarPerguntas)="onAtivarPerguntas($event)"></app-candidato>
+    @if(seccaoPerguntas){
+        <app-pergunta></app-pergunta>
+    }
 </div>
