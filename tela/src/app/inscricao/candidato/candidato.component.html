@@ -3,23 +3,33 @@
       <mat-card-title>Cadastro do Candidato</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-        <form>
-          <input type="text" [(ngModel)]="nome"
-          name="nome"
-          placeholder="Digite seu nome">
+      <form (ngSubmit)="handleClick()">
+        <mat-form-field appearance="fill">
+          <mat-label>Nome</mat-label>
+            <input type="text" [(ngModel)]="nome"
+              name="nome"
+              placeholder="Digite seu nome"
+              required
+            >
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>CPF</mat-label>
           <input type="text" [(ngModel)]="cpf"
-          name="cpf"
-          placeholder="Digite o seu cpf">
-          <input type="submit" value="Enviar">
-        </form>
+            name="cpf"
+            placeholder="Digite o seu cpf"
+            required
+          >
+        </mat-form-field>
+        <button mat-raised-button color="primary" type="submit">Cadastrar</button>
+      </form>
         @if( nome != "" && cpf != ""){
           <p>Seu nome é: {{ nome }}</p>
           <p>Seu cpf é: {{ cpf }}</p>
+          @if(mensagem != ""){
+            <p>{{ mensagem }}</p>
+          }
         }@else{
-          <p>preencha os dados da corretamente...</p>
+          <p>preencha os dados da corretamente para prosseguir!</p>
         }
     </mat-card-content>
-    <mat-card-actions>
-      <button mat-button (click)="handleClick()">Prosseguir</button>
-    </mat-card-actions>
 </mat-card>

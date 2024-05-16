@@ -1,0 +1,6 @@
+{
+    "/api": {
+        "target": "https://api-temporaria.onrender.com",
+        "secure": false
+    }
+}
