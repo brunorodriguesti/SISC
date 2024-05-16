@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { DashboardComponent } from '../dashboard/dashboard.component'
+import { FinanciadorComponent } from './financiador/financiador.component';
+import { CursoComponent } from './curso/curso.component';
 
 @Component({
   selector: 'app-admin',
   standalone: true,
-  imports: [DashboardComponent],
+  imports: [FinanciadorComponent, CursoComponent],
   templateUrl: './admin.component.html',
   styleUrl: './admin.component.scss'
 })

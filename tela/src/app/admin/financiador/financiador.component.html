@@ -1,0 +1,23 @@
+<mat-card>
+    <mat-card-header>
+      <mat-card-title>Administrar Financiador</mat-card-title>
+      <mat-card-subtitle>...</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <h2>Cadastrar Financiador</h2>
+        <form (ngSubmit)="handleCadastro()">
+            <input type="text" [(ngModel)]="nome"
+              name="nome"
+              placeholder="Digite o nome"
+              required
+            >
+          <button mat-raised-button color="primary" type="submit">Cadastrar</button>
+        </form>
+    </mat-card-content>
+    <mat-card-content>
+        <h2>Visualizar Financiador</h2>
+        <p>Lorem Ipsum.</p>
+    </mat-card-content>
+    <mat-card-actions>
+    </mat-card-actions>
+</mat-card>

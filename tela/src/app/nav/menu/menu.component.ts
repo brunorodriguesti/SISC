@@ -31,6 +31,7 @@ export class MenuComponent implements OnInit {
 
   menuAdmin: MenuItem[] = [
     { path: '/admin', label: 'Home' },
+    { path: '/admin/administrar', label: 'Administrar' },
     { path: '/admin/candidatos', label: 'Candidatos' },
     { path: '/admin/sobre', label: 'Sobre' }
   ];
