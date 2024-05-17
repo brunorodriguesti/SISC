@@ -3,7 +3,7 @@
       <mat-card-title>Cadastro do Candidato</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      @if(ativarButton){
+      @if(ativarcadastro){
         <form (ngSubmit)="handleCadastro()">
           <input type="text" [(ngModel)]="nome"
             name="nome"
@@ -27,9 +27,9 @@
           <button mat-raised-button color="primary" type="submit">Pesquisar</button>
         </form>
       }
-      @if( nome != "" && cpf != ""){
-        <p>Seu nome é: {{ nome }}</p>
-        <p>Seu cpf é: {{ cpf }}</p>
+      @if( getObjpessoa.nome != "" && getObjpessoa.cpf != ""){
+        <p>Seu nome é: {{ getObjpessoa.nome }}</p>
+        <p>Seu cpf é: {{ getObjpessoa.cpf }}</p>
         @if(mensagem != ""){
           <p>{{ mensagem }}</p>
         }

@@ -1,0 +1,40 @@
+mat-card {
+    width: 700px;
+    margin: 20px auto;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  
+    mat-card-header {
+      background-color: #3f51b5;
+      color: #fff;
+      padding: 10px;
+      border-radius: 5px 5px 0 0;
+    }
+  
+    mat-card-content {
+      padding: 10px;
+  
+      form {
+        margin-bottom: 20px;
+  
+        label {
+          display: block;
+          margin-bottom: 10px;
+          font-weight: bold;
+        }
+  
+        select {
+          width: 100%;
+          padding: 8px;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+        }
+      }
+  
+      iframe {
+        width: 100%;
+        height: 700px;
+        border: none;
+      }
+    }
+  }

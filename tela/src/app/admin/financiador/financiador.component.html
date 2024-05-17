@@ -16,7 +16,15 @@
     </mat-card-content>
     <mat-card-content>
         <h2>Visualizar Financiador</h2>
-        <p>Lorem Ipsum.</p>
+        @if(dataFinanciadores.length === 0){
+          <p>Sem Finaciadores cadastrados!</p>
+        }@else {
+          <ol>
+            @for(item of dataFinanciadores; track $index) {
+              <li>{{item.nome}}</li>
+            }
+        </ol>
+        }
     </mat-card-content>
     <mat-card-actions>
     </mat-card-actions>

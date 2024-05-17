@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { api } from '../../api';
 import { objPessoa } from '../objsinscricao';
 import { environment } from '../../../environments/environment';
 
@@ -9,18 +8,34 @@ import { environment } from '../../../environments/environment';
 })
 export class CandidatoService {
 
-  private apiUrlPost = `${environment.API_URL}${environment.API_CANDIDATO}`;
-  private apiUrlGetCpf = `${environment.API_URL}${environment.API_CANDIDATO_CPF}`;
+  private apiUrlPost = environment.API_CANDIDATO;
+  private apiUrlGetCpf = environment.API_CANDIDATO_CPF;
 
-  constructor(private http: HttpClient) { }
-
-  getCPF(cpf: string): Observable<objPessoa> {
-    const params = new HttpParams().set('cpf', cpf);
-
-    return this.http.get<objPessoa>(this.apiUrlGetCpf, { params });
+  async getCPF(cpf: string): Promise<objPessoa> {
+    try {
+      const apiClient = api()
+      const response = await apiClient.get<objPessoa>(this.apiUrlGetCpf, {
+        params:{
+          cpf
+        }
+      });
+      const dados = response.data;
+      return dados
+    }catch(error){
+      console.error('Erro ao fazer a requisição:', error)
+      return {
+        nome: "",
+        cpf: ""
+      }
+    }
   }
 
-  postCandidato(candidato: objPessoa): Observable<objPessoa> {
-    return this.http.post<objPessoa>(this.apiUrlPost, candidato);
+  async postCandidato(candidato: objPessoa): Promise<void> {
+    try{
+      const apiClient = api()
+      await apiClient.post<objPessoa>(this.apiUrlPost, candidato)
+    }catch(error){
+      console.error('Erro ao fazer a requisição:', error)
+    }
   }
 }

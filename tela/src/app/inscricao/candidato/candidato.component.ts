@@ -16,52 +16,49 @@ export class CandidatoComponent {
   @Output() ativarPerguntas = new EventEmitter<objPessoa>();
   nome: string = "";
   cpf: string = "";
+  getObjpessoa: objPessoa = { nome: "", cpf: "" };
   mensagem: string = "";
-  dataResponse: objPessoaId[] = [];
+  dataResponse!: objPessoa;
   ativarButton: boolean = false;
   ativarcadastro: boolean = false;
 
   constructor(private candidatoService: CandidatoService) { }
 
-  handleCpf(cpf: string): void {
-    this.candidatoService.getCPF(cpf).subscribe(
-      (response) => {
-        if (response) {
-          console.log("handleCpf()", response);
-          this.nome = response.nome;
-          this.cpf = response.cpf;
-          this.ativarButton = true;
-        }
-      },
-      (error) => {
-        console.error('Erro ao buscar dados:', error);
-        console.log("handleCpf()", error);
-        this.ativarButton = true;
+  async handleCpf(cpf: string): Promise<void> {
+    this.ativarButton = false
+    try {
+      this.dataResponse = await this.candidatoService.getCPF(cpf);
+  
+      if (this.dataResponse.nome !== "" && this.dataResponse.nome !== null) {
+        console.log("handleCpf()", this.dataResponse);
+        this.nome = this.dataResponse.nome;
+        this.cpf = this.dataResponse.cpf;
+        this.getObjpessoa = { nome: this.dataResponse.nome, cpf: this.dataResponse.cpf };
+        this.ativarcadastro = false;
+        this.ativarButton = true
+      } else {
+        this.ativarcadastro = true;
       }
-    );
+    } catch (error) {
+      console.error('Erro ao buscar o CPF:', error);
+      this.ativarcadastro = true;
+    }
   }
 
   handleCadastro(): void {
-    const objpessoa: objPessoa = { nome: this.nome, cpf: this.cpf };
-    this.candidatoService.postCandidato(objpessoa).subscribe(
-      (response) => {
-        console.log("handleCadastro()", response);
-        this.mensagem = 'Cadastro realizado com sucesso';
-        this.ativarButton = true;
-      },
-      (error) => {
-        console.log("handleCadastro()", error);
-        this.mensagem = 'Erro ao cadastrar candidato';
-        this.ativarButton = false;
-      }
-    );
+    this.getObjpessoa = { nome: this.nome, cpf: this.cpf };
+    this.candidatoService.postCandidato(this.getObjpessoa)
+    this.nome = "";
+    this.cpf = "";
+    this.ativarButton = true
+    this.ativarcadastro = false
   }
 
   handleClick(): void {
-    const objpessoa: objPessoa = { nome: this.nome, cpf: this.cpf };
+    this.getObjpessoa = { nome: this.nome, cpf: this.cpf };
     if (this.nome !== "" && this.cpf !== "") {
-      console.log("Componente Filho Candidato", objpessoa);
-      this.ativarPerguntas.emit(objpessoa);
+      console.log("Componente Filho Candidato", this.getObjpessoa);
+      this.ativarPerguntas.emit(this.getObjpessoa);
     }
   }
 }

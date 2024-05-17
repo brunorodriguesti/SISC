@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { api } from '../../api'
 import { environment } from '../../../environments/environment';
 import { objFinanciador, objFinanciadorId } from './objFinanciador';
 
@@ -9,16 +8,27 @@ import { objFinanciador, objFinanciadorId } from './objFinanciador';
 })
 
 export class FinanciadorService {
-  private apiUrlPost = `${environment.API_URL}${environment.API_FINACIADOR}`;
-  private apiUrlGetFinanciador = `${environment.API_URL}${environment.API_FINACIADOR_TODOS}`;
+  private apiUrlPost = environment.API_FINACIADOR;
+  private apiUrlGetFinanciador = environment.API_FINACIADOR_TODOS;
 
-  constructor(private http: HttpClient) { }
-
-  postFinanciador(nome: string): Observable<objFinanciador> {
-    return this.http.post<objFinanciador>(this.apiUrlPost, { nome });
+  async postFinanciador(nome: objFinanciador): Promise<void> {
+    try{
+      const apiClient = api()
+      await apiClient.post<objFinanciador>(this.apiUrlPost, nome)
+    }catch(error){
+      console.error('Erro ao fazer a requisição:', error)
+    }
   }
 
-  getTodosFinanciadores(): Observable<objFinanciadorId[]> {
-    return this.http.get<objFinanciadorId[]>(this.apiUrlGetFinanciador);
+  async getTodosFinanciadores(): Promise<objFinanciadorId[]> {
+    try {
+      const apiClient = api()
+      const response = await apiClient.get<objFinanciadorId[]>(this.apiUrlGetFinanciador);
+      const dados = response.data;
+      return dados
+    }catch(error){
+      console.error('Erro ao fazer a requisição:', error);
+      return []
+    }
   }
 }
