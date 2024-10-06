@@ -16,12 +16,16 @@ import java.util.Optional;
 
 @Service
 public class CursoService {
+
     @Autowired
     private CursoRepository cursoRepository;
+
+
     public void registrarCurso(CadastroCursoDTO cadastroCursoDTO) {
         try{
             CursoVO cursoVO = new CursoVO();
             BeanUtils.copyProperties(cadastroCursoDTO,cursoVO);
+            cursoVO.setSituacao(true);
             cursoRepository.save(cursoVO);
         }catch (Exception e){
             throw  new ExceptionGenerica(new StringBuilder().append("Erro ao cadastrar curso: ").append(e).toString());

@@ -8,8 +8,7 @@ public class CadastroCursoDTO {
     private String nome;
     @NotBlank(message = "Objetivo do curso não pode ser vazio ou nulo")
     private String objetivo;
-    @Min(message = "Carga horaria do curso não pode ser menor que 0",value = 0)
-    private double cargaHoraria;
+
 
     public String getNome() {
         return nome;
@@ -25,13 +24,5 @@ public class CadastroCursoDTO {
 
     public void setObjetivo(String objetivo) {
         this.objetivo = objetivo;
-    }
-
-    public double getCargaHoraria() {
-        return cargaHoraria;
-    }
-
-    public void setCargaHoraria(double cargaHoraria) {
-        this.cargaHoraria = cargaHoraria;
     }
 }

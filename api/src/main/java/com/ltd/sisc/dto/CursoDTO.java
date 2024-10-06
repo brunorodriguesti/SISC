@@ -5,7 +5,6 @@ public class CursoDTO {
     private Long id;
     private String nome;
     private String objetivo;
-    private double cargaHoraria;
 
     public Long getId() {
         return id;
@@ -31,11 +30,4 @@ public class CursoDTO {
         this.objetivo = objetivo;
     }
 
-    public double getCargaHoraria() {
-        return cargaHoraria;
-    }
-
-    public void setCargaHoraria(double cargaHoraria) {
-        this.cargaHoraria = cargaHoraria;
-    }
 }
