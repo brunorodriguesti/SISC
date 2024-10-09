@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { api } from '../../api';
 import { environment } from '../../../environments/environment';
-import { objCurso, objCursoId } from '../../inscricao/pergunta/objPergunta'
+import { objCursoId } from '../DTO';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +9,6 @@ import { objCurso, objCursoId } from '../../inscricao/pergunta/objPergunta'
 export class CursoService {
 
   private apiUrlGetCursos = environment.API_CURSOS_TODOS;
-  private apiUrlPost = environment.API_CURSOS
 
   constructor() { }
 
@@ -18,6 +17,7 @@ export class CursoService {
       const apiClient = api()
       const response = await apiClient.get<objCursoId[]>(this.apiUrlGetCursos);
       const dados = response.data;
+      console.log(dados);
       return dados
     }catch(error){
       console.error('Erro ao fazer a requisição:', error);
@@ -25,12 +25,19 @@ export class CursoService {
     }
   }
 
-  async postCurso(objeto: objCurso): Promise<void> {
-    try{
+  async getTurmaById(): Promise<objCursoId> {
+    try {
       const apiClient = api()
-      await apiClient.post<objCurso>(this.apiUrlPost, objeto)
+      const response = await apiClient.get<objCursoId>(this.apiUrlGetCursos);
+      const dados = response.data;
+      return dados
     }catch(error){
-      console.error('Erro ao fazer a requisição:', error)
+      console.error('Erro ao fazer a requisição:', error);
+      return {
+        id: 0,
+        nome: "",
+        objetivo: ""
+      }
     }
   }
 }

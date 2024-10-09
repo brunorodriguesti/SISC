@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CandidatoComponent } from './candidato/candidato.component'
 import { PerguntaComponent } from './pergunta/pergunta.component'
-import { objPessoa } from './objsinscricao';
+import { objPessoa } from './DTO';
 
 @Component({
   selector: 'app-inscricao',

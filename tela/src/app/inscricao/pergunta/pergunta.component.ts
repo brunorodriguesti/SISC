@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { CommonModule } from '@angular/common';
 import { PerguntaService } from './pergunta.service';
-import { objCursoId } from './objPergunta';
+import { objCursoId } from '../DTO';
 
 @Component({
   selector: 'app-pergunta',

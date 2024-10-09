@@ -3,14 +3,7 @@
     <mat-card-title>Perguntas</mat-card-title>
     <mat-card-subtitle>Responda corretamente as perguntas</mat-card-subtitle>
   </mat-card-header>
-  <mat-card-content>
-    <form>
-      <label for="opcoes">Escolha uma opção:</label>
-      <select id="opcoes" name="opcoes" (change)="onCursoChange($event)">
-        <option value="" disabled selected>Selecione uma opção</option>
-        <option *ngFor="let item of dataCursos" [value]="item.nome">{{ item.nome }}</option>
-      </select>
-    </form>
-    <iframe *ngIf="cursoSelecionado" src="https://docs.google.com/forms/d/e/1FAIpQLSfBVUWseNyp0cmT7ldmHtPmwIRUir2tX_p5MwXPipl-MWwPHg/viewform?embedded=true" width="1100" height="1360" frameborder="0" marginheight="0" marginwidth="0">Carregando…</iframe>
+  <mat-card-content>    
+    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSevOvqNfXOdJoUnaPS_H7u6uEcsKK2t8GSwfi4F-3_9ORRa9g/viewform" width="1100" height="1360" frameborder="0" marginheight="0" marginwidth="0">Carregando…</iframe>
   </mat-card-content>
 </mat-card>

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { api } from '../../api';
-import { objPessoa } from '../objsinscricao';
+import { objPessoa } from '../DTO';
 import { environment } from '../../../environments/environment';
 
 @Injectable({
@@ -8,8 +8,8 @@ import { environment } from '../../../environments/environment';
 })
 export class CandidatoService {
 
-  private apiUrlPost = environment.API_CANDIDATO;
-  private apiUrlGetCpf = environment.API_CANDIDATO_CPF;
+  private apiUrlPost = environment.API_ALUNO;
+  private apiUrlGetCpf = environment.API_ALUNO_CPF;
 
   async getCPF(cpf: string): Promise<objPessoa> {
     try {
