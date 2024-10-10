@@ -1,71 +1,59 @@
-CREATE TABLE IF NOT EXISTS tb_perguntas(
-    id_pergunta SERIAL PRIMARY KEY,
-    descricao VARCHAR(255),
-    grupo INT,
-    candidato_id_candidato INT
-);
-
-CREATE TABLE IF NOT EXISTS tb_candidato(
-    id_candidato SERIAL PRIMARY KEY,
-    nome VARCHAR(100),
-    cpf VARCHAR(11)
-);
-
-CREATE TABLE IF NOT EXISTS tb_curso(
-    id_curso SERIAL PRIMARY KEY,
-    nome VARCHAR(100),
+CREATE TABLE IF NOT EXISTS Curso (
+    idCurso INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(50),
     objetivo VARCHAR(45),
-    carga_horaria FLOAT
+    situacao BOOLEAN
 );
 
-CREATE TABLE IF NOT EXISTS tb_financiador(
-    id_financiador SERIAL PRIMARY KEY,
-    nome VARCHAR(100)
+CREATE TABLE IF NOT EXISTS Turma (
+    idTurma INT AUTO_INCREMENT PRIMARY KEY,
+    dt_inicio DATE,
+    dt_fim DATE,
+    hora TIME,
+    curso_idCurso INT,
+    num_max_alunos INT,
+    situacao BOOLEAN,
+    FOREIGN KEY (curso_idCurso) REFERENCES Curso(idCurso)
 );
 
-CREATE TABLE IF NOT EXISTS tb_requisitos(
-    id_requisito SERIAL PRIMARY KEY,
-    descricao_requisito VARCHAR(100)
+CREATE TABLE IF NOT EXISTS Aluno (
+    idAluno INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100),
+    cpf VARCHAR(11),
+    cep VARCHAR(11),
+    nome_mae VARCHAR(100),
+    email VARCHAR(50),
+    telefone VARCHAR(11),
+    celular VARCHAR(11),
+    data_nascimento DATE NOT NULL,
+    carteira_identidade VARCHAR(9),
+    orgao_emissor VARCHAR(5),
+    pis_pasep VARCHAR(11),
+    numero_ctps VARCHAR(7),
+    serie_ctps VARCHAR(4),
+    situacao BOOLEAN
 );
 
-CREATE TABLE IF NOT EXISTS tb_opcoes(
-    id_respostas SERIAL PRIMARY KEY,
-    descricao VARCHAR(255),
-    tipo INT,
-    pontuacao_default INT,
-    perguntas_id_pergunta INT
+CREATE TABLE IF NOT EXISTS Objetivo (
+    idObjetivo INT AUTO_INCREMENT PRIMARY KEY,
+    adquirir_conhecimento VARCHAR(45),
+    aluno_idAluno INT,
+    situacao BOOLEAN,
+    FOREIGN KEY (aluno_idAluno) REFERENCES Aluno(idAluno)
 );
 
-CREATE TABLE IF NOT EXISTS tb_requisitos_cursos(
-    id SERIAL PRIMARY KEY,
-    curso_id_curso INT,
-    financiador_id_financiador INT,
-    requisito_id_requisito INT
+CREATE TABLE IF NOT EXISTS Parametro_Selecao (
+    idParametro_Selecao INT AUTO_INCREMENT PRIMARY KEY,
+    descricao TINYINT,
+    peso INT,
+    aluno_idAluno INT,
+    situacao BOOLEAN,
+    FOREIGN KEY (aluno_idAluno) REFERENCES Aluno(idAluno)
 );
 
-CREATE TABLE IF NOT EXISTS tb_inscricao(
-    id SERIAL PRIMARY KEY,
-    curso_id_curso INT,
-    perguntas_id_pergunta INT
-);
 
-ALTER TABLE tb_perguntas
-    ADD CONSTRAINT fk_tb_candidato_id_candidato FOREIGN KEY (candidato_id_candidato) REFERENCES tb_candidato (id_candidato);
+ALTER TABLE Aluno
+ADD turma_idTurma INT;
 
-ALTER TABLE tb_opcoes
-    ADD CONSTRAINT fk_tb_perguntas_id_perguntas FOREIGN KEY (perguntas_id_pergunta) REFERENCES tb_perguntas (id_pergunta);
-
-ALTER TABLE tb_inscricao
-    ADD CONSTRAINT fk_tb_curso_id_curso FOREIGN KEY (curso_id_curso) REFERENCES tb_curso (id_curso);
-
-ALTER TABLE tb_inscricao
-    ADD CONSTRAINT fk_tb_perguntas_id_pergunta FOREIGN KEY (perguntas_id_pergunta) REFERENCES tb_perguntas (id_pergunta);
-
-ALTER TABLE tb_requisitos_cursos
-    ADD CONSTRAINT fk_tb_cursos_id_curso FOREIGN KEY (curso_id_curso) REFERENCES tb_curso (id_curso);
-
-ALTER TABLE tb_requisitos_cursos
-    ADD CONSTRAINT fk_tb_financiador_id_financiador FOREIGN KEY (financiador_id_financiador) REFERENCES tb_financiador (id_financiador);
-
-ALTER TABLE tb_requisitos_cursos
-    ADD CONSTRAINT fk_tb_requisito_id_requisito FOREIGN KEY (requisito_id_requisito) REFERENCES tb_requisitos (id_requisito);
+ALTER TABLE Aluno
+ADD CONSTRAINT fk_turma FOREIGN KEY (turma_idTurma) REFERENCES Turma(idTurma);

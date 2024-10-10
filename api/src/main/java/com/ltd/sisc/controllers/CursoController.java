@@ -2,7 +2,6 @@ package com.ltd.sisc.controllers;
 
 
 import com.ltd.sisc.dto.CadastroCursoDTO;
-import com.ltd.sisc.dto.CadastroFinanciadorDTO;
 import com.ltd.sisc.dto.CursoDTO;
 import com.ltd.sisc.services.CursoService;
 import jakarta.validation.Valid;
@@ -19,7 +18,6 @@ import java.util.List;
 public class CursoController {
     @Autowired
     private CursoService cursoService;
-
 
     @PostMapping
     public ResponseEntity registraCurso(@Valid @RequestBody CadastroCursoDTO cadastroCursoDTO ){

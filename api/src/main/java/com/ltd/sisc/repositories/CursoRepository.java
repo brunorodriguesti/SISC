@@ -10,6 +10,7 @@ import java.util.List;
 
 @Repository
 public interface CursoRepository extends JpaRepository<CursoVO,Long> {
-    @Query("SELECT c FROM CursoVO c WHERE c.nome LIKE %:nome%")
+    //@Query("SELECT c FROM CursoVO c WHERE c.nome LIKE %:nome%")
+    @Query("SELECT c FROM CursoVO c WHERE LOWER(c.nome) LIKE LOWER(CONCAT('%', :nome, '%'))")
     List<CursoVO> buscaCursosPorNome(@Param("nome") String nome);
 }

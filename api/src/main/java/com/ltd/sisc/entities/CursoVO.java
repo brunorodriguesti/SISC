@@ -8,7 +8,7 @@ public class CursoVO {
     private Long idCurso;
     private String nome;
     private String objetivo;
-    private double cargaHoraria;
+    private boolean situacao;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,6 +29,7 @@ public class CursoVO {
     public void setNome(String nome) {
         this.nome = nome;
     }
+
     @Column(name = "objetivo")
     public String getObjetivo() {
         return objetivo;
@@ -37,12 +38,13 @@ public class CursoVO {
     public void setObjetivo(String objetivo) {
         this.objetivo = objetivo;
     }
-    @Column(name = "carga_horaria")
-    public double getCargaHoraria() {
-        return cargaHoraria;
+
+    @Column(name = "situacao")
+    public boolean isSituacao() {
+        return situacao;
     }
 
-    public void setCargaHoraria(double cargaHoraria) {
-        this.cargaHoraria = cargaHoraria;
+    public void setSituacao(boolean situacao) {
+        this.situacao = situacao;
     }
 }
