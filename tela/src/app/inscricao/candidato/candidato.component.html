@@ -3,28 +3,31 @@
       <mat-card-title>Cadastro</mat-card-title>
     </mat-card-header>
     <mat-card-content>
+      <mat-card-title>Curso</mat-card-title>
       <form (ngSubmit)="handleCadastro()">
-
-        <mat-card-title>Curso</mat-card-title>
-        <label for="opcoes">Escolha uma opção:</label>
-        <select id="opcoes" name="opcoes" (change)="onCursoChange($event)">
-          <option value="" disabled selected>Selecione uma opção</option>
-          <option *ngFor="let item of dataCurso" [value]="item.id">{{ item.nome }}</option>
-        </select>
-
-        <mat-card-title>Turmas</mat-card-title>
-        <label for="turmas">Escolha uma data de início:</label>
-        <select id="turmas" name="turmas" (change)="onTurmaChange($event)">
-          <option value="" disabled selected>Selecione uma turma</option>
-          <option *ngFor="let turma of dataTurma" [value]="turma.dataInicio">{{ turma.dataInicio }}</option>
-        </select>
-
-        <div *ngIf="turmaSelecionada">
-          <mat-card-content>
-            <p>Data de Início: {{ turmaSelecionada.dataInicio }}</p>
-            <p>Data de Fim: {{ turmaSelecionada.dataFim }}</p>
-            <p>Hora: {{ turmaSelecionada.hora }}</p>
-          </mat-card-content>
+        <div>
+        <div><p>Local de Inscrição: @if(cursoSelecionado > 0){ Escola Municiapal da Prefeitura de BH }</p></div>
+          <label for="opcoes">Selecione um curso:</label>
+          <select id="opcoes" name="opcoes" (change)="onCursoChange($event)">
+            <option value="" disabled selected>Selecione um curso</option>
+            <option *ngFor="let item of dataCurso" [value]="item.id">{{ item.nome }}</option>
+          </select>
+          <label for="turmas">Escolha a data de início:</label>
+          <select id="turmas" name="turmas" (change)="onTurmaChange($event)">
+            <option value="" disabled selected>Selecione a turma</option>
+            <option *ngFor="let turma of dataTurma" [value]="turma.dataInicio">{{ turma.dataInicio }}</option>
+          </select>
+          <div>
+            <div>
+              <p>Local do Curso: @if(turmaSelecionada){ Rua Centro sul da capital, N° 200, Centro, Belo Horizonte, MG }</p>
+              <p>Inicio: @if(turmaSelecionada){ {{ turmaSelecionada.dataInicio }} }</p>
+              <p>Termino: @if(turmaSelecionada){ {{ turmaSelecionada.dataFim }} }</p>
+            </div>
+            <div>
+              <p>Horario: @if(turmaSelecionada){ {{ turmaSelecionada.hora }} }</p>
+              <p>Secretaria: @if(turmaSelecionada){ ?? }</p>
+            </div>
+          </div>
         </div>
 
         <mat-card-title>Dados do Candidato</mat-card-title>
