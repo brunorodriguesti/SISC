@@ -4,17 +4,29 @@
     </mat-card-header>
     <mat-card-content>
       <form (ngSubmit)="handleCadastro()">
+
         <mat-card-title>Curso</mat-card-title>
         <label for="opcoes">Escolha uma opção:</label>
         <select id="opcoes" name="opcoes" (change)="onCursoChange($event)">
           <option value="" disabled selected>Selecione uma opção</option>
-          <option *ngFor="let item of dataCurso" [value]="item.nome">{{ item.nome }}</option>
+          <option *ngFor="let item of dataCurso" [value]="item.id">{{ item.nome }}</option>
         </select>
-        <!-- <label for="opcoes">Escolha uma opção:</label>
-        <select id="opcoes" name="opcoes" (change)="onTurmaChange($event)">
-          <option value="" disabled selected>Selecione uma opção</option>
-          <option *ngFor="let item of dataTurma" [value]="item.dataInicio">{{ item.dataInicio }}</option>
-        </select> -->
+
+        <mat-card-title>Turmas</mat-card-title>
+        <label for="turmas">Escolha uma data de início:</label>
+        <select id="turmas" name="turmas" (change)="onTurmaChange($event)">
+          <option value="" disabled selected>Selecione uma turma</option>
+          <option *ngFor="let turma of dataTurma" [value]="turma.dataInicio">{{ turma.dataInicio }}</option>
+        </select>
+
+        <div *ngIf="turmaSelecionada">
+          <mat-card-content>
+            <p>Data de Início: {{ turmaSelecionada.dataInicio }}</p>
+            <p>Data de Fim: {{ turmaSelecionada.dataFim }}</p>
+            <p>Hora: {{ turmaSelecionada.hora }}</p>
+          </mat-card-content>
+        </div>
+
         <mat-card-title>Dados do Candidato</mat-card-title>
         <input type="text" [(ngModel)]="nome"
           name="nome"

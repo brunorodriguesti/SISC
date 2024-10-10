@@ -17,7 +17,6 @@ export class CursoService {
       const apiClient = api()
       const response = await apiClient.get<objCursoId[]>(this.apiUrlGetCursos);
       const dados = response.data;
-      console.log(dados);
       return dados
     }catch(error){
       console.error('Erro ao fazer a requisição:', error);

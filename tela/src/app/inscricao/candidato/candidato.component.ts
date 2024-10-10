@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { CandidatoService } from './candidato.service';
 import { CursoService } from './curso.service';
+import { TurmaService } from './turma.service';
 import { objPessoa, objCursoId, objTurma } from '../DTO';
 
 @Component({
@@ -14,92 +15,81 @@ import { objPessoa, objCursoId, objTurma } from '../DTO';
   templateUrl: './candidato.component.html',
   styleUrls: ['./candidato.component.scss']
 })
+
 export class CandidatoComponent {
   @Output() paramsCandidato = new EventEmitter<any>();
-  dataCurso: objCursoId[] = [
-    {
-      id: 1,
-      nome: 'Informatica',
-      objetivo: 'Curso de 40hrs de informática'
-    },
-    {
-      id: 2,
-      nome: 'Cabelereiro',
-      objetivo: 'Curso de 20hrs de Cabelereiro'
-    },
-    {
-      id: 3,
-      nome: 'Custureira',
-      objetivo: 'Curso de 20hrs de Custureira'
+  dataCurso: objCursoId[] = [];
+  dataTurma: objTurma[] = [];
+  getTurma: objTurma = {
+    dataInicio: "",
+    dataFim: "",
+    hora: "",
+    numeroMaximoAlunos: 0,
+    cadastroAlunoDTOList: [],
+    cursoDTO: {
+      id: 0,
+      nome: "",
+      objetivo: ""
     }
-  ]
-  dataTurma: objTurma[] = [
-    {
-      dataInicio: "2024-10-14",
-      dataFim: "2024-10-25",
-      hora: "07:00:00",
-      numeroMaximoAlunos: 0,
-      cadastroAlunoDTOList: [],
-      cursoDTO: {
-        id: 1,
-        nome: "Informatica",
-        objetivo: "Curso de 40hrs de informática"
-      }
-    },
-    {
-      dataInicio: "2024-10-14",
-      dataFim: "2024-10-25",
-      hora: "07:00:00",
-      numeroMaximoAlunos: 0,
-      cadastroAlunoDTOList: [],
-      cursoDTO: {
-        id: 1,
-        nome: "Informatica",
-        objetivo: "Curso de 40hrs de informática"
-      }
-    },
-    {
-      dataInicio: "2024-10-14",
-      dataFim: "2024-10-18",
-      hora: "07:00:00",
-      numeroMaximoAlunos: 0,
-      cadastroAlunoDTOList: [],
-      cursoDTO: {
-        id: 2,
-        nome: "Cabelereiro",
-        objetivo: "Curso de 20hrs de Cabelereiro"
-      }
-    }
-  ];
-  cursoSelecionado: string = '';
+  };
+  cursoSelecionado: number = 0;
+  turmaSelecionada: objTurma | null = null;
   nome: string = "";
   cpf: string = "";
   getObjpessoa: objPessoa = { nome: "", cpf: "" };
 
-  constructor(private candidatoService: CandidatoService, private cursoService: CursoService) { }
+  constructor(
+    private candidatoService: CandidatoService,
+    private cursoService: CursoService,
+    private turmaService: TurmaService
+  ){}
 
   ngOnInit(): void {
-    // this.handleGetCursos();
-    this.dataCurso
+    this.handleGetCursos();
   }
 
   async handleGetCursos(): Promise<void> {
     try {
       this.dataCurso = await this.cursoService.getTodosCursos();
-      console.log(this.dataCurso);
     } catch (error) {
       console.error('Erro ao buscar os cursos:', error);
     }
   }
 
+  async handleGetTurma( id: number): Promise<void> {
+    try {
+      if (id == 1) {
+        for (let i = 1; i <= 2; i++) {
+          this.getTurma = await this.turmaService.getTurma(i);
+          this.dataTurma.push(this.getTurma);
+        }
+      } else if (id == 2) {
+        for (let i = 3; i <= 4; i++) {
+          this.getTurma = await this.turmaService.getTurma(i);
+          this.dataTurma.push(this.getTurma);
+        }
+      } else if (id == 3) {
+        for (let i = 5; i <= 6; i++) {
+          this.getTurma = await this.turmaService.getTurma(i);
+          this.dataTurma.push(this.getTurma);
+        }
+      }else {
+        this.dataTurma.push(this.getTurma);
+      }
+    } catch (error) {
+      console.error('Erro ao buscar a turma:', error);
+    }
+  }
+
   onCursoChange(event: Event): void {
     const target = event.target as HTMLSelectElement;
-    this.cursoSelecionado = target.value;
+    this.cursoSelecionado = +target.value;
+    this.handleGetTurma(this.cursoSelecionado);
   }
 
   onTurmaChange(event: Event): void {
     const target = event.target as HTMLSelectElement;
-    this.cursoSelecionado = target.value;
+    this.turmaSelecionada = this.dataTurma.find(turma => turma.dataInicio === target.value) || null;
   }
   
   handleCadastro(): void {
