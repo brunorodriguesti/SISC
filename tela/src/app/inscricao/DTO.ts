@@ -1,16 +1,38 @@
 export interface objPessoa {
     nome: string,
-    cpf: string
+    cpf: string,
+    cep: string,
+    nomeMae: string,
+    email: string,
+    telefone: string,
+    celular: string,
+    dataNascimento: string,
+    carteiraIdentidade: string,
+    orgaoEmissor: string,
+    pisPasep: string,
+    numeroCTPS: string,
+    serieCTPS: string
 }
 
 export interface objPessoaId {
     id: number,
     nome: string,
-    cpf: string
+    cpf: string,
+    cep: string,
+    nomeMae: string,
+    email: string,
+    telefone: string,
+    celular: string
+    dataNascimento: string
+    carteiraIdentidade: string
+    orgaoEmissor: string,
+    pisPasep: string,
+    numeroCTPS: string,
+    serieCTPS: string
 }
 
 export interface objCursoId {
-    id: Number,
+    id: number,
     nome: string,
     objetivo: string
 }

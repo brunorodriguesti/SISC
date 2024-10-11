@@ -3,7 +3,7 @@
       <mat-card-title>Cadastro</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      <mat-card-title>Curso</mat-card-title>
+      <mat-card-title>Formulario de Inscrição</mat-card-title>
       <form (ngSubmit)="handleCadastro()">
         <div>
         <div><p>Local de Inscrição: @if(cursoSelecionado > 0){ Escola Municiapal da Prefeitura de BH }</p></div>
@@ -29,39 +29,109 @@
             </div>
           </div>
         </div>
-
-        <mat-card-title>Dados do Candidato</mat-card-title>
-        <input type="text" [(ngModel)]="nome"
-          name="nome"
-          placeholder="Digite seu nome"
-          required
-        >
-        <input type="text" [(ngModel)]="cpf"
-          name="cpf"
-          placeholder="Digite o seu cpf"
-          required
-        >
-        <input type="text" [(ngModel)]="nome"
-          name="cep"
-          placeholder="Digite seu CEP"
-          required
-        >
-        <input type="text" [(ngModel)]="cpf"
-          name="email"
-          placeholder="Digite o email"
-          required
-        >
-        <input type="text" [(ngModel)]="nome"
-          name="telefone"
-          placeholder="celular"
-          required
-        >
-        <input type="text" [(ngModel)]="cpf"
-          name="data nascimento"
-          placeholder="data nascimento"
-          required
-        >
-      <button mat-raised-button color="primary" type="submit">Cadastrar</button>
+        <mat-card-title>01 - Dados Pessoais do Aluno</mat-card-title>
+        <div>
+          <div>
+            <p>Nome Completo: 
+              <input type="text" [(ngModel)]="nome"
+                name="nome"
+                required>
+            </p>
+          </div>
+          <div>
+            <p>Endereço (Rua / Av / Bc):
+              <input type="text"
+                name="endereco"
+                required>
+            </p>
+            <p>N°:
+              <input type="text"
+                name="numeroCasa"
+                required>
+            </p>
+          </div>
+          <div>
+            <p>Bairro:
+              <input type="text"
+                name="bairro"
+                required>
+            </p>
+            <p>CEP:
+              <input type="text" [(ngModel)]="cep"
+                name="cep"
+                required>
+            </p>
+          </div>
+          <div>
+            <p>Cidade: BH</p>
+          </div>
+          <div>
+            <p>Telefone: 
+              <input type="text" [(ngModel)]="telefone"
+                name="telefone"
+                required>
+            </p>
+            <p>Celular: 
+              <input type="text" [(ngModel)]="celular"
+                name="celular"
+                required>
+            </p>
+            <p>Recado: 
+              <input type="text"
+                name="recado"
+                required>
+            </p>
+            <p>Falar com: 
+              <input type="text"
+                name="falarCom"
+                required>
+            </p>
+          </div>
+          <div>
+            <p>E-mail: 
+              <input type="text" [(ngModel)]="email"
+                name="email"
+                required>
+            </p>
+          </div>
+          <div>
+            <p>Nome da Mãe: 
+              <input type="text" [(ngModel)]="nomeMae"
+                name="nomeMae"
+                required>
+            </p>
+          </div>
+          <div>
+            <p>Data de Nascimento: 
+              <input type="text" [(ngModel)]="dataNascimento"
+                name="dataNascimento"
+                required>
+            </p>
+            <div>
+              <label>Sexo:</label>
+              <p>
+                <input type="radio" id="sexo1" name="sexo" [(ngModel)]="sexo" value="masculino">
+                <label for="sexo1">Masculino</label>
+              </p>
+              <p>
+                <input type="radio" id="sexo2" name="sexo" [(ngModel)]="sexo" value="feminino">
+                <label for="sexo2">Feminino</label>
+              </p>
+            </div>
+          </div>          
+        </div>
+        <mat-card-title>02 - Documentação</mat-card-title>
+        <div>
+          <div></div>
+          <div>
+            <p>CPF: 
+              <input type="text" [(ngModel)]="cpf"
+                name="cpf"
+                required>
+            </p>
+          </div>
+        </div>
+        <button mat-raised-button color="primary" type="submit">Cadastrar</button>
       </form>
     </mat-card-content>
 </mat-card>

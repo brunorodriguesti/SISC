@@ -8,6 +8,7 @@ import { objTurma } from '../DTO';
 })
 export class TurmaService {
   private apiUrlGetTurma = environment.API_TURMA;
+  private apiUrlPostAlunoTurma = environment.API_ALUNO_TURMA;
 
   constructor() { }
 
@@ -35,6 +36,15 @@ export class TurmaService {
           objetivo: ""
         }
       }
+    }
+  }
+
+  async postAlunoTurma(idAluno: number, idTurma: number): Promise<void> {
+    try{
+      const apiClient = api()
+      await apiClient.post<any>(this.apiUrlPostAlunoTurma, {idAluno, idTurma})
+    }catch(error){
+      console.error('Erro ao fazer a requisição:', error)
     }
   }
 }
