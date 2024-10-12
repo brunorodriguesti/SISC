@@ -1,12 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { CandidatoService } from './candidato.service';
-import { CursoService } from './curso.service';
-import { TurmaService } from './turma.service';
-import { objPessoa, objCursoId, objTurma, objTurmaId } from '../DTO';
+import { objPessoaId } from '../DTO';
 
 @Component({
   selector: 'app-candidato',
@@ -17,12 +14,8 @@ import { objPessoa, objCursoId, objTurma, objTurmaId } from '../DTO';
 })
 
 export class CandidatoComponent {
-  dataCurso: objCursoId[] = [];
-  dataTurma: objTurmaId[] = [];
-  turmaSelecionada: objTurmaId | null = null;
-  getObjpessoa: objPessoa | null = null;
-  getTurma: objTurma | null = null
-  cursoSelecionado: number = 0;
+  @Output() candidatoData = new EventEmitter<any>();
+
   id: number = 0;
   nome: string = "";
   cpf: string = "";
@@ -39,98 +32,13 @@ export class CandidatoComponent {
   serieCTPS: string = "";
   sexo: string = '';
 
-  constructor(
-    private candidatoService: CandidatoService,
-    private cursoService: CursoService,
-    private turmaService: TurmaService
-  ){}
+  constructor(){}
 
-  ngOnInit(): void {
-    this.handleGetCursos();
-  }
+  ngOnInit(): void {}
 
-  async handleGetCursos(): Promise<void> {
-    try {
-      this.dataCurso = await this.cursoService.getTodosCursos();
-    } catch (error) {
-      console.error('Erro ao buscar os cursos:', error);
-    }
-  }
-
-  async handleGetTurma( id: number): Promise<void> {
-    try {
-      if (id == 1) {
-        for (let i = 1; i <= 2; i++) {
-          this.getTurma = await this.turmaService.getTurma(i);
-          this.dataTurma.push({
-            id: i,
-            dataInicio: this.getTurma.dataInicio,
-            dataFim: this.getTurma.dataFim,
-            hora: this.getTurma.hora,
-            numeroMaximoAlunos: this.getTurma.numeroMaximoAlunos,
-            cadastroAlunoDTOList: this.getTurma.cadastroAlunoDTOList,
-            cursoDTO: this.getTurma.cursoDTO
-          });
-        }
-      } else if (id == 2) {
-        for (let i = 3; i <= 4; i++) {
-          this.getTurma = await this.turmaService.getTurma(i);
-          this.dataTurma.push({
-            id: i,
-            dataInicio: this.getTurma.dataInicio,
-            dataFim: this.getTurma.dataFim,
-            hora: this.getTurma.hora,
-            numeroMaximoAlunos: this.getTurma.numeroMaximoAlunos,
-            cadastroAlunoDTOList: this.getTurma.cadastroAlunoDTOList,
-            cursoDTO: this.getTurma.cursoDTO
-          });
-        }
-      } else if (id == 3) {
-        for (let i = 5; i <= 6; i++) {
-          this.getTurma = await this.turmaService.getTurma(i);
-          this.dataTurma.push({
-            id: i,
-            dataInicio: this.getTurma.dataInicio,
-            dataFim: this.getTurma.dataFim,
-            hora: this.getTurma.hora,
-            numeroMaximoAlunos: this.getTurma.numeroMaximoAlunos,
-            cadastroAlunoDTOList: this.getTurma.cadastroAlunoDTOList,
-            cursoDTO: this.getTurma.cursoDTO
-          });
-        }
-      }else {
-        this.dataTurma.push({
-          id: 0,
-          dataInicio: "",
-          dataFim: "",
-          hora: "",
-          numeroMaximoAlunos: 0,
-          cadastroAlunoDTOList: [],
-          cursoDTO: {
-            id: 0,
-            nome: "",
-            objetivo: ""
-          }
-        });
-      }
-    } catch (error) {
-      console.error('Erro ao buscar a turma:', error);
-    }
-  }
-
-  onCursoChange(event: Event): void {
-    const target = event.target as HTMLSelectElement;
-    this.cursoSelecionado = +target.value;
-    this.handleGetTurma(this.cursoSelecionado);
-  }
-
-  onTurmaChange(event: Event): void {
-    const target = event.target as HTMLSelectElement;
-    this.turmaSelecionada = this.dataTurma.find(turma => turma.dataInicio === target.value) || null;
-  }
-
-  handlePostCandidato(): void {
-    this.getObjpessoa = {
+  enviarDados() {
+    const dadosCandidato:objPessoaId = {
+      id: this.id,
       nome: this.nome,
       cpf: this.cpf,
       cep: this.cep,
@@ -145,24 +53,10 @@ export class CandidatoComponent {
       numeroCTPS: this.numeroCTPS,
       serieCTPS: this.serieCTPS
     };
-    this.candidatoService.postCandidato(this.getObjpessoa)
+    this.candidatoData.emit(dadosCandidato);
   }
 
-  async handleGetCandidato(): Promise<void> {
-    this.id = await this.candidatoService.getCPF(this.cpf)
-  }
-
-  handlePostAlunoTurma(): void {
-    if (this.turmaSelecionada == null) {
-      return;
-    }
-    this.turmaService.postAlunoTurma(this.id, this.turmaSelecionada.id)
-  }
-
-
-  handleCadastro(): void {
-    this.handlePostCandidato();
-    this.handleGetCandidato();
-    this.handlePostAlunoTurma();
+  onCandidatoChange(event: any) {
+    this.enviarDados();
   }
 }
