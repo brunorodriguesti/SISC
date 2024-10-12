@@ -1,7 +1,4 @@
 <mat-card>
-    <mat-card-header>
-      <mat-card-title>Cadastro</mat-card-title>
-    </mat-card-header>
     <mat-card-content>
       <mat-card-title>01 - Dados Pessoais do Aluno</mat-card-title>
       <div (change)="onCandidatoChange($event)">
@@ -81,26 +78,50 @@
               name="dataNascimento"
               required>
           </p>
-          <div>
-            <label>Sexo:</label>
-            <p>
-              <input type="radio" id="sexo1" name="sexo" [(ngModel)]="sexo" value="masculino">
-              <label for="sexo1">Masculino</label>
-            </p>
-            <p>
-              <input type="radio" id="sexo2" name="sexo" [(ngModel)]="sexo" value="feminino">
-              <label for="sexo2">Feminino</label>
-            </p>
-          </div>
+          <label>Sexo:</label>
+          <p>
+            <input type="radio" id="sexo1" name="sexo" [(ngModel)]="sexo" value="masculino">
+            <label for="sexo1">Masculino</label>
+          </p>
+          <p>
+            <input type="radio" id="sexo2" name="sexo" [(ngModel)]="sexo" value="feminino">
+            <label for="sexo2">Feminino</label>
+          </p>
         </div>          
       </div>
       <mat-card-title>02 - Documentação</mat-card-title>
       <div>
-        <div></div>
+        <div>
+          <p>N° Carteira de Identidade (RG): 
+            <input type="text" [(ngModel)]="carteiraIdentidade"
+              name="carteiraIdentidade"
+              required>
+          </p>
+          <p>Orgão Emissor: 
+            <input type="text" [(ngModel)]="orgaoEmissor"
+              name="orgaoEmissor"
+              required>
+          </p>
+          <p>N° da Carteira de Trabalho: 
+            <input type="text" [(ngModel)]="numeroCTPS"
+              name="numeroCTPS"
+              required>
+          </p>
+          <p>Serie: 
+            <input type="text" [(ngModel)]="serieCTPS"
+              name="serieCTPS"
+              required>
+          </p>
+        </div>
         <div>
           <p>CPF: 
             <input type="text" [(ngModel)]="cpf"
               name="cpf"
+              required>
+          </p>
+          <p>PIS/PASEP ou NIS: 
+            <input type="text" [(ngModel)]="pisPasep"
+              name="pisPasep"
               required>
           </p>
         </div>
