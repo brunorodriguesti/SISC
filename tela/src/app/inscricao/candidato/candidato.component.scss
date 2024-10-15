@@ -1,0 +1,54 @@
+/* Remover bordas e sombra do mat-card */
+mat-card {
+    box-shadow: none;
+    border: none;
+}
+
+/* Estilizar o mat-card-title */
+mat-card-title {
+    background-color: #f0f0f0;
+    color: #000;
+    font-size: 1rem;
+    padding: 10px;
+    border-bottom: 2px solid #000000;
+}
+
+/* Garantir que cada div fique em uma linha separada */
+.cssDivDiv {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 5px;
+    padding: 10px 0;
+    border-bottom: 2px solid #000000;
+}
+
+/* Ajustar cada parágrafo dentro das divs para ficarem lado a lado */
+mat-card-content div > div > p,
+mat-card-content div > div > label {
+    display: flex;
+    align-items: center;
+}
+
+/* Ajustar largura dos inputs para alinhamento adequado */
+mat-card-content input {
+    flex: 1;
+    margin-left: 5px;
+    min-width: 120px;
+}
+
+/* Ajustar espaçamento entre input de rádio e sua label */
+mat-card-content input[type="radio"] {
+    margin-left: 5px;
+    min-width: 0px;
+}
+
+/* Garantir que a label "Sexo:" não seja afetada pelas outras regras */
+mat-card-content label#sexo1,
+mat-card-content label#sexo2 {
+    margin: 0px;
+}
+
+.cssStyle {
+    min-width: 80px;
+}

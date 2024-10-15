@@ -1,20 +1,22 @@
 <mat-card>
     <mat-card-header>
-      <mat-card-title>Cadastro</mat-card-title>
+      <h1>Cadastro</h1>
     </mat-card-header>
     <mat-card-content>
       <mat-card-title>Formulario de Inscrição</mat-card-title>
         <div>
-          <div>
+          <div class="cssDivDiv">
             <p>
               Local de Inscrição: @if(cursoSelecionado > 0){ Escola Municiapal da Prefeitura de BH }
             </p>
           </div>
-          <label for="opcoes">Selecione um curso:</label>
-          <select id="opcoes" name="opcoes" (change)="onCursoChange($event)">
-            <option value="" disabled selected>Selecione um curso</option>
-            <option *ngFor="let item of dataCurso" [value]="item.id">{{ item.nome }}</option>
-          </select>
+          <div class="cssDivDiv">
+            <label for="opcoes">Selecione um curso:</label>
+            <select id="opcoes" name="opcoes" (change)="onCursoChange($event)">
+              <option value="" disabled selected>Selecione um curso</option>
+              <option *ngFor="let item of dataCurso" [value]="item.id">{{ item.nome }}</option>
+            </select>
+          </div>
         </div>
     </mat-card-content>
 </mat-card>
