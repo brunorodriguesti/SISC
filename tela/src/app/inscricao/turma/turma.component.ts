@@ -31,6 +31,7 @@ export class TurmaComponent implements OnChanges {
   }
 
   async handleGetTurma( id: number): Promise<void> {
+    this.dataTurma = [];
     try {
       if (id == 1) {
         for (let i = 1; i <= 2; i++) {

@@ -3,12 +3,22 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
+import { CandidatoService } from './candidato.service';
 import { objPessoaId } from '../DTO';
 
 @Component({
   selector: 'app-candidato',
   standalone: true,
-  imports: [MatCardModule, FormsModule, MatFormFieldModule, CommonModule],
+  imports: [
+    MatCardModule,
+    FormsModule,
+    MatFormFieldModule,
+    CommonModule,
+    NgxMaskDirective,
+    NgxMaskPipe
+  ],
+  providers: [provideNgxMask()],
   templateUrl: './candidato.component.html',
   styleUrls: ['./candidato.component.scss']
 })
@@ -24,7 +34,7 @@ export class CandidatoComponent {
   email: string = "";
   telefone: string = "";
   celular: string = "";
-  dataNascimento: string = "0000-00-00";
+  dataNascimento: string = "";
   carteiraIdentidade: string = "";
   orgaoEmissor: string = "";
   pisPasep: string = "";
@@ -32,21 +42,23 @@ export class CandidatoComponent {
   serieCTPS: string = "";
   sexo: string = '';
 
-  constructor(){}
+  constructor(
+    private candidatoService: CandidatoService
+  ){}
 
   ngOnInit(): void {}
 
   enviarDados() {
-    const dadosCandidato:objPessoaId = {
+    const dadosCandidato: objPessoaId = {
       id: this.id,
       nome: this.nome,
-      cpf: this.cpf,
-      cep: this.cep,
+      cpf: this.candidatoService.limparMascara(this.cpf),
+      cep: this.candidatoService.limparMascara(this.cep),
       nomeMae: this.nomeMae,
       email: this.email,
       telefone: this.telefone,
       celular: this.celular,
-      dataNascimento: this.dataNascimento,
+      dataNascimento: this.candidatoService.formatarDataParaEnvio(this.dataNascimento),
       carteiraIdentidade: this.carteiraIdentidade,
       orgaoEmissor: this.orgaoEmissor,
       pisPasep: this.pisPasep,
