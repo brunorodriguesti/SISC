@@ -53,7 +53,7 @@ public class TurmaService {
             if(turmaVO.isPresent() ){
                 TurmaVO turmaUnica = turmaVO.get();
                 BeanUtils.copyProperties(turmaUnica,turmaDTO);
-                turmaDTO.setNumeroMaximoAlunos(turmaUnica.getNumeroMaximoAluno());
+                turmaDTO.setNumeroMaximoAlunos(turmaUnica.getNumeroMaximoAlunos());
                 if(turmaUnica.getAlunosVoList() != null && !turmaUnica.getAlunosVoList().isEmpty() ){
                     for(AlunoVO alunoUnico : turmaUnica.getAlunosVoList()){
                         CadastroAlunoDTO cadastroAlunoDTO = new CadastroAlunoDTO();
@@ -74,5 +74,22 @@ public class TurmaService {
         }
 
         return turmaDTO;
+    }
+
+    public List<TurmaDTO> buscaTodasTurmaAtivas() {
+        List<TurmaDTO> turmaDTOList = new ArrayList<>();
+        try{
+            List<TurmaVO> listaTurmas = turmaRepository.findBySituacao(true);
+            if(listaTurmas != null && !listaTurmas.isEmpty()){
+                for(TurmaVO turmaUnica : listaTurmas){
+                    TurmaDTO turmaDTO = new TurmaDTO();
+                    BeanUtils.copyProperties(turmaUnica,turmaDTO);
+                    turmaDTOList.add(turmaDTO);
+                }
+            }
+        }catch (Exception e){
+            throw  new ExceptionGenerica(new StringBuilder().append("Erro ao buscar todas turmas: ").append(e).toString());
+        }
+        return turmaDTOList;
     }
 }

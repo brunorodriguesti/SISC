@@ -1,5 +1,6 @@
 package com.ltd.sisc.controllers;
 
+import com.ltd.sisc.dto.AlunoDTO;
 import com.ltd.sisc.dto.CadastroAlunoCompletoDTO;
 import com.ltd.sisc.dto.CadastroAlunoDTO;
 import com.ltd.sisc.services.AlunoService;
@@ -55,13 +56,13 @@ public class AlunoController {
 
     @GetMapping(path = "/id")
     public ResponseEntity buscaAlunoPorId(@RequestParam(required = true,value = "id") Long id) {
-        CadastroAlunoDTO cadastroAlunoDTO = new CadastroAlunoDTO();
+        AlunoDTO alunoDTO = new AlunoDTO();
         try {
-            cadastroAlunoDTO = alunoService.buscaAlunoPorId(id);
+            alunoDTO = alunoService.buscaAlunoPorId(id);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new StringBuilder().append("Erro ao buscar candidato por id").append(e.getMessage()).toString());
         }
-        return ResponseEntity.status(HttpStatus.OK).body(cadastroAlunoDTO);
+        return ResponseEntity.status(HttpStatus.OK).body(alunoDTO);
     }
 
 

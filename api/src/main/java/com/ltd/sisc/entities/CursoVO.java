@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 @Entity
 @Table(name ="tb_curso")
 public class CursoVO {
+
     private Long idCurso;
     private String nome;
     private String objetivo;

@@ -23,7 +23,8 @@ public class AlunoVO {
     private String serieCTPS;
     private boolean situacao;
     private TurmaVO turmaVO;
-
+    private EnderecoVO enderecoVO;
+    private String sexo;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -159,4 +160,24 @@ public class AlunoVO {
     public void setTurmaVO(TurmaVO turmaVO) {
         this.turmaVO = turmaVO;
     }
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "endereco_idEndereco")
+    public EnderecoVO getEnderecoVO() {
+        return enderecoVO;
+    }
+
+    public void setEnderecoVO(EnderecoVO enderecoVO) {
+        this.enderecoVO = enderecoVO;
+    }
+    @Column(name="sexo")
+    public String getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
+    }
+
+
 }

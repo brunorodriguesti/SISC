@@ -4,6 +4,7 @@ import com.ltd.sisc.dto.CadastroAlunoCompletoDTO;
 import com.ltd.sisc.dto.CadastroAlunoDTO;
 import com.ltd.sisc.dto.EnderecoDTO;
 import com.ltd.sisc.entities.AlunoVO;
+import com.ltd.sisc.entities.EnderecoVO;
 import com.ltd.sisc.entities.TurmaVO;
 import com.ltd.sisc.exceptions.ExceptionGenerica;
 import com.ltd.sisc.repositories.AlunoRepository;
@@ -34,10 +35,27 @@ public class AlunoService {
             AlunoVO alunoVO = new AlunoVO();
             BeanUtils.copyProperties(cadastroAlunoDTO, alunoVO);
             alunoVO.setSituacao(true);
+            EnderecoVO enderecoVO = getEnderecoVO(cadastroAlunoDTO);
+            alunoVO.setEnderecoVO(enderecoVO);
             alunoRepository.save(alunoVO);
         }catch (Exception e){
             throw  new ExceptionGenerica(new StringBuilder().append("Erro ao cadastrar candidato: ").append(e).toString());
         }
+    }
+
+    private EnderecoVO getEnderecoVO(CadastroAlunoDTO cadastroAlunoDTO) {
+        EnderecoDTO endereco = enderecoServiceInterface.getEndereco(cadastroAlunoDTO.getCep());
+        EnderecoVO enderecoVO = new EnderecoVO();
+        if(endereco != null){
+            BeanUtils.copyProperties(endereco, enderecoVO);
+        }
+        if(cadastroAlunoDTO.getComplemento() != null &&  !cadastroAlunoDTO.getComplemento().isEmpty()){
+            enderecoVO.setComplemento(cadastroAlunoDTO.getComplemento());
+        }
+        if(cadastroAlunoDTO.getNumeroLocalidade() != null){
+            enderecoVO.setNumero(cadastroAlunoDTO.getNumeroLocalidade());
+        }
+        return enderecoVO;
     }
 
     public CadastroAlunoCompletoDTO buscaAlunoPorCpf(String cpf) {
@@ -50,8 +68,10 @@ public class AlunoService {
             if(alunoVO != null){
                 BeanUtils.copyProperties(alunoVO, cadastroAlunoDTO);
             }
-            if(alunoVO.getCep() != null ){
-                EnderecoDTO endereco = enderecoServiceInterface.getEndereco(alunoVO.getCep());
+            if(alunoVO.getEnderecoVO() != null ){
+                EnderecoDTO endereco = new EnderecoDTO();
+                BeanUtils.copyProperties(alunoVO.getEnderecoVO(),endereco);
+                endereco.setNumeroLocalidade(alunoVO.getEnderecoVO().getNumero());
                 cadastroAlunoDTO.setEnderecoDTO(endereco);
             }
         }catch (Exception e){
@@ -77,8 +97,10 @@ public class AlunoService {
             for(AlunoVO candidatoUnico : listaTodosCandidatos){
                 CadastroAlunoCompletoDTO cadastroAlunoDTO = new CadastroAlunoCompletoDTO();
                 BeanUtils.copyProperties(candidatoUnico, cadastroAlunoDTO);
-                if(candidatoUnico.getCep() != null ){
-                    EnderecoDTO endereco = enderecoServiceInterface.getEndereco(candidatoUnico.getCep());
+                if(candidatoUnico.getEnderecoVO() != null ){
+                    EnderecoDTO endereco = new EnderecoDTO();
+                    BeanUtils.copyProperties(candidatoUnico.getEnderecoVO(),endereco);
+                    endereco.setNumeroLocalidade(candidatoUnico.getEnderecoVO().getNumero());
                     cadastroAlunoDTO.setEnderecoDTO(endereco);
                 }
                 listaCandidatos.add(cadastroAlunoDTO);
@@ -92,8 +114,10 @@ public class AlunoService {
             Optional<AlunoVO> alunoVO = alunoRepository.findById(id);
             if(alunoVO != null && alunoVO.isPresent()){
                 BeanUtils.copyProperties(alunoVO.get(), cadastroAlunoDTO);
-                if(alunoVO.get().getCep() != null){
-                    EnderecoDTO endereco = enderecoServiceInterface.getEndereco(alunoVO.get().getCep());
+                if(alunoVO.get().getEnderecoVO() != null ){
+                    EnderecoDTO endereco = new EnderecoDTO();
+                    BeanUtils.copyProperties(alunoVO.get().getEnderecoVO(),endereco);
+                    endereco.setNumeroLocalidade(alunoVO.get().getEnderecoVO().getNumero());
                     cadastroAlunoDTO.setEnderecoDTO(endereco);
                 }
             }

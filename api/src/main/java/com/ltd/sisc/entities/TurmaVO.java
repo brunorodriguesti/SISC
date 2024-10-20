@@ -14,7 +14,7 @@ public class TurmaVO {
     private LocalDate dataInicio;
     private LocalDate dataFim;
     private Time hora;
-    private int numeroMaximoAluno;
+    private int numeroMaximoAlunos;
     private List<AlunoVO> alunosVoList;
     private boolean situacao;
     private CursoVO cursoVO;
@@ -53,15 +53,15 @@ public class TurmaVO {
     public void setHora(Time hora) {
         this.hora = hora;
     }
-
     @Column(name = "num_max_alunos")
-    public int getNumeroMaximoAluno() {
-        return numeroMaximoAluno;
+    public int getNumeroMaximoAlunos() {
+        return numeroMaximoAlunos;
     }
 
-    public void setNumeroMaximoAluno(int numeroMaximoAluno) {
-        this.numeroMaximoAluno = numeroMaximoAluno;
+    public void setNumeroMaximoAlunos(int numeroMaximoAlunos) {
+        this.numeroMaximoAlunos = numeroMaximoAlunos;
     }
+
 
     @OneToMany(mappedBy = "turmaVO")
     public List<AlunoVO> getAlunosVoList() {

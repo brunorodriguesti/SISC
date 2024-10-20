@@ -1,12 +1,14 @@
 package com.ltd.sisc.dto;
 
-import jakarta.validation.constraints.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import org.hibernate.validator.constraints.br.CPF;
 
 import java.time.LocalDate;
 
-public class CadastroAlunoDTO {
-
+public class AlunoDTO {
     @NotBlank(message = "O nome precisa ser preenchido!")
     private String nome;
     @NotBlank(message = "O cpf precisa ser preenchido!")
@@ -32,16 +34,12 @@ public class CadastroAlunoDTO {
     private String pisPasep;
     //@Size(message = "Numero ctps precisa ter 7 digitos",max = 7,min=7)
     private String numeroCTPS;
-   // @Size(message = "Serie ctps precisa ter 4 digitos",max = 4,min = 4)
+    // @Size(message = "Serie ctps precisa ter 4 digitos",max = 4,min = 4)
     private String serieCTPS;
     @Size(message = "Sexo deve ser somente um caractere",min = 1,max=1)
     private String sexo;
-    @Size(message = "Complemento deve ser somente possuir no minimo 1 caractere e no maximo 45",min = 1,max=45)
-    private String complemento;
-    private Integer numeroLocalidade;
 
-
-    public String getNome() {
+    public  String getNome() {
         return nome;
     }
 
@@ -49,15 +47,15 @@ public class CadastroAlunoDTO {
         this.nome = nome;
     }
 
-    public String getCpf() {
+    public  String getCpf() {
         return cpf;
     }
 
-    public void setCpf(String cpf) {
+    public void setCpf( String cpf) {
         this.cpf = cpf;
     }
 
-    public  String getCep() {
+    public String getCep() {
         return cep;
     }
 
@@ -65,11 +63,11 @@ public class CadastroAlunoDTO {
         this.cep = cep;
     }
 
-    public  String getNomeMae() {
+    public String getNomeMae() {
         return nomeMae;
     }
 
-    public void setNomeMae(String nomeMae) {
+    public void setNomeMae( String nomeMae) {
         this.nomeMae = nomeMae;
     }
 
@@ -77,11 +75,11 @@ public class CadastroAlunoDTO {
         return email;
     }
 
-    public void setEmail(String email) {
+    public void setEmail( String email) {
         this.email = email;
     }
 
-    public String getTelefone() {
+    public  String getTelefone() {
         return telefone;
     }
 
@@ -89,11 +87,11 @@ public class CadastroAlunoDTO {
         this.telefone = telefone;
     }
 
-    public String getCelular() {
+    public  String getCelular() {
         return celular;
     }
 
-    public void setCelular( String celular) {
+    public void setCelular(String celular) {
         this.celular = celular;
     }
 
@@ -101,11 +99,11 @@ public class CadastroAlunoDTO {
         return dataNascimento;
     }
 
-    public void setDataNascimento( LocalDate dataNascimento) {
+    public void setDataNascimento(LocalDate dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
 
-    public String getCarteiraIdentidade() {
+    public  String getCarteiraIdentidade() {
         return carteiraIdentidade;
     }
 
@@ -121,7 +119,7 @@ public class CadastroAlunoDTO {
         this.orgaoEmissor = orgaoEmissor;
     }
 
-    public  String getPisPasep() {
+    public String getPisPasep() {
         return pisPasep;
     }
 
@@ -137,7 +135,7 @@ public class CadastroAlunoDTO {
         this.numeroCTPS = numeroCTPS;
     }
 
-    public  String getSerieCTPS() {
+    public String getSerieCTPS() {
         return serieCTPS;
     }
 
@@ -145,27 +143,11 @@ public class CadastroAlunoDTO {
         this.serieCTPS = serieCTPS;
     }
 
-    public String getSexo() {
+    public  String getSexo() {
         return sexo;
     }
 
     public void setSexo( String sexo) {
         this.sexo = sexo;
-    }
-
-    public String getComplemento() {
-        return complemento;
-    }
-
-    public void setComplemento( String complemento) {
-        this.complemento = complemento;
-    }
-
-    public Integer getNumeroLocalidade() {
-        return numeroLocalidade;
-    }
-
-    public void setNumeroLocalidade(Integer numeroLocalidade) {
-        this.numeroLocalidade = numeroLocalidade;
     }
 }

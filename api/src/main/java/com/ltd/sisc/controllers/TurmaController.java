@@ -10,6 +10,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @RestController
 @RequestMapping("/turma")
 public class TurmaController {
@@ -37,4 +40,17 @@ public class TurmaController {
         }
         return  ResponseEntity.status(HttpStatus.OK).body(turmaDTO);
     }
+
+
+    @GetMapping(path = "/todasTurmas")
+    public ResponseEntity buscarTodasTurmas() {
+        List<TurmaDTO> turmaDTOList = new ArrayList<>();
+        try {
+            turmaDTOList = turmaService.buscaTodasTurmaAtivas();
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new StringBuilder().append("Erro ao buscar todas turmas ativas ").append(e.getMessage()).toString());
+        }
+        return  ResponseEntity.status(HttpStatus.OK).body(turmaDTOList);
+    }
+
 }
