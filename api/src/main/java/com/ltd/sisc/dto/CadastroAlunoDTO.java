@@ -24,9 +24,9 @@ public class CadastroAlunoDTO {
     private String celular;
     @NotNull(message = "Data de nascimento é obrigatoria!")
     private LocalDate dataNascimento;
-    @Size(message = "Carteira de identidate precisa ter 9 digitos",max = 14,min=14)
+    @Size(message = "Carteira de identidate precisa ter 9 digitos",max = 9,min=9)
     private String carteiraIdentidade;
-    @Size(message = "Orgao emissor precisa ter 3digitos",min = 1,max=5)
+    @Size(message = "Orgao emissor precisa ter entre 1 a 5 digitos",min = 1,max=5)
     private String orgaoEmissor;
     //@Size(message = "Pis/Pasep   precisa ter 4 digitos",max = 11,min=11)
     private String pisPasep;
