@@ -1,35 +1,137 @@
 <mat-card>
-    <mat-card-header>
-      <mat-card-title>Cadastro do Candidato</mat-card-title>
-    </mat-card-header>
     <mat-card-content>
-      <form (ngSubmit)="handleClick()">
-        <mat-form-field appearance="fill">
-          <mat-label>Nome</mat-label>
+      <mat-card-title>01 - Dados Pessoais do Aluno</mat-card-title>
+      <div (change)="onCandidatoChange($event)">
+        <div class="cssDivDiv">
+          <p>Nome Completo: 
             <input type="text" [(ngModel)]="nome"
               name="nome"
-              placeholder="Digite seu nome"
-              required
-            >
-        </mat-form-field>
-        <mat-form-field appearance="fill">
-          <mat-label>CPF</mat-label>
-          <input type="text" [(ngModel)]="cpf"
-            name="cpf"
-            placeholder="Digite o seu cpf"
-            required
-          >
-        </mat-form-field>
-        <button mat-raised-button color="primary" type="submit">Cadastrar</button>
-      </form>
-        @if( nome != "" && cpf != ""){
-          <p>Seu nome é: {{ nome }}</p>
-          <p>Seu cpf é: {{ cpf }}</p>
-          @if(mensagem != ""){
-            <p>{{ mensagem }}</p>
-          }
-        }@else{
-          <p>preencha os dados da corretamente para prosseguir!</p>
-        }
+              required>
+          </p>
+        </div>
+        <div class="cssDivDiv">
+          <p>Endereço (Rua / Av / Bc):
+            <input type="text"
+              name="endereco"
+              required>
+          </p>
+          <p>N°:
+            <input type="text"
+              name="numeroCasa"
+              required>
+          </p>
+        </div>
+        <div class="cssDivDiv">
+          <p>Bairro:
+            <input type="text"
+              name="bairro"
+              required>
+          </p>
+          <p>CEP:
+            <input type="text" [(ngModel)]="cep"
+              name="cep"
+              mask="00000-000"
+              placeholder="00000-000"
+              required>
+          </p>
+        </div>
+        <div class="cssDivDiv">
+          <p>Cidade: BH</p>
+        </div>
+        <div class="cssDivDiv">
+          <p>Telefone: 
+            <input type="text" [(ngModel)]="telefone"
+              name="telefone"
+              required>
+          </p>
+          <p>Celular: 
+            <input type="text" [(ngModel)]="celular"
+              name="celular"
+              required>
+          </p>
+          <p>Recado: 
+            <input type="text"
+              name="recado"
+              required>
+          </p>
+          <p>Falar com: 
+            <input type="text"
+              name="falarCom"
+              required>
+          </p>
+        </div>
+        <div class="cssDivDiv">
+          <p>E-mail: 
+            <input type="text" [(ngModel)]="email"
+              name="email"
+              required>
+          </p>
+        </div>
+        <div class="cssDivDiv">
+          <p>Nome da Mãe: 
+            <input type="text" [(ngModel)]="nomeMae"
+              name="nomeMae"
+              required>
+          </p>
+        </div>
+        <div class="cssDivDiv">
+          <p>Data de Nascimento: 
+            <input class="cssStyle"
+              type="text" [(ngModel)]="dataNascimento"
+              name="dataNascimento"
+              mask="00/00/0000"
+              placeholder="00/00/0000"
+              required>
+          </p>
+          <p><label>Sexo:</label></p>
+          <p>
+            <input type="radio" id="sexo1" name="sexo" [(ngModel)]="sexo" value="masculino">
+            <label for="sexo1">Masculino</label>
+          </p>
+          <p>
+            <input type="radio" id="sexo2" name="sexo" [(ngModel)]="sexo" value="feminino">
+            <label for="sexo2">Feminino</label>
+          </p>
+        </div>          
+      </div>
+      <mat-card-title>02 - Documentação</mat-card-title>
+      <div>
+        <div class="cssDivDiv">
+          <p>N° Carteira de Identidade (RG): 
+            <input type="text" [(ngModel)]="carteiraIdentidade"
+              name="carteiraIdentidade"
+              required>
+          </p>
+          <p>Orgão Emissor: 
+            <input type="text" [(ngModel)]="orgaoEmissor"
+              name="orgaoEmissor"
+              required>
+          </p>
+          <p>N° da Carteira de Trabalho: 
+            <input type="text" [(ngModel)]="numeroCTPS"
+              name="numeroCTPS"
+              required>
+          </p>
+          <p>Serie: 
+            <input type="text" [(ngModel)]="serieCTPS"
+              name="serieCTPS"
+              required>
+          </p>
+        </div>
+        <div class="cssDivDiv">
+          <p>CPF: 
+            <input type="text" [(ngModel)]="cpf"
+              name="cpf"
+              mask="000.000.000-00"
+              placeholder="000.000.000-00"
+              required>
+          </p>
+          <p>PIS/PASEP ou NIS: 
+            <input type="text" [(ngModel)]="pisPasep"
+              name="pisPasep"
+              required>
+          </p>
+        </div>
+      </div>
     </mat-card-content>
 </mat-card>

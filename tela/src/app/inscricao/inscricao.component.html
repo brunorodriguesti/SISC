@@ -1,7 +1,9 @@
-<div class="m-10">
-    <h1>Inscriçao</h1>
-    <app-candidato (ativarPerguntas)="onAtivarPerguntas($event)"></app-candidato>
-    @if(seccaoPerguntas){
-        <app-pergunta></app-pergunta>
-    }
+<div>
+    <mat-card-title>Formulario de Inscrição</mat-card-title>
+    <app-curso (cursoData)="receberDadosCurso($event)"></app-curso>
+    <app-turma [inputData]="cursoSelecionado" (turmaData)="receberDadosTurma($event)"></app-turma>
+    <app-candidato (candidatoData)="receberDadosCandidato($event)"></app-candidato>
+    <app-pergunta></app-pergunta>
+    <!-- <button mat-raised-button color="primary" type="button" (click)="handleCadastro()">Cadastrar</button> -->
+    <button mat-raised-button color="primary" type="button">Cadastrar</button>
 </div>

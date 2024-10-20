@@ -25,7 +25,8 @@ mat-card-title {
 
 /* Ajustar cada parágrafo dentro das divs para ficarem lado a lado */
 mat-card-content div > div > p,
-mat-card-content div > div > label {
+mat-card-content div > div > label
+mat-card-content div > div > select {
     display: flex;
     align-items: center;
 }
