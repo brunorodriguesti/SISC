@@ -45,6 +45,7 @@ public class ParametroService {
                 for(ParametroVO unico: parametroVOList){
                     ParametroDTO parametroDTO = new ParametroDTO();
                     BeanUtils.copyProperties(unico,parametroDTO);
+                    parametroDTO.setId(unico.getIdParametroSelecao());
                     parametroDTOS.add(parametroDTO);
                 }
             }
@@ -77,6 +78,7 @@ public class ParametroService {
                 for(ParametroVO unico: parametroVOS){
                     ParametroDTO parametroDTO = new ParametroDTO();
                     BeanUtils.copyProperties(unico,parametroDTO);
+                    parametroDTO.setId(unico.getIdParametroSelecao());
                     parametroDTOS.add(parametroDTO);
                 }
             }
