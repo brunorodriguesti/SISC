@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
 import { api } from '../../api';
-import { objEndereco } from '../DTO';
+import { objEndereco, objPessoaId } from '../DTO';
 import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CandidatoService {
+  private apiClient = api()
   private apiUrlGetEndereco = environment.API_ENDERECO;
-
+  private apiUrlGetCpf = environment.API_ALUNO_CPF;
   constructor() { }
 
   // Função de conversão de data
@@ -28,10 +29,24 @@ export class CandidatoService {
     return cpf.replace(/\D/g, ''); // Remove todos os caracteres não numéricos
   }
 
-  async getEndereco(cep: string): Promise<objEndereco> {
+  async getCPF(cpf: string): Promise<objPessoaId | null> {
     try {
-      const apiClient = api()
-      const response = await apiClient.get<objEndereco>(this.apiUrlGetEndereco, {
+      const response = await this.apiClient.get<objPessoaId>(this.apiUrlGetCpf, {
+        params:{
+          cpf
+        }
+      });
+      const dados = response.data;
+      return dados
+    } catch (error) {
+      console.error('Erro ao fazer a requisição:', error);
+      return null;
+    }
+  }
+
+  async getEndereco(cep: string): Promise<objEndereco | null> {
+    try {
+      const response = await this.apiClient.get<objEndereco>(this.apiUrlGetEndereco, {
         params:{
           cep
         }
@@ -40,17 +55,7 @@ export class CandidatoService {
       return dados
     }catch(error){
       console.error('Erro ao fazer a requisição:', error);
-      return {
-        cep: "",
-        logradouro: "",
-        complemento: "",
-        unidade: "",
-        bairro: "",
-        localidade: "",
-        uf: "",
-        estado: "",
-        regiao: ""
-      }
+      return null;
     }
   }
 

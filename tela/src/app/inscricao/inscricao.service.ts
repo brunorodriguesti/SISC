@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { api } from '../api';
-import { objPessoa, objPessoaId } from './DTO';
+import { objPessoaPost, objPessoaId } from './DTO';
 import { environment } from '../../environments/environment';
 
 @Injectable({
@@ -12,7 +12,7 @@ export class InscricaoService {
   private apiUrlGetCpf = environment.API_ALUNO_CPF;
   private apiUrlPostAlunoTurma = environment.API_ALUNO_TURMA;
 
-  async getCPF(cpf: string): Promise<number> {
+  async getCPF(cpf: string): Promise<number | null> {
     try {
       const apiClient = api()
       const response = await apiClient.get<objPessoaId>(this.apiUrlGetCpf, {
@@ -24,14 +24,14 @@ export class InscricaoService {
       return dados.id
     }catch(error){
       console.error('Erro ao fazer a requisição:', error)
-      return 0
+      return null;
       }
     }
 
-  async postCandidato(candidato: objPessoa): Promise<void> {
+  async postCandidato(candidato: objPessoaPost): Promise<void> {
     try{
       const apiClient = api()
-      await apiClient.post<objPessoa>(this.apiUrlPost, candidato)
+      await apiClient.post<objPessoaPost>(this.apiUrlPost, candidato)
     }catch(error){
       console.error('Erro ao fazer a requisição:', error)
     }

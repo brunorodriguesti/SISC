@@ -6,7 +6,7 @@ import { CandidatoComponent } from './candidato/candidato.component'
 import { CursoComponent } from './curso/curso.component'
 import { TurmaComponent } from './turma/turma.component'
 import { PerguntaComponent } from './pergunta/pergunta.component'
-import { objPessoaId } from './DTO';
+import { objPessoaPost } from './DTO';
 
 @Component({
   selector: 'app-inscricao',
@@ -27,10 +27,16 @@ export class InscricaoComponent {
   constructor(
     private inscricaoService: InscricaoService
   ){}
-  cursoSelecionado: number = 0;
-  candidatoObjeto!: objPessoaId;
-  id: number = 0;
+  cursoSelecionado!: number | null;
+  candidatoObjeto!: objPessoaPost;
+  id!: number | null;
   turmaSelecionada!: number;
+
+  receberDadosCandidato(dadosCandidato: { id: number, candidato: objPessoaPost}) {
+    this.id = dadosCandidato.id;
+    this.candidatoObjeto = dadosCandidato.candidato;
+    console.log('Dados recebidos do candidato:', this.candidatoObjeto);
+  }
 
   receberDadosCurso(event: any) {
     this.cursoSelecionado = event.id;
@@ -40,11 +46,6 @@ export class InscricaoComponent {
   receberDadosTurma(dadosTurma: { id: number }) {
     console.log('Dados recebidos:', dadosTurma);
     this.turmaSelecionada = dadosTurma.id;
-  }
-  
-  receberDadosCandidato(dadosCandidato: objPessoaId) {
-    this.candidatoObjeto = dadosCandidato;
-    console.log('Dados recebidos do candidato:', this.candidatoObjeto);
   }
 
   handlePostCandidato(): void {
@@ -58,9 +59,7 @@ export class InscricaoComponent {
   }
 
   handlePostAlunoTurma(): void {
-    if (this.turmaSelecionada == null) {
-      return;
-    }
+    if (!this.turmaSelecionada || !this.id) return;
     console.log('Dados para o cadastro da turma:', this.id, this.turmaSelecionada)
     this.inscricaoService.postAlunoTurma(this.id, this.turmaSelecionada)
   }
@@ -71,23 +70,28 @@ export class InscricaoComponent {
         return;
     }
 
-    if (!this.cursoSelecionado) {
-        console.warn('Curso não foi selecionado.');
-        return;
-    }
+    // if (!this.cursoSelecionado) {
+    //     console.warn('Curso não foi selecionado.');
+    //     return;
+    // }
 
-    if (!this.turmaSelecionada) {
-        console.warn('Turma não foi selecionada.');
-        return;
+    // if (!this.turmaSelecionada) {
+    //     console.warn('Turma não foi selecionada.');
+    //     return;
+    // }
+    if (this.id == 0) {
+      this.handlePostCandidato();
+      this.handleGetCandidato()
+        .then(() => {
+          // this.handlePostAlunoTurma();
+          console.log(`Id do cpf recuperado do get cpf: ${this.id}`);
+        })
+        .catch(error => {
+          console.error('Erro ao buscar candidato:', error);
+        });
+    } else {
+      //this.handlePostAlunoTurma();
+      console.log(`Id do cpf recuperado do formulario: ${this.id}`);
     }
-
-    this.handlePostCandidato();
-    this.handleGetCandidato()
-      .then(() => {
-        this.handlePostAlunoTurma();
-      })
-      .catch(error => {
-        console.error('Erro ao buscar candidato:', error);
-      });
-}
+  }
 }

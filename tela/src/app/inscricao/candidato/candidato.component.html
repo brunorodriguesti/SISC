@@ -2,7 +2,17 @@
     <mat-card-content>
       <mat-card-title>01 - Dados Pessoais do Aluno</mat-card-title>
       <div (change)="onCandidatoChange($event)">
-        <div class="cssDivDiv" id="div1">
+        <div class="cssDivDiv">
+          <p>CPF: 
+            <input type="text" [(ngModel)]="cpf"
+              name="cpf"
+              maxlength="14"
+              (blur)="validarCPF()"
+              mask="000.000.000-00"
+              placeholder="000.000.000-00"
+              required>
+            <span *ngIf="cpfInvalido" class="erro">CPF inválido</span>
+          </p>
           <p>Nome Completo: 
             <input type="text" [(ngModel)]="nome"
               name="nome"
@@ -134,16 +144,6 @@
           </p>
         </div>
         <div class="cssDivDiv">
-          <p>CPF: 
-            <input type="text" [(ngModel)]="cpf"
-              name="cpf"
-              maxlength="14"
-              (ngModelChange)="validarCPF()"
-              mask="000.000.000-00"
-              placeholder="000.000.000-00"
-              required>
-            <span *ngIf="cpfInvalido" class="erro">CPF inválido</span>
-          </p>
           <p>PIS/PASEP: 
             <input type="text" [(ngModel)]="pisPasep"
               name="pisPasep"
