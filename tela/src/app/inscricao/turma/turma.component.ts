@@ -13,12 +13,13 @@ import { objTurma, objTurmaId } from '../DTO';
   styleUrls: ['./turma.component.scss']
 })
 export class TurmaComponent implements OnChanges {
-  @Input() inputData: number = 0; // Recebe o ID do curso selecionado
+  @Input() inputData!: number | null; // Recebe o ID do curso selecionado
   @Output() turmaData = new EventEmitter<any>();
 
   dataTurma: objTurmaId[] = [];
   turmaSelecionada: objTurmaId | null = null;
   getTurma: objTurma | null = null;
+  getTurmaTodos: objTurmaId[] = [];
 
   constructor(
     private turmaService: TurmaService
@@ -30,65 +31,21 @@ export class TurmaComponent implements OnChanges {
     }
   }
 
-  async handleGetTurma( id: number): Promise<void> {
+  async handleGetTurmaTodos(): Promise<void> {
+    this.getTurmaTodos = await this.turmaService.getTurmaTodos();
+  }
+
+  handleGetTurma( id: number): void {
     this.dataTurma = [];
-    try {
-      if (id == 1) {
-        for (let i = 1; i <= 2; i++) {
-          this.getTurma = await this.turmaService.getTurma(i);
-          this.dataTurma.push({
-            id: i,
-            dataInicio: this.getTurma.dataInicio,
-            dataFim: this.getTurma.dataFim,
-            hora: this.getTurma.hora,
-            numeroMaximoAlunos: this.getTurma.numeroMaximoAlunos,
-            cadastroAlunoDTOList: this.getTurma.cadastroAlunoDTOList,
-            cursoDTO: this.getTurma.cursoDTO
-          });
+    if (!id) {console.warn('Curso não foi selecionado'); return};
+
+    if (this.getTurmaTodos.length > 0) {
+      this.getTurmaTodos.map(turma => {
+        if (turma.cursoDTO.id == id) {
+          this.dataTurma.push(turma)
         }
-      } else if (id == 2) {
-        for (let i = 3; i <= 4; i++) {
-          this.getTurma = await this.turmaService.getTurma(i);
-          this.dataTurma.push({
-            id: i,
-            dataInicio: this.getTurma.dataInicio,
-            dataFim: this.getTurma.dataFim,
-            hora: this.getTurma.hora,
-            numeroMaximoAlunos: this.getTurma.numeroMaximoAlunos,
-            cadastroAlunoDTOList: this.getTurma.cadastroAlunoDTOList,
-            cursoDTO: this.getTurma.cursoDTO
-          });
         }
-      } else if (id == 3) {
-        for (let i = 5; i <= 6; i++) {
-          this.getTurma = await this.turmaService.getTurma(i);
-          this.dataTurma.push({
-            id: i,
-            dataInicio: this.getTurma.dataInicio,
-            dataFim: this.getTurma.dataFim,
-            hora: this.getTurma.hora,
-            numeroMaximoAlunos: this.getTurma.numeroMaximoAlunos,
-            cadastroAlunoDTOList: this.getTurma.cadastroAlunoDTOList,
-            cursoDTO: this.getTurma.cursoDTO
-          });
-        }
-      }else {
-        this.dataTurma.push({
-          id: 0,
-          dataInicio: "",
-          dataFim: "",
-          hora: "",
-          numeroMaximoAlunos: 0,
-          cadastroAlunoDTOList: [],
-          cursoDTO: {
-            id: 0,
-            nome: "",
-            objetivo: ""
-          }
-        });
-      }
-    } catch (error) {
-      console.error('Erro ao buscar a turma:', error);
+      )
     }
   }
 

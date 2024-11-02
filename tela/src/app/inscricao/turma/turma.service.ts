@@ -1,20 +1,21 @@
 import { Injectable } from '@angular/core';
 import { api } from '../../api';
 import { environment } from '../../../environments/environment';
-import { objTurma } from '../DTO';
+import { objTurma, objTurmaId } from '../DTO';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TurmaService {
+  private apiClient = api()
   private apiUrlGetTurma = environment.API_TURMA;
+  private apiUrlGetTurmaTodos = environment.API_TURMA_TODOS;
 
   constructor() { }
 
-  async getTurma(id: number): Promise<objTurma> {
+  async getTurma(id: number): Promise<objTurma | null> {
     try {
-      const apiClient = api()
-      const response = await apiClient.get<objTurma>(this.apiUrlGetTurma, {
+      const response = await this.apiClient.get<objTurma>(this.apiUrlGetTurma, {
         params:{
           id
         }
@@ -23,18 +24,18 @@ export class TurmaService {
       return dados
     }catch(error){
       console.error('Erro ao fazer a requisição:', error);
-      return {
-        dataInicio: "",
-        dataFim: "",
-        hora: "",
-        numeroMaximoAlunos: 0,
-        cadastroAlunoDTOList: [],
-        cursoDTO: {
-          id: 0,
-          nome: "",
-          objetivo: ""
-        }
-      }
+      return null
+    }
+  }
+
+  async getTurmaTodos(): Promise<objTurmaId[]> {
+    try {
+      const response = await this.apiClient.get<objTurmaId[]>(this.apiUrlGetTurmaTodos);
+      const dados = response.data;
+      return dados
+    }catch(error){
+      console.error('Erro ao fazer a requisição:', error);
+      return []
     }
   }
 }

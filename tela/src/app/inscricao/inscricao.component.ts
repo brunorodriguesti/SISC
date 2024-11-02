@@ -47,10 +47,10 @@ export class InscricaoComponent {
     this.cursoSelecionado = event.id;
   }
 
-  // receberDadosTurma(dadosTurma: { id: number }) {
-  //   console.log('Dados recebidos:', dadosTurma);
-  //   this.turmaSelecionada = dadosTurma.id;
-  // }
+  receberDadosTurma(dadosTurma: { id: number }) {
+    console.log('Dados recebidos:', dadosTurma);
+    this.turmaSelecionada = dadosTurma.id;
+  }
 
   handlePostCandidato(): void {
     console.log(this.candidatoObjeto)
@@ -74,15 +74,15 @@ export class InscricaoComponent {
         return;
     }
 
-    // if (!this.cursoSelecionado) {
-    //     console.warn('Curso não foi selecionado.');
-    //     return;
-    // }
+    if (!this.cursoSelecionado || this.cursoSelecionado == 0) {
+        console.warn('Curso não foi selecionado.');
+        return;
+    }
 
-    // if (!this.turmaSelecionada) {
-    //     console.warn('Turma não foi selecionada.');
-    //     return;
-    // }
+    if (!this.turmaSelecionada) {
+        console.warn('Turma não foi selecionada.');
+        return;
+    }
     if (this.id == 0) {
       console.log(this.candidatoObjeto)
       this.handlePostCandidato();
@@ -90,6 +90,7 @@ export class InscricaoComponent {
         .then(() => {
           // this.handlePostAlunoTurma();
           console.log(`Id do cpf recuperado do get cpf: ${this.id}`);
+          console.log('Id da turma selecionada:', this.turmaSelecionada);
         })
         .catch(error => {
           console.error('Erro ao buscar candidato:', error);
@@ -97,6 +98,7 @@ export class InscricaoComponent {
     } else {
       //this.handlePostAlunoTurma();
       console.log(`Id do cpf recuperado do formulario: ${this.id}`);
+      console.log('Id da turma selecionada:', this.turmaSelecionada);
     }
   }
 }
