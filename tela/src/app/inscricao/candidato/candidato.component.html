@@ -21,19 +21,19 @@
         </div>
         <div class="cssDivDiv">
           <p>Endereço (Rua / Av / Bc):
-            <input type="text"
+            <input type="text" [(ngModel)]="logradouro"
               name="endereco"
               required>
           </p>
           <p>N°:
-            <input type="text"
+            <input type="text" [(ngModel)]="numeroLocalidade"
               name="numeroCasa"
               required>
           </p>
         </div>
         <div class="cssDivDiv">
           <p>Bairro:
-            <input type="text"
+            <input type="text" [(ngModel)]="bairro"
               name="bairro"
               required>
           </p>
@@ -44,9 +44,6 @@
               placeholder="00000000"
               required>
           </p>
-        </div>
-        <div class="cssDivDiv">
-          <p>Cidade: BH</p>
         </div>
         <div class="cssDivDiv">
           <p>Telefone: 
@@ -102,11 +99,11 @@
           </p>
           <p><label>Sexo:</label></p>
           <p>
-            <input type="radio" id="sexo1" name="sexo" [(ngModel)]="sexo" value="masculino">
+            <input type="radio" id="sexo1" name="sexo" [(ngModel)]="sexo" value="m">
             <label for="sexo1">Masculino</label>
           </p>
           <p>
-            <input type="radio" id="sexo2" name="sexo" [(ngModel)]="sexo" value="feminino">
+            <input type="radio" id="sexo2" name="sexo" [(ngModel)]="sexo" value="f">
             <label for="sexo2">Feminino</label>
           </p>
         </div>          

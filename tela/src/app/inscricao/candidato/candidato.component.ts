@@ -46,6 +46,8 @@ export class CandidatoComponent {
   sexo!: string | null;
   complemento!: string | null;
   numeroLocalidade!: number | null;
+  logradouro!: string | null;
+  bairro!: string | null;
 
   constructor(
     private candidatoService: CandidatoService
@@ -77,6 +79,8 @@ export class CandidatoComponent {
     this.sexo = canditato?.sexo;
     this.complemento = canditato?.enderecoDTO?.complemento;
     this.numeroLocalidade = canditato?.enderecoDTO?.numeroLocalidade;
+    this.logradouro = canditato?.enderecoDTO?.logradouro;
+    this.bairro = canditato?.enderecoDTO?.bairro;
   }
 
   validarEmail() {
