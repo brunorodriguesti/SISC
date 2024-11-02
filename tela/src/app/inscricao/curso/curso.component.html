@@ -12,13 +12,6 @@
               <option *ngFor="let item of dataCurso" [value]="item.id">{{ item.nome }}</option>
             </select>
           </div>
-          @if(cursoSelecionado > 0){
-            <div class="cssDivDiv">
-              <p>
-                Local de Inscrição: Escola Municiapal da Prefeitura de BH
-              </p>
-            </div>
-          }
         </div>
     </mat-card-content>
 </mat-card>

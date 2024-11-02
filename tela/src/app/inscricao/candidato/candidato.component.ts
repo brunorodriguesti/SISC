@@ -24,10 +24,10 @@ import { objPessoaPost, objPessoaId } from '../DTO';
 })
 
 export class CandidatoComponent {
-  @Output() candidatoData = new EventEmitter<any>();
+  @Output() candidatoData = new EventEmitter<{ id: number, candidato: objPessoaPost, dadosEnviados: boolean }>();
 
   cpfInvalido: boolean = false;
-  emailInvalido: boolean = false;
+  botaoAcionado: boolean = true;
 
   id!: number | null;
   nome!: string | null;
@@ -54,15 +54,16 @@ export class CandidatoComponent {
   ){}
 
   async validarCPF() {
+    console.log("Validar CPF")
     const regex = /^[0-9]{11}$/;
     if (!this.cpf) {console.log("CPF não informado"); return};
     this.cpfInvalido = regex.test(this.cpf.replace(/\D/g, ''));
 
     if (!this.cpfInvalido) {console.log("CPF invalido!!"); return};
     const canditato = await this.candidatoService.getCPF(this.cpf)
-    console.log(canditato)
+    console.log("canditato:", canditato)
 
-    if (!canditato) {console.log("Dados do candidato não encontrados"); return};;
+    if (!canditato) {console.log("Dados do candidato não encontrados"); return};
     this.id = canditato?.id;
     this.nome = canditato?.nome;
     this.cep = canditato?.cep;
@@ -83,19 +84,13 @@ export class CandidatoComponent {
     this.bairro = canditato?.enderecoDTO?.bairro;
   }
 
-  validarEmail() {
-    const regex = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
-    if (!this.email) return;
-    this.emailInvalido = !regex.test(this.email);
-  }
-
   enviarDados() {
     if (!this.id) {
       this.id = 0;
     }
-    if (this.cpfInvalido || this.emailInvalido) return;
+    if (!this.cpfInvalido){console.log("CPF invalido!!", this.cpfInvalido); return;}
 
-    if (!this.nome || !this.cpf || !this.cep || !this.nomeMae || !this.dataNascimento) return;
+    if (!this.nome || !this.cpf || !this.cep || !this.nomeMae || !this.dataNascimento){console.log("Dados Obrigatorio não preenchidos!!"); return};
 
     const dadosCandidato: objPessoaPost = {
       nome: this.nome,
@@ -115,10 +110,12 @@ export class CandidatoComponent {
       complemento: this.complemento,
       numeroLocalidade: this.numeroLocalidade
     };
-    this.candidatoData.emit({id: this.id, candidato: dadosCandidato});
+    this.candidatoData.emit({id: this.id, candidato: dadosCandidato, dadosEnviados: true});
+    this.botaoAcionado = false;
   }
 
-  onCandidatoChange(event: any) {
+  onCandidatoChange(event: Event): void {
+    console.log('Acionando evento');
     this.enviarDados();
   }
 }

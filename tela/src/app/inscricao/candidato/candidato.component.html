@@ -1,9 +1,9 @@
 <mat-card>
     <mat-card-content>
       <mat-card-title>01 - Dados Pessoais do Aluno</mat-card-title>
-      <div (change)="onCandidatoChange($event)">
+      <div>
         <div class="cssDivDiv">
-          <p>CPF: 
+          <p>*CPF: 
             <input type="text" [(ngModel)]="cpf"
               name="cpf"
               maxlength="14"
@@ -13,7 +13,7 @@
               required>
             <span *ngIf="!cpfInvalido" class="erro">CPF inválido</span>
           </p>
-          <p>Nome Completo: 
+          <p>*Nome Completo: 
             <input type="text" [(ngModel)]="nome"
               name="nome"
               required>
@@ -37,7 +37,7 @@
               name="bairro"
               required>
           </p>
-          <p>CEP:
+          <p>*CEP:
             <input type="text" [(ngModel)]="cep"
               name="cep"
               maxlength="8"
@@ -76,20 +76,18 @@
           <p>E-mail: 
             <input type="email" [(ngModel)]="email"
               name="email"
-              (ngModelChange)="validarEmail()"
               required>
-            <span *ngIf="emailInvalido" class="erro">E-mail inválido</span>
           </p>
         </div>
         <div class="cssDivDiv">
-          <p>Nome da Mãe: 
+          <p>*Nome da Mãe: 
             <input type="text" [(ngModel)]="nomeMae"
               name="nomeMae"
               required>
           </p>
         </div>
         <div class="cssDivDiv">
-          <p>Data de Nascimento: 
+          <p>*Data de Nascimento: 
             <input class="cssStyle"
               type="text" [(ngModel)]="dataNascimento"
               name="dataNascimento"
@@ -150,5 +148,6 @@
           </p>
         </div>
       </div>
+      <button *ngIf="botaoAcionado" mat-raised-button color="primary" type="button" (click)="onCandidatoChange($event)">Prosseguir</button>
     </mat-card-content>
 </mat-card>

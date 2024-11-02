@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { InscricaoService } from './inscricao.service';
@@ -13,6 +14,7 @@ import { objPessoaPost } from './DTO';
   standalone: true,
   imports: [
     MatCardModule,
+    CommonModule,
     MatFormFieldModule,
     CandidatoComponent,
     PerguntaComponent,
@@ -28,25 +30,27 @@ export class InscricaoComponent {
     private inscricaoService: InscricaoService
   ){}
   cursoSelecionado!: number | null;
+  dadosRecebidos: boolean = false;
   candidatoObjeto!: objPessoaPost;
   id!: number | null;
   turmaSelecionada!: number;
 
-  receberDadosCandidato(dadosCandidato: { id: number, candidato: objPessoaPost}) {
+  receberDadosCandidato(dadosCandidato: { id: number, candidato: objPessoaPost, dadosEnviados: boolean }) {
+    console.log('Dados recebidos do candidato:', dadosCandidato);
     this.id = dadosCandidato.id;
     this.candidatoObjeto = dadosCandidato.candidato;
-    console.log('Dados recebidos do candidato:', this.candidatoObjeto);
+    this.dadosRecebidos = dadosCandidato.dadosEnviados;
   }
 
   receberDadosCurso(event: any) {
+    console.log('Dados recebidos do curso:', event.id);
     this.cursoSelecionado = event.id;
-    console.log('Dados recebidos do curso:', this.cursoSelecionado);
   }
 
-  receberDadosTurma(dadosTurma: { id: number }) {
-    console.log('Dados recebidos:', dadosTurma);
-    this.turmaSelecionada = dadosTurma.id;
-  }
+  // receberDadosTurma(dadosTurma: { id: number }) {
+  //   console.log('Dados recebidos:', dadosTurma);
+  //   this.turmaSelecionada = dadosTurma.id;
+  // }
 
   handlePostCandidato(): void {
     console.log(this.candidatoObjeto)
@@ -80,6 +84,7 @@ export class InscricaoComponent {
     //     return;
     // }
     if (this.id == 0) {
+      console.log(this.candidatoObjeto)
       this.handlePostCandidato();
       this.handleGetCandidato()
         .then(() => {

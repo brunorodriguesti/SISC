@@ -1,8 +1,8 @@
 <div>
     <mat-card-title>Formulario de Inscrição</mat-card-title>
     <app-candidato (candidatoData)="receberDadosCandidato($event)"></app-candidato>
-    <!-- <app-curso (cursoData)="receberDadosCurso($event)"></app-curso>
-    <app-turma [inputData]="cursoSelecionado" (turmaData)="receberDadosTurma($event)"></app-turma>
+    <app-curso *ngIf="dadosRecebidos" (cursoData)="receberDadosCurso($event)"></app-curso>
+    <!-- <app-turma [inputData]="cursoSelecionado" (turmaData)="receberDadosTurma($event)"></app-turma>
     <app-pergunta></app-pergunta> -->
     <button mat-raised-button color="primary" type="button" (click)="handleCadastro()">Cadastrar</button>
 </div>
