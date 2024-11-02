@@ -53,13 +53,14 @@ export class CandidatoComponent {
 
   async validarCPF() {
     const regex = /^[0-9]{11}$/;
-    if (!this.cpf) return;
-    this.cpfInvalido = !regex.test(this.cpf.replace(/\D/g, ''));
+    if (!this.cpf) {console.log("CPF não informado"); return};
+    this.cpfInvalido = regex.test(this.cpf.replace(/\D/g, ''));
 
-    if (!this.cpfInvalido) return;
+    if (!this.cpfInvalido) {console.log("CPF invalido!!"); return};
     const canditato = await this.candidatoService.getCPF(this.cpf)
+    console.log(canditato)
 
-    if (!canditato) return;
+    if (!canditato) {console.log("Dados do candidato não encontrados"); return};;
     this.id = canditato?.id;
     this.nome = canditato?.nome;
     this.cep = canditato?.cep;

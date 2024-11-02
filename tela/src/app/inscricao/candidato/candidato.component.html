@@ -11,7 +11,7 @@
               mask="000.000.000-00"
               placeholder="000.000.000-00"
               required>
-            <span *ngIf="cpfInvalido" class="erro">CPF inválido</span>
+            <span *ngIf="!cpfInvalido" class="erro">CPF inválido</span>
           </p>
           <p>Nome Completo: 
             <input type="text" [(ngModel)]="nome"
