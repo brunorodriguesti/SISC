@@ -67,8 +67,9 @@ public class AlunoService {
             AlunoVO alunoVO = alunoRepository.findFirstByCpf(cpf);
             if(alunoVO != null){
                 BeanUtils.copyProperties(alunoVO, cadastroAlunoDTO);
+                cadastroAlunoDTO.setId(alunoVO.getIdAluno());
             }
-            if(alunoVO.getEnderecoVO() != null ){
+            if( alunoVO != null && alunoVO.getEnderecoVO() != null ){
                 EnderecoDTO endereco = new EnderecoDTO();
                 BeanUtils.copyProperties(alunoVO.getEnderecoVO(),endereco);
                 endereco.setNumeroLocalidade(alunoVO.getEnderecoVO().getNumero());
@@ -97,6 +98,7 @@ public class AlunoService {
             for(AlunoVO candidatoUnico : listaTodosCandidatos){
                 CadastroAlunoCompletoDTO cadastroAlunoDTO = new CadastroAlunoCompletoDTO();
                 BeanUtils.copyProperties(candidatoUnico, cadastroAlunoDTO);
+                cadastroAlunoDTO.setId(candidatoUnico.getIdAluno());
                 if(candidatoUnico.getEnderecoVO() != null ){
                     EnderecoDTO endereco = new EnderecoDTO();
                     BeanUtils.copyProperties(candidatoUnico.getEnderecoVO(),endereco);
@@ -114,6 +116,7 @@ public class AlunoService {
             Optional<AlunoVO> alunoVO = alunoRepository.findById(id);
             if(alunoVO != null && alunoVO.isPresent()){
                 BeanUtils.copyProperties(alunoVO.get(), cadastroAlunoDTO);
+                cadastroAlunoDTO.setId(alunoVO.get().getIdAluno());
                 if(alunoVO.get().getEnderecoVO() != null ){
                     EnderecoDTO endereco = new EnderecoDTO();
                     BeanUtils.copyProperties(alunoVO.get().getEnderecoVO(),endereco);
