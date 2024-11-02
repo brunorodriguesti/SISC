@@ -1,21 +1,21 @@
 <mat-card>
     <mat-card-content>
         <div>
-          <label for="turmas">Escolha a data de início:</label>
-          <select id="turmas" name="turmas" (change)="onTurmaChange($event)">
-            <option value="" disabled selected>Selecione a turma</option>
-            <option *ngFor="let turma of dataTurma" [value]="turma.dataInicio">{{ turma.dataInicio }}</option>
-          </select>
-          <div>
-            <div>
-              <p>Local do Curso: @if(turmaSelecionada){ Rua Centro sul da capital, N° 200, Centro, Belo Horizonte, MG }</p>
-              <p>Inicio: @if(turmaSelecionada){ {{ turmaSelecionada.dataInicio }} }</p>
-              <p>Termino: @if(turmaSelecionada){ {{ turmaSelecionada.dataFim }} }</p>
-            </div>
-            <div>
-              <p>Horario: @if(turmaSelecionada){ {{ turmaSelecionada.hora }} }</p>
-              <p>Secretaria: @if(turmaSelecionada){ ?? }</p>
-            </div>
+          <div class="cssDivDiv">
+            <label for="turmas">Escolha a data de início:</label>
+            <select id="turmas" name="turmas" (change)="onTurmaChange($event)">
+              <option value="" disabled selected>Selecione a turma</option>
+              <option *ngFor="let turma of dataTurma" [value]="turma.dataInicio">{{ turma.dataInicio }}</option>
+            </select>
+          </div>
+          <div *ngIf="turmaSelecionada" class="cssDivDiv">
+            <p>Local do Curso: Rua Centro sul da capital, N° 200, Centro, Belo Horizonte, MG - </p>
+            <p>Secretaria: Teste</p>
+          </div>
+          <div *ngIf="turmaSelecionada" class="cssDivDiv">
+            <p>Inicio: {{ turmaSelecionada.dataInicio }}, </p>
+            <p>Termino: {{ turmaSelecionada.dataFim }}, </p>
+            <p>Horario: {{ turmaSelecionada.hora }} </p>
           </div>
         </div>
     </mat-card-content>

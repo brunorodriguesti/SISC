@@ -1,12 +1,12 @@
 import { Component, inject } from '@angular/core';
-import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
-import { map } from 'rxjs/operators';
 import { AsyncPipe } from '@angular/common';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { MatDialog } from '@angular/material/dialog';
+import { IframeModalComponent } from '../iframe-modal/iframe-modal.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -23,5 +23,12 @@ import { MatCardModule } from '@angular/material/card';
   ]
 })
 export class DashboardComponent {
-  
+  constructor(private dialog: MatDialog) {}
+
+  openIframeModal() {
+    this.dialog.open(IframeModalComponent, {
+      width: '600px',
+      height: '450px',
+    });
+  }
 }

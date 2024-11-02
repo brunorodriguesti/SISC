@@ -2,7 +2,7 @@
     <mat-card-content>
       <mat-card-title>01 - Dados Pessoais do Aluno</mat-card-title>
       <div (change)="onCandidatoChange($event)">
-        <div class="cssDivDiv">
+        <div class="cssDivDiv" id="div1">
           <p>Nome Completo: 
             <input type="text" [(ngModel)]="nome"
               name="nome"
@@ -30,8 +30,8 @@
           <p>CEP:
             <input type="text" [(ngModel)]="cep"
               name="cep"
-              mask="00000-000"
-              placeholder="00000-000"
+              maxlength="8"
+              placeholder="00000000"
               required>
           </p>
         </div>
@@ -42,11 +42,16 @@
           <p>Telefone: 
             <input type="text" [(ngModel)]="telefone"
               name="telefone"
+              minlength="9"
+              maxlength="11"
+              placeholder="000000000"
               required>
           </p>
           <p>Celular: 
             <input type="text" [(ngModel)]="celular"
               name="celular"
+              maxlength="9"
+              placeholder="000000000"
               required>
           </p>
           <p>Recado: 
@@ -62,9 +67,11 @@
         </div>
         <div class="cssDivDiv">
           <p>E-mail: 
-            <input type="text" [(ngModel)]="email"
+            <input type="email" [(ngModel)]="email"
               name="email"
+              (ngModelChange)="validarEmail()"
               required>
+            <span *ngIf="emailInvalido" class="erro">E-mail inválido</span>
           </p>
         </div>
         <div class="cssDivDiv">
@@ -100,21 +107,29 @@
           <p>N° Carteira de Identidade (RG): 
             <input type="text" [(ngModel)]="carteiraIdentidade"
               name="carteiraIdentidade"
+              maxlength="9"
+              placeholder="000000000"
               required>
           </p>
           <p>Orgão Emissor: 
             <input type="text" [(ngModel)]="orgaoEmissor"
               name="orgaoEmissor"
+              minlength="3"
+              maxlength="5"
               required>
           </p>
-          <p>N° da Carteira de Trabalho: 
+          <p>Número da CTPS: 
             <input type="text" [(ngModel)]="numeroCTPS"
               name="numeroCTPS"
+              maxlength="7"
+              placeholder="0000000"
               required>
           </p>
-          <p>Serie: 
+          <p>Série da CTPS: 
             <input type="text" [(ngModel)]="serieCTPS"
               name="serieCTPS"
+              maxlength="4"
+              placeholder="0000"
               required>
           </p>
         </div>
@@ -122,13 +137,18 @@
           <p>CPF: 
             <input type="text" [(ngModel)]="cpf"
               name="cpf"
+              maxlength="14"
+              (ngModelChange)="validarCPF()"
               mask="000.000.000-00"
               placeholder="000.000.000-00"
               required>
+            <span *ngIf="cpfInvalido" class="erro">CPF inválido</span>
           </p>
-          <p>PIS/PASEP ou NIS: 
+          <p>PIS/PASEP: 
             <input type="text" [(ngModel)]="pisPasep"
               name="pisPasep"
+              maxlength="11"
+              placeholder="00000000000"
               required>
           </p>
         </div>

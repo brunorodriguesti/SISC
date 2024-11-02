@@ -3,8 +3,10 @@
   <mat-card-content>
     <mat-card-title>03 - Informações Profissionais/Sociais</mat-card-title>    
     <div>
-      <div>
-        <label>Pessoa com Deficiência:</label>
+      <div class="cssDivDiv">
+        <p>
+          <label>Pessoa com Deficiência:</label>
+        </p>
         <p>
           <input type="radio" id="deficiencia1" name="deficiencia" [(ngModel)]="deficiencia" [value]="true">
           <label for="deficiencia1">Sim</label>
@@ -21,8 +23,10 @@
           }
         </p>
       </div>
-      <div>
-        <label>Escolaridade</label>
+      <div class="cssDivDiv">
+        <p>
+          <label>Escolaridade</label>
+        </p>
         <p>
           <input type="radio" id="alfabetizado1" name="alfabetizado" [(ngModel)]="alfabetizado" [value]="true" (ngModelChange)="onAlfabetizadoChange(true)">
           <label for="alfabetizado1">Sim</label>
@@ -31,7 +35,9 @@
           <input type="radio" id="alfabetizado2" name="alfabetizado" [(ngModel)]="alfabetizado" [value]="false" (ngModelChange)="onAlfabetizadoChange(false)">
           <label for="alfabetizado2">Não</label>
         </p>
-        <label>Fundamental Comp:</label>
+        <p>
+          <label>Fundamental Comp:</label>
+        </p>
         <p>
           <input type="radio" id="fundamentalComp1" name="fundamentalComp" [(ngModel)]="fundamentalComp" [value]="true" (ngModelChange)="onFundamentalCompChange(true)">
           <label for="fundamentalComp1">Sim</label>
@@ -40,7 +46,9 @@
           <input type="radio" id="fundamentalComp2" name="fundamentalComp" [(ngModel)]="fundamentalComp" [value]="false" (ngModelChange)="onFundamentalCompChange(false)">
           <label for="fundamentalComp2">Não</label>
         </p>
-        <label>Medio Comp:</label>
+        <p>
+          <label>Medio Comp:</label>
+        </p>
         <p>
           <input type="radio" id="medioComp1" name="medioComp" [(ngModel)]="medioComp" [value]="true" (ngModelChange)="onMedioCompChange(true)">
           <label for="medioComp1">Sim</label>

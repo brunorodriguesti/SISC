@@ -30,34 +30,39 @@ export class InscricaoComponent {
   cursoSelecionado: number = 0;
   candidatoObjeto!: objPessoaId;
   id: number = 0;
-  turmaSelecionada: any;
+  turmaSelecionada!: number;
 
   receberDadosCurso(event: any) {
     this.cursoSelecionado = event.id;
+    console.log('Dados recebidos do curso:', this.cursoSelecionado);
   }
 
-  receberDadosTurma(dadosTurma: any) {
+  receberDadosTurma(dadosTurma: { id: number }) {
     console.log('Dados recebidos:', dadosTurma);
+    this.turmaSelecionada = dadosTurma.id;
   }
   
   receberDadosCandidato(dadosCandidato: objPessoaId) {
-    console.log('Dados recebidos:', dadosCandidato);
     this.candidatoObjeto = dadosCandidato;
+    console.log('Dados recebidos do candidato:', this.candidatoObjeto);
   }
 
   handlePostCandidato(): void {
+    console.log(this.candidatoObjeto)
     this.inscricaoService.postCandidato(this.candidatoObjeto)
   }
 
   async handleGetCandidato(): Promise<void> {
     this.id = await this.inscricaoService.getCPF(this.candidatoObjeto.cpf)
+    console.log(this.id)
   }
 
   handlePostAlunoTurma(): void {
     if (this.turmaSelecionada == null) {
       return;
     }
-    this.inscricaoService.postAlunoTurma(this.id, this.turmaSelecionada.id)
+    console.log('Dados para o cadastro da turma:', this.id, this.turmaSelecionada)
+    this.inscricaoService.postAlunoTurma(this.id, this.turmaSelecionada)
   }
 
   handleCadastro(): void {

@@ -29,9 +29,11 @@ export class CandidatoComponent {
   id: number = 0;
   nome: string = "";
   cpf: string = "";
+  cpfInvalido: boolean = false;
   cep: string = "";
   nomeMae: string = "";
   email: string = "";
+  emailInvalido: boolean = false;
   telefone: string = "";
   celular: string = "";
   dataNascimento: string = "";
@@ -46,9 +48,19 @@ export class CandidatoComponent {
     private candidatoService: CandidatoService
   ){}
 
-  ngOnInit(): void {}
+  validarCPF() {
+    const regex = /^[0-9]{11}$/;
+    this.cpfInvalido = !regex.test(this.cpf.replace(/\D/g, ''));
+  }
+
+  validarEmail() {
+    const regex = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
+    this.emailInvalido = !regex.test(this.email);
+  }
 
   enviarDados() {
+    if (this.cpfInvalido || this.emailInvalido) return;
+
     const dadosCandidato: objPessoaId = {
       id: this.id,
       nome: this.nome,
