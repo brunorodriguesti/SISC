@@ -38,6 +38,8 @@ public class AlunoDTO {
     private String serieCTPS;
     @Size(message = "Sexo deve ser somente um caractere",min = 1,max=1)
     private String sexo;
+    private Long id;
+
 
     public  String getNome() {
         return nome;
@@ -149,5 +151,13 @@ public class AlunoDTO {
 
     public void setSexo( String sexo) {
         this.sexo = sexo;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }
