@@ -53,6 +53,7 @@ public class TurmaService {
             if(turmaVO.isPresent() ){
                 TurmaVO turmaUnica = turmaVO.get();
                 BeanUtils.copyProperties(turmaUnica,turmaDTO);
+                turmaDTO.setId(turmaUnica.getIdTurma());
                 turmaDTO.setNumeroMaximoAlunos(turmaUnica.getNumeroMaximoAlunos());
                 if(turmaUnica.getAlunosVoList() != null && !turmaUnica.getAlunosVoList().isEmpty() ){
                     for(AlunoVO alunoUnico : turmaUnica.getAlunosVoList()){
@@ -85,6 +86,7 @@ public class TurmaService {
                 for(TurmaVO turmaUnica : listaTurmas){
                     TurmaDTO turmaDTO = new TurmaDTO();
                     BeanUtils.copyProperties(turmaUnica,turmaDTO);
+                    turmaDTO.setId(turmaUnica.getIdTurma());
                     if (turmaUnica.getAlunosVoList() != null && !turmaUnica.getAlunosVoList().isEmpty()) {
                         for (AlunoVO alunoUnico : turmaUnica.getAlunosVoList()) {
                             CadastroAlunoDTO cadastroAlunoDTO = new CadastroAlunoDTO();
@@ -117,6 +119,7 @@ public class TurmaService {
                 for (TurmaVO turmaUnica : listaTurmas) {
                     TurmaDTO turmaDTO = new TurmaDTO();
                     BeanUtils.copyProperties(turmaUnica, turmaDTO);
+                    turmaDTO.setId(turmaUnica.getIdTurma());
                     if (turmaUnica.getAlunosVoList() != null && !turmaUnica.getAlunosVoList().isEmpty()) {
                         for (AlunoVO alunoUnico : turmaUnica.getAlunosVoList()) {
                             CadastroAlunoDTO cadastroAlunoDTO = new CadastroAlunoDTO();

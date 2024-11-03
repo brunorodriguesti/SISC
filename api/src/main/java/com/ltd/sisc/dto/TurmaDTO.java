@@ -14,6 +14,7 @@ public class TurmaDTO {
     private int numeroMaximoAlunos;
     private List<CadastroAlunoDTO> cadastroAlunoDTOList;
     private CursoDTO cursoDTO;
+    private Long id;
 
     public LocalDate getDataInicio() {
         return dataInicio;
@@ -61,5 +62,13 @@ public class TurmaDTO {
 
     public void setCursoDTO(CursoDTO cursoDTO) {
         this.cursoDTO = cursoDTO;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }
