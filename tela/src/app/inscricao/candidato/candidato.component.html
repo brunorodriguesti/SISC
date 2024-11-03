@@ -1,9 +1,19 @@
 <mat-card>
     <mat-card-content>
       <mat-card-title>01 - Dados Pessoais do Aluno</mat-card-title>
-      <div (change)="onCandidatoChange($event)">
+      <div>
         <div class="cssDivDiv">
-          <p>Nome Completo: 
+          <p>*CPF: 
+            <input type="text" [(ngModel)]="cpf"
+              name="cpf"
+              maxlength="14"
+              (blur)="validarCPF()"
+              mask="000.000.000-00"
+              placeholder="000.000.000-00"
+              required>
+            <span *ngIf="!cpfInvalido" class="erro">CPF inválido</span>
+          </p>
+          <p>*Nome Completo: 
             <input type="text" [(ngModel)]="nome"
               name="nome"
               required>
@@ -11,42 +21,50 @@
         </div>
         <div class="cssDivDiv">
           <p>Endereço (Rua / Av / Bc):
-            <input type="text"
-              name="endereco"
+            <input type="text" [(ngModel)]="logradouro"
+              name="logradouro"
               required>
           </p>
           <p>N°:
-            <input type="text"
-              name="numeroCasa"
+            <input type="number" [(ngModel)]="numeroLocalidade"
+              name="numeroLocalidade"
+              required>
+          </p>
+          <p>Complemento:
+            <input type="text" [(ngModel)]="complemento"
+              name="complemento"
               required>
           </p>
         </div>
         <div class="cssDivDiv">
           <p>Bairro:
-            <input type="text"
+            <input type="text" [(ngModel)]="bairro"
               name="bairro"
               required>
           </p>
-          <p>CEP:
+          <p>*CEP:
             <input type="text" [(ngModel)]="cep"
               name="cep"
-              mask="00000-000"
-              placeholder="00000-000"
+              maxlength="8"
+              (blur)="obterEndereco()"
+              placeholder="00000000"
               required>
           </p>
-        </div>
-        <div class="cssDivDiv">
-          <p>Cidade: BH</p>
         </div>
         <div class="cssDivDiv">
           <p>Telefone: 
             <input type="text" [(ngModel)]="telefone"
               name="telefone"
+              minlength="9"
+              maxlength="11"
+              placeholder="000000000"
               required>
           </p>
           <p>Celular: 
             <input type="text" [(ngModel)]="celular"
               name="celular"
+              maxlength="9"
+              placeholder="000000000"
               required>
           </p>
           <p>Recado: 
@@ -62,20 +80,20 @@
         </div>
         <div class="cssDivDiv">
           <p>E-mail: 
-            <input type="text" [(ngModel)]="email"
+            <input type="email" [(ngModel)]="email"
               name="email"
               required>
           </p>
         </div>
         <div class="cssDivDiv">
-          <p>Nome da Mãe: 
+          <p>*Nome da Mãe: 
             <input type="text" [(ngModel)]="nomeMae"
               name="nomeMae"
               required>
           </p>
         </div>
         <div class="cssDivDiv">
-          <p>Data de Nascimento: 
+          <p>*Data de Nascimento: 
             <input class="cssStyle"
               type="text" [(ngModel)]="dataNascimento"
               name="dataNascimento"
@@ -85,11 +103,11 @@
           </p>
           <p><label>Sexo:</label></p>
           <p>
-            <input type="radio" id="sexo1" name="sexo" [(ngModel)]="sexo" value="masculino">
+            <input type="radio" id="sexo1" name="sexo" [(ngModel)]="sexo" value="m">
             <label for="sexo1">Masculino</label>
           </p>
           <p>
-            <input type="radio" id="sexo2" name="sexo" [(ngModel)]="sexo" value="feminino">
+            <input type="radio" id="sexo2" name="sexo" [(ngModel)]="sexo" value="f">
             <label for="sexo2">Feminino</label>
           </p>
         </div>          
@@ -100,38 +118,42 @@
           <p>N° Carteira de Identidade (RG): 
             <input type="text" [(ngModel)]="carteiraIdentidade"
               name="carteiraIdentidade"
+              maxlength="9"
+              placeholder="000000000"
               required>
           </p>
           <p>Orgão Emissor: 
             <input type="text" [(ngModel)]="orgaoEmissor"
               name="orgaoEmissor"
+              minlength="3"
+              maxlength="5"
               required>
           </p>
-          <p>N° da Carteira de Trabalho: 
+          <p>Número da CTPS: 
             <input type="text" [(ngModel)]="numeroCTPS"
               name="numeroCTPS"
+              maxlength="7"
+              placeholder="0000000"
               required>
           </p>
-          <p>Serie: 
+          <p>Série da CTPS: 
             <input type="text" [(ngModel)]="serieCTPS"
               name="serieCTPS"
+              maxlength="4"
+              placeholder="0000"
               required>
           </p>
         </div>
         <div class="cssDivDiv">
-          <p>CPF: 
-            <input type="text" [(ngModel)]="cpf"
-              name="cpf"
-              mask="000.000.000-00"
-              placeholder="000.000.000-00"
-              required>
-          </p>
-          <p>PIS/PASEP ou NIS: 
+          <p>PIS/PASEP: 
             <input type="text" [(ngModel)]="pisPasep"
               name="pisPasep"
+              maxlength="11"
+              placeholder="00000000000"
               required>
           </p>
         </div>
       </div>
+      <button *ngIf="botaoAcionado" mat-raised-button color="primary" type="button" (click)="onCandidatoChange($event)">Prosseguir</button>
     </mat-card-content>
 </mat-card>

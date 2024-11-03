@@ -17,7 +17,6 @@ export class CursoComponent {
   @Output() cursoData = new EventEmitter<any>();
 
   dataCurso: objCursoId[] = [];
-  turmaSelecionada: objTurmaId | null = null;
   cursoSelecionado: number = 0;
 
   constructor(
