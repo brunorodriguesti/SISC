@@ -31,6 +31,27 @@ export class CandidatoService {
     return `${anoAtual}-${mesAtual}-${diaAtual}`;
   }
 
+  formatarDataRecebido(data: string | null): string | null {
+    // Verifica se a data está no formato yyyy-MM-dd
+    if (!data) {
+      return data;
+    }
+    const regex = /^(\d{4})-(\d{2})-(\d{2})$/;
+    const partes = data.match(regex);
+    if (partes) {
+      const dia = partes[3];
+      const mes = partes[2];
+      const ano = partes[1];
+      return `${dia}-${mes}-${ano}`;
+    }
+    // Se não puder formatar, retorna a data atual do dia do cadastro
+    const dataAtual = new Date();
+    const anoAtual = dataAtual.getFullYear();
+    const mesAtual = String(dataAtual.getMonth() + 1).padStart(2, '0');
+    const diaAtual = String(dataAtual.getDate()).padStart(2, '0');
+    return `${anoAtual}-${mesAtual}-${diaAtual}`;
+  }
+
   // Função para remover a máscara do CPF
   limparMascara(cpf: string): string {
     return cpf.replace(/\D/g, ''); // Remove todos os caracteres não numéricos

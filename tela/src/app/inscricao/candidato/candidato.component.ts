@@ -71,7 +71,7 @@ export class CandidatoComponent {
     this.email = canditato?.email;
     this.telefone = canditato?.telefone;
     this.celular = canditato?.celular;
-    this.dataNascimento = canditato?.dataNascimento;
+    this.dataNascimento = this.candidatoService.formatarDataRecebido(canditato?.dataNascimento);
     this.carteiraIdentidade = canditato?.carteiraIdentidade;
     this.orgaoEmissor = canditato?.orgaoEmissor;
     this.pisPasep = canditato?.pisPasep;

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -26,6 +26,7 @@ import { objPessoaPost } from './DTO';
 })
 
 export class InscricaoComponent {
+  @Output() cadastroSucesso = new EventEmitter<void>();
   constructor(
     private inscricaoService: InscricaoService
   ){}
@@ -70,7 +71,37 @@ export class InscricaoComponent {
   handlePostAlunoTurma(): void {
     if (!this.turmaSelecionada || !this.id) { "Dados nulos para o cadastro do candidato a turma" ; return};
     console.log('Dados para o cadastro da turma:', this.id, this.turmaSelecionada)
-    this.inscricaoService.postAlunoTurma(this.id, this.turmaSelecionada)
+    this.inscricaoService.postAlunoTurma(this.id, this.turmaSelecionada).then(() => {
+      this.cadastroSucesso.emit();
+      this.resetarFormulario();
+    }).catch(error => {
+      console.error('Erro ao cadastrar aluno na turma:', error);
+    });
+  }
+
+  resetarFormulario(): void {
+    this.cursoSelecionado = null;
+    this.dadosRecebidos = false;
+    this.candidatoObjeto = {
+      nome: '',
+      cpf: '',
+      cep: '',
+      nomeMae: '',
+      email: null,
+      telefone: null,
+      celular: null,
+      dataNascimento: '',
+      carteiraIdentidade: null,
+      orgaoEmissor: null,
+      pisPasep: null,
+      numeroCTPS: null,
+      serieCTPS: null,
+      sexo: null,
+      complemento: null,
+      numeroLocalidade: null
+    };
+    this.id = null;
+    this.turmaSelecionada = 0;
   }
 
   handleCadastro(): void {
