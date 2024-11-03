@@ -63,6 +63,10 @@ export class InscricaoComponent {
     console.log(this.id)
   }
 
+  delay(ms: number): Promise<void> {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
   handlePostAlunoTurma(): void {
     if (!this.turmaSelecionada || !this.id) { "Dados nulos para o cadastro do candidato a turma" ; return};
     console.log('Dados para o cadastro da turma:', this.id, this.turmaSelecionada)
@@ -89,7 +93,8 @@ export class InscricaoComponent {
       console.log(this.candidatoObjeto)
       this.handlePostCandidato()
       this.handleGetCandidato()
-        .then(() => {
+        .then(async () => {
+          await this.delay(2000);
           this.handlePostAlunoTurma();
         })
         .catch(error => {
