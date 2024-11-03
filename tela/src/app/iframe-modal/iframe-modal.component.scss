@@ -1,0 +1,33 @@
+$color-blue-dark: #003366;
+
+/* Fundo azul do modal */
+.mat-dialog-container {
+    background-color: $color-blue-dark;
+    color: white;
+    border-radius: 8px;
+}
+
+/* Estilização para o cabeçalho do modal e posicionamento do botão de fechar */
+.modal-header {
+    background-color: $color-blue-dark;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 8px;
+}
+
+/* Botão de fechar estilizado */
+.fechar-botao {
+    background-color: #F87171; /* Vermelho claro para o fundo */
+    color: #B91C1C; /* Vermelho escuro para o 'X' */
+    border: none;
+    font-size: 1.5em;
+    cursor: pointer;
+    padding: 4px 10px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.fechar-botao:hover {
+    background-color: #EF4444; /* Mais escuro ao passar o mouse */
+}
