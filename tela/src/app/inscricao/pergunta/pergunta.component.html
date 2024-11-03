@@ -1,11 +1,9 @@
 <mat-card>
   <mat-card-content>
     <mat-card-title>03 - Informações Profissionais/Sociais</mat-card-title>
-
     <div *ngIf="parametros.length === 0">
       <p>Não há perguntas disponíveis para marcar.</p>
     </div>
-    
     <div *ngFor="let parametro of parametros">
       <mat-checkbox (change)="toggleCheckbox(parametro.id)">
         {{ parametro.descricao }}

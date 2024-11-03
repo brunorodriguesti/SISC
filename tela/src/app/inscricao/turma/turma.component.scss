@@ -1,29 +1,59 @@
+$color-blue-light: #3a8ae6;
+$color-dark: #000000;
+$color-white: #f0f0f0;
+
+/* Remover bordas e sombra do mat-card */
 mat-card {
     box-shadow: none;
     border: none;
 }
+
 /* Estilizar o mat-card-title */
 mat-card-title {
-    background-color: #f0f0f0;
-    color: #000;
+    background-color: $color-white;
+    color: $color-dark;
     font-size: 1rem;
     padding: 10px;
-    border-bottom: 2px solid #000000;
+    border-bottom: 2px solid $color-dark;
 }
 
+/* Estilo do container */
 .cssDivDiv {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    gap: 5px;
+    gap: 10px;
     padding: 10px 0;
-    border-bottom: 2px solid #000000;
-    p: {
-        display: flex;
+    border-bottom: 2px solid $color-dark;
+
+    /* Estilo para os parágrafos que imitam campos de input */
+    p {
+        display: inline-flex;
         align-items: center;
-        input: {
-            flex: 1;
-            margin-left: 5px;
-        }
+        padding: 8px;
+        border: 1px solid $color-blue-light;
+        background-color: $color-white;
+        border-radius: 4px;
+        font-size: 1rem;
+        color: $color-dark;
+        margin: 0;
+
+        /* Para ajuste de largura similar ao input */
+        min-width: 120px;
+        flex-grow: 1;
+    }
+}
+
+/* Estilo do select para manter a consistência */
+select {
+    border: 1px solid $color-blue-light;
+    padding: 8px;
+    font-size: 1rem;
+    color: $color-dark;
+    background-color: $color-white;
+    border-radius: 4px;
+    &:focus {
+        outline: none;
+        border-color: darken($color-blue-light, 10%);
     }
 }
