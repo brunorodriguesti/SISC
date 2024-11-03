@@ -87,7 +87,7 @@ export class InscricaoComponent {
     if (this.id == 0) {
       console.log(`Sera cadastrado o candidato ${this.candidatoObjeto.nome}`)
       console.log(this.candidatoObjeto)
-      this.handlePostCandidato();
+      this.handlePostCandidato()
       this.handleGetCandidato()
         .then(() => {
           this.handlePostAlunoTurma();
