@@ -78,12 +78,27 @@ public class TurmaService {
 
     public List<TurmaDTO> buscaTodasTurmaAtivas() {
         List<TurmaDTO> turmaDTOList = new ArrayList<>();
+        List<CadastroAlunoDTO> alunosDTO = new ArrayList<>();
         try{
             List<TurmaVO> listaTurmas = turmaRepository.findBySituacao(true);
             if(listaTurmas != null && !listaTurmas.isEmpty()){
                 for(TurmaVO turmaUnica : listaTurmas){
                     TurmaDTO turmaDTO = new TurmaDTO();
                     BeanUtils.copyProperties(turmaUnica,turmaDTO);
+                    if (turmaUnica.getAlunosVoList() != null && !turmaUnica.getAlunosVoList().isEmpty()) {
+                        for (AlunoVO alunoUnico : turmaUnica.getAlunosVoList()) {
+                            CadastroAlunoDTO cadastroAlunoDTO = new CadastroAlunoDTO();
+                            BeanUtils.copyProperties(alunoUnico, cadastroAlunoDTO);
+                            alunosDTO.add(cadastroAlunoDTO);
+                        }
+                    }
+                    if (turmaUnica.getCursoVO() != null) {
+                        CursoDTO cursoDTO = new CursoDTO();
+                        BeanUtils.copyProperties(turmaUnica.getCursoVO(), cursoDTO);
+                        cursoDTO.setId(turmaUnica.getCursoVO().getIdCurso());
+                        turmaDTO.setCursoDTO(cursoDTO);
+                    }
+                    turmaDTO.setCadastroAlunoDTOList(alunosDTO);
                     turmaDTOList.add(turmaDTO);
                 }
             }
@@ -91,5 +106,37 @@ public class TurmaService {
             throw  new ExceptionGenerica(new StringBuilder().append("Erro ao buscar todas turmas: ").append(e).toString());
         }
         return turmaDTOList;
+    }
+
+    public List<TurmaDTO> buscaTurmaPorIdCurso(Long idCurso) {
+        List<TurmaDTO> turmaDTOList = new ArrayList<>();
+        List<CadastroAlunoDTO> alunosDTO = new ArrayList<>();
+        try{
+           List<TurmaVO> listaTurmas =  turmaRepository.buscaTurmaPorIdCurso(idCurso);
+            if(listaTurmas != null && !listaTurmas.isEmpty()) {
+                for (TurmaVO turmaUnica : listaTurmas) {
+                    TurmaDTO turmaDTO = new TurmaDTO();
+                    BeanUtils.copyProperties(turmaUnica, turmaDTO);
+                    if (turmaUnica.getAlunosVoList() != null && !turmaUnica.getAlunosVoList().isEmpty()) {
+                        for (AlunoVO alunoUnico : turmaUnica.getAlunosVoList()) {
+                            CadastroAlunoDTO cadastroAlunoDTO = new CadastroAlunoDTO();
+                            BeanUtils.copyProperties(alunoUnico, cadastroAlunoDTO);
+                            alunosDTO.add(cadastroAlunoDTO);
+                        }
+                    }
+                    if (turmaUnica.getCursoVO() != null) {
+                        CursoDTO cursoDTO = new CursoDTO();
+                        BeanUtils.copyProperties(turmaUnica.getCursoVO(), cursoDTO);
+                        cursoDTO.setId(turmaUnica.getCursoVO().getIdCurso());
+                        turmaDTO.setCursoDTO(cursoDTO);
+                    }
+                    turmaDTO.setCadastroAlunoDTOList(alunosDTO);
+                    turmaDTOList.add(turmaDTO);
+                }
+            }
+        }catch (Exception e){
+            throw  new ExceptionGenerica(new StringBuilder().append("Erro ao buscar turma por id curso: ").append(e).toString());
+        }
+        return  turmaDTOList;
     }
 }

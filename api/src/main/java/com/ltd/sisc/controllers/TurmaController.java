@@ -41,6 +41,17 @@ public class TurmaController {
         return  ResponseEntity.status(HttpStatus.OK).body(turmaDTO);
     }
 
+    @GetMapping(path = "/idCurso")
+    public ResponseEntity buscaTurmaPorIdCurso(@RequestParam(required = true,name = "idCurso")Long idCurso) {
+        List<TurmaDTO> turmaDTOList = new ArrayList<>();
+        try {
+            turmaDTOList = turmaService.buscaTurmaPorIdCurso(idCurso);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new StringBuilder().append("Erro ao buscar  turma por id curso ").append(e.getMessage()).toString());
+        }
+        return  ResponseEntity.status(HttpStatus.OK).body(turmaDTOList);
+    }
+
 
     @GetMapping(path = "/todasTurmas")
     public ResponseEntity buscarTodasTurmas() {
