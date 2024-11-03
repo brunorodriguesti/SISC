@@ -30,24 +30,24 @@ export class CandidatoComponent {
   botaoAcionado: boolean = true;
 
   id!: number | null;
-  nome!: string | null;
-  cpf!: string | null;
-  cep!: string | null;
-  nomeMae!: string | null;
-  email!: string | null;
-  telefone!: string | null;
-  celular!: string | null;
-  dataNascimento!: string | null;
-  carteiraIdentidade!: string | null;
-  orgaoEmissor!: string | null;
-  pisPasep!: string | null;
-  numeroCTPS!: string | null;
-  serieCTPS!: string | null;
-  sexo!: string | null;
-  complemento!: string | null;
-  numeroLocalidade!: number | null;
-  logradouro!: string | null;
-  bairro!: string | null;
+  nome: string | null = null;
+  cpf: string | null = null;
+  cep: string | null = null;
+  nomeMae: string | null = null;
+  email: string | null = null;
+  telefone: string | null = null;
+  celular: string | null = null;
+  dataNascimento: string | null = null;
+  carteiraIdentidade: string | null = null;
+  orgaoEmissor: string | null = null;
+  pisPasep: string | null = null;
+  numeroCTPS: string | null = null;
+  serieCTPS: string | null = null;
+  sexo: string | null = null;
+  complemento: string | null = null;
+  numeroLocalidade: number | null = 0;
+  logradouro: string | null = null;
+  bairro: string | null = null;
 
   constructor(
     private candidatoService: CandidatoService
@@ -61,9 +61,9 @@ export class CandidatoComponent {
 
     if (!this.cpfInvalido) {console.log("CPF invalido!!"); return};
     const canditato = await this.candidatoService.getCPF(this.cpf)
-    console.log("canditato:", canditato)
+    console.log("request ao canditato:", canditato)
 
-    if (!canditato) {console.log("Dados do candidato não encontrados"); return};
+    if (!canditato?.nome) {console.log("Dados do candidato não encontrados"); return};
     this.id = canditato?.id;
     this.nome = canditato?.nome;
     this.cep = canditato?.cep;

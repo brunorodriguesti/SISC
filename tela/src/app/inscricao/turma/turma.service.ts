@@ -28,9 +28,11 @@ export class TurmaService {
     }
   }
 
-  async getTurmaTodos(): Promise<objTurmaId[]> {
+  // async getTurmaTodos(): Promise<objTurmaId[]> {
+    async getTurmaTodos(): Promise<objTurma[]> {
     try {
-      const response = await this.apiClient.get<objTurmaId[]>(this.apiUrlGetTurmaTodos);
+      // const response = await this.apiClient.get<objTurmaId[]>(this.apiUrlGetTurmaTodos);
+      const response = await this.apiClient.get<objTurma[]>(this.apiUrlGetTurmaTodos);
       const dados = response.data;
       return dados
     }catch(error){

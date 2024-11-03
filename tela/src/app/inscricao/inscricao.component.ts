@@ -17,9 +17,9 @@ import { objPessoaPost } from './DTO';
     CommonModule,
     MatFormFieldModule,
     CandidatoComponent,
-    PerguntaComponent,
+    // PerguntaComponent,
     CursoComponent,
-    TurmaComponent
+    TurmaComponent,
   ],
   templateUrl: './inscricao.component.html',
   styleUrls: ['./inscricao.component.scss']
@@ -53,17 +53,18 @@ export class InscricaoComponent {
   }
 
   handlePostCandidato(): void {
-    console.log(this.candidatoObjeto)
+    console.log("Cadastrando candidato...", this.candidatoObjeto)
     this.inscricaoService.postCandidato(this.candidatoObjeto)
   }
 
   async handleGetCandidato(): Promise<void> {
+    console.log("Obtendo ID do candidato...", this.candidatoObjeto.cpf)
     this.id = await this.inscricaoService.getCPF(this.candidatoObjeto.cpf)
     console.log(this.id)
   }
 
   handlePostAlunoTurma(): void {
-    if (!this.turmaSelecionada || !this.id) return;
+    if (!this.turmaSelecionada || !this.id) { "Dados nulos para o cadastro do candidato a turma" ; return};
     console.log('Dados para o cadastro da turma:', this.id, this.turmaSelecionada)
     this.inscricaoService.postAlunoTurma(this.id, this.turmaSelecionada)
   }
@@ -84,21 +85,19 @@ export class InscricaoComponent {
         return;
     }
     if (this.id == 0) {
+      console.log(`Sera cadastrado o candidato ${this.candidatoObjeto.nome}`)
       console.log(this.candidatoObjeto)
       this.handlePostCandidato();
       this.handleGetCandidato()
         .then(() => {
-          // this.handlePostAlunoTurma();
-          console.log(`Id do cpf recuperado do get cpf: ${this.id}`);
-          console.log('Id da turma selecionada:', this.turmaSelecionada);
+          this.handlePostAlunoTurma();
         })
         .catch(error => {
           console.error('Erro ao buscar candidato:', error);
         });
     } else {
-      //this.handlePostAlunoTurma();
-      console.log(`Id do cpf recuperado do formulario: ${this.id}`);
-      console.log('Id da turma selecionada:', this.turmaSelecionada);
+      console.log(`Candidato já cadastrado: ${this.id} ${this.candidatoObjeto.nome}`)
+      this.handlePostAlunoTurma();
     }
   }
 }

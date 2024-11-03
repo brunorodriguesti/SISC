@@ -22,12 +22,17 @@
         <div class="cssDivDiv">
           <p>Endereço (Rua / Av / Bc):
             <input type="text" [(ngModel)]="logradouro"
-              name="endereco"
+              name="logradouro"
               required>
           </p>
           <p>N°:
-            <input type="text" [(ngModel)]="numeroLocalidade"
-              name="numeroCasa"
+            <input type="number" [(ngModel)]="numeroLocalidade"
+              name="numeroLocalidade"
+              required>
+          </p>
+          <p>Complemento:
+            <input type="text" [(ngModel)]="complemento"
+              name="complemento"
               required>
           </p>
         </div>

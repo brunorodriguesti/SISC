@@ -4,7 +4,9 @@ import { InscricaoComponent } from '../inscricao/inscricao.component';
 @Component({
   selector: 'app-iframe-modal',
   standalone: true,
-  imports: [ InscricaoComponent ],
+  imports: [
+    InscricaoComponent,
+  ],
   templateUrl: './iframe-modal.component.html',
   styleUrl: './iframe-modal.component.scss'
 })

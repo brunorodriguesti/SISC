@@ -19,7 +19,8 @@ export class TurmaComponent implements OnChanges {
   dataTurma: objTurmaId[] = [];
   turmaSelecionada: objTurmaId | null = null;
   getTurma: objTurma | null = null;
-  getTurmaTodos: objTurmaId[] = [];
+  // getTurmaTodos: objTurmaId[] = [];
+  getTurmaTodos: objTurma[] = [];
 
   constructor(
     private turmaService: TurmaService
@@ -27,25 +28,46 @@ export class TurmaComponent implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['inputData'] && this.inputData) {
+      this.handleGetTurmaTodos();
       this.handleGetTurma(this.inputData);
     }
   }
 
   async handleGetTurmaTodos(): Promise<void> {
+    console.log("Obtendo total de turmas...")
     this.getTurmaTodos = await this.turmaService.getTurmaTodos();
+    console.log(this.getTurmaTodos.length)
   }
 
-  handleGetTurma( id: number): void {
+  // handleGetTurma( id: number): void {
+  async handleGetTurma( id: number): Promise<void> {
+    let contador: number = 0;
     this.dataTurma = [];
     if (!id) {console.warn('Curso não foi selecionado'); return};
 
     if (this.getTurmaTodos.length > 0) {
-      this.getTurmaTodos.map(turma => {
+      console.log("Obtendo turmas...")
+      for (let i=0; i < this.getTurmaTodos.length; i++) {
+        // if (turma.cursoDTO.id == id) {
+        //   this.dataTurma.push(turma)
+        // }
+        // })
+        contador++;
+        let turma = await this.turmaService.getTurma(contador);
+        if (!turma) continue;
         if (turma.cursoDTO.id == id) {
-          this.dataTurma.push(turma)
+          console.log(turma)
+          this.dataTurma.push({
+            id: contador,
+            dataInicio: turma.dataInicio,
+            dataFim: turma.dataFim,
+            hora: turma.hora,
+            numeroMaximoAlunos: turma.numeroMaximoAlunos,
+            cadastroAlunoDTOList: turma.cadastroAlunoDTOList,
+            cursoDTO: turma.cursoDTO
+          })
         }
-        }
-      )
+      }
     }
   }
 

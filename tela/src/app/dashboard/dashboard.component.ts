@@ -19,7 +19,8 @@ import { IframeModalComponent } from '../iframe-modal/iframe-modal.component';
     MatMenuModule,
     MatIconModule,
     MatButtonModule,
-    MatCardModule
+    MatCardModule,
+    IframeModalComponent,
   ]
 })
 export class DashboardComponent {
