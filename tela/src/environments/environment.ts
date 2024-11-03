@@ -3,6 +3,7 @@ export const environment = {
     API_URL: 'http://localhost:8080',
     API_TURMA: '/turma',
     API_TURMA_TODOS: '/turma/todasTurmas',
+    API_TURMA_ID_CURSO: '/turma/idCurso',
     API_CURSOS: '/curso',
     API_CURSOS_TODOS: '/curso/todosCursos',
     API_CURSOS_ID: '/curso/id',
