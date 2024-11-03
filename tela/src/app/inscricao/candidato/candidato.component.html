@@ -46,6 +46,7 @@
             <input type="text" [(ngModel)]="cep"
               name="cep"
               maxlength="8"
+              (blur)="obterEndereco()"
               placeholder="00000000"
               required>
           </p>

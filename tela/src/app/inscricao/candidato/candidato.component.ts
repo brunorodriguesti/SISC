@@ -5,7 +5,8 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 import { CandidatoService } from './candidato.service';
-import { objPessoaPost, objPessoaId } from '../DTO';
+// import { objPessoaPost, objPessoaId, objEndereco } from '../DTO';
+import { objPessoaPost } from '../DTO';
 
 @Component({
   selector: 'app-candidato',
@@ -52,6 +53,16 @@ export class CandidatoComponent {
   constructor(
     private candidatoService: CandidatoService
   ){}
+
+  async obterEndereco() {
+    console.log("Obtendo Endereço...")
+    if (!this.cep) {console.log("CEP não informado"); return};
+    const  objEndereco = await this.candidatoService.getEndereco(this.cep)
+    if (!objEndereco?.cep) {console.log("Endereço não encontrado"); return};
+    this.logradouro = objEndereco.logradouro;
+    this.bairro = objEndereco.bairro;
+    this.complemento = objEndereco.complemento;
+  }
 
   async validarCPF() {
     console.log("Validar CPF")
