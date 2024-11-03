@@ -1,0 +1,52 @@
+// Define uma paleta de cores para facilitar a personalização
+$color-blue-dark: #003366; // Cor azul para h1
+$color-blue-light: #3a8ae6; // Cor azul mais clara para h3
+$color-blue-lighter: #699fcc; // Cor azul ainda mais clara para parágrafos
+
+// Estilo geral do container principal
+div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+}
+
+// Estilo para o título principal
+h1 {
+  color: $color-blue-dark;
+  font-weight: bold;
+  font-size: 2em;
+  margin-bottom: 15px;
+}
+
+// Estilo para subtítulos
+h3 {
+  color: $color-blue-light;
+  font-weight: bold;
+  font-size: 1.5em;
+  margin: 20px 0;
+}
+
+// Estilo para os parágrafos
+p {
+  color: $color-blue-lighter;
+  font-size: 1.1em;
+  line-height: 1.6;
+  margin: 10px 0;
+}
+
+// Estilo para o botão
+button {
+  margin-top: 30px;
+  background-color: $color-blue-light;
+  color: white;
+  font-size: 1.2em;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &:hover {
+    background-color: darken($color-blue-light, 10%);
+  }
+}
