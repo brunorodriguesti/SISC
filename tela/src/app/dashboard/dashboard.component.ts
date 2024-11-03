@@ -28,8 +28,8 @@ export class DashboardComponent {
 
   openIframeModal() {
     this.dialog.open(IframeModalComponent, {
-      width: '1000px',
-      height: '760px',
+      width: '80%',
+      height: '100%',
     });
   }
 }

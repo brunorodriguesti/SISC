@@ -1,29 +1,46 @@
+$color-blue-light: #3a8ae6;
+$color-dark: #000000;
+$color-white: #f0f0f0;
+
+/* Remover bordas e sombra do mat-card */
 mat-card {
     box-shadow: none;
     border: none;
 }
+
 /* Estilizar o mat-card-title */
 mat-card-title {
-    background-color: #f0f0f0;
-    color: #000;
+    background-color: $color-white;
+    color: $color-dark;
     font-size: 1rem;
     padding: 10px;
-    border-bottom: 2px solid #000000;
+    border-bottom: 2px solid $color-dark;
 }
 
-.cssDivDiv {
+/* Estilo para o container do conteúdo */
+mat-card-content {
     display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 5px;
-    padding: 10px 0;
-    border-bottom: 2px solid #000000;
-    p: {
-        display: flex;
-        align-items: center;
-        input: {
-            flex: 1;
-            margin-left: 5px;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+
+    /* Estilo do label */
+    label {
+        color: $color-dark;
+        font-weight: bold;
+        font-size: 1rem;
+    }
+
+    /* Estilo do select */
+    select {
+        border: 1px solid $color-dark;
+        padding: 8px;
+        font-size: 1rem;
+        color: $color-dark;
+        background-color: $color-white;
+        &:focus {
+            outline: none;
+            border-color: darken($color-blue-light, 10%);
         }
     }
 }

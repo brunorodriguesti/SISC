@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Nome do arquivo docker-compose
-COMPOSE_FILE="docker-compose-api.yml"
+COMPOSE_FILE="docker-compose.yml"
 
 # Passo 1: Construir as imagens do Docker Compose
 echo "Construindo as imagens definidas no $COMPOSE_FILE..."

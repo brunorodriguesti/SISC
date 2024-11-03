@@ -10,6 +10,7 @@ export class TurmaService {
   private apiClient = api()
   private apiUrlGetTurma = environment.API_TURMA;
   private apiUrlGetTurmaTodos = environment.API_TURMA_TODOS;
+  private apiUrlGetTurmaIdCurso = environment.API_TURMA_ID_CURSO;
 
   constructor() { }
 
@@ -28,11 +29,9 @@ export class TurmaService {
     }
   }
 
-  // async getTurmaTodos(): Promise<objTurmaId[]> {
-    async getTurmaTodos(): Promise<objTurma[]> {
+  async getTurmaTodos(): Promise<objTurmaId[]> {
     try {
-      // const response = await this.apiClient.get<objTurmaId[]>(this.apiUrlGetTurmaTodos);
-      const response = await this.apiClient.get<objTurma[]>(this.apiUrlGetTurmaTodos);
+      const response = await this.apiClient.get<objTurmaId[]>(this.apiUrlGetTurmaTodos);
       const dados = response.data;
       return dados
     }catch(error){
@@ -40,4 +39,15 @@ export class TurmaService {
       return []
     }
   }
+
+    async getTurmaIdCurso(id: number): Promise<objTurmaId[]> {
+      try {
+        const response = await this.apiClient.get<objTurmaId[]>(`${this.apiUrlGetTurmaIdCurso}?idCurso=${id}`);
+        const dados = response.data;
+        return dados
+      }catch(error){
+        console.error('Erro ao fazer a requisição:', error);
+        return []
+      }
+    }
 }

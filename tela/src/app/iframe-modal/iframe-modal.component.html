@@ -1,6 +1,8 @@
-
-<div mat-dialog-actions>
-    <button mat-button (click)="fecharModal()">Fechar o Formulario</button>
-</div><div mat-dialog-content>
-    <app-inscricao (cadastroSucesso)="onCadastroSucesso()"></app-inscricao>
+<div mat-dialog-content>
+    <div mat-dialog-actions class="modal-header">
+        <button mat-button (click)="fecharModal()" class="fechar-botao">X</button>
+    </div>
+    <div>
+        <app-inscricao (cadastroSucesso)="onCadastroSucesso()"></app-inscricao>
+    </div>
 </div>

@@ -1,16 +1,29 @@
+$color-blue-light: #3a8ae6;
 div {
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
     background-color: #3F51B5;
-  
-    h1 {
-        font-size: 40px;
-        color: #FFFFFF;
-        margin-bottom: 20px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centraliza todos os itens na coluna */
+}
+
+.titulo-centralizado {
+    text-align: center; /* Centraliza o texto do título */
+    color: white; /* Cor do texto do título */
+}
+
+button {
+    margin-top: 20px;
+    background-color: $color-blue-light;
+    color: white;
+    font-size: 1.2em;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &:hover {
+      background-color: darken($color-blue-light, 10%);
     }
-  }
+}

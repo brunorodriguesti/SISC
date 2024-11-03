@@ -17,7 +17,7 @@ import { objPessoaPost } from './DTO';
     CommonModule,
     MatFormFieldModule,
     CandidatoComponent,
-    // PerguntaComponent,
+    PerguntaComponent,
     CursoComponent,
     TurmaComponent,
   ],
