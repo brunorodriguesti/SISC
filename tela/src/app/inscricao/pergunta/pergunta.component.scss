@@ -1,29 +1,68 @@
+$color-blue-light: #3a8ae6;
+$color-dark: #000000;
+$color-white: #f0f0f0;
+
+/* Remover bordas e sombra do mat-card */
 mat-card {
     box-shadow: none;
     border: none;
 }
+
 /* Estilizar o mat-card-title */
 mat-card-title {
-    background-color: #f0f0f0;
-    color: #000;
+    background-color: $color-white;
+    color: $color-dark;
     font-size: 1rem;
     padding: 10px;
-    border-bottom: 2px solid #000000;
+    border-bottom: 2px solid $color-dark;
 }
 
+/* Estilo dos checkboxes */
+mat-checkbox {
+    /* Remove a cor padrão ao ser selecionado */
+    &.mat-checkbox-checked {
+        color: $color-blue-light !important; /* Cor azul do h2 quando selecionado */
+    }
+
+    /* Para o foco do checkbox */
+    &:focus {
+        outline: none; /* Remove o contorno padrão */
+        box-shadow: none; /* Remove qualquer sombra de foco padrão */
+    }
+
+    /* Customização do texto do checkbox */
+    span.mat-checkbox-label {
+        color: $color-dark; /* Cor do texto padrão */
+        transition: color 0.3s; /* Suaviza a transição de cor */
+    }
+
+    &.mat-checkbox-checked span.mat-checkbox-label {
+        color: $color-blue-light; /* Cor do texto ao ser selecionado */
+    }
+
+    /* Remover o fundo rosa ao focar no checkbox */
+    &:hover {
+        background-color: transparent; /* Remove o fundo durante hover */
+    }
+
+    /* Específico para o foco */
+    &.mat-checkbox-focused {
+        background-color: transparent; /* Remove o fundo rosa ao focar */
+    }
+}
+
+/* Estilo do container das perguntas */
 .cssDivDiv {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
     gap: 5px;
     padding: 10px 0;
-    border-bottom: 2px solid #000000;
-    p: {
+    border-bottom: 2px solid $color-dark;
+    
+    p {
         display: flex;
         align-items: center;
-        input: {
-            flex: 1;
-            margin-left: 5px;
-        }
+        margin: 0; /* Remove a margem do parágrafo */
     }
 }
