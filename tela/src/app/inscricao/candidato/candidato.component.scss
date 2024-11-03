@@ -1,3 +1,6 @@
+$color-blue-light: #3a8ae6;
+$color-dark: #000000;
+$color-white: #f0f0f0;
 /* Remover bordas e sombra do mat-card */
 mat-card {
     box-shadow: none;
@@ -5,11 +8,11 @@ mat-card {
 }
 /* Estilizar o mat-card-title */
 mat-card-title {
-    background-color: #f0f0f0;
-    color: #000;
+    background-color: $color-white;
+    color: $color-dark;
     font-size: 1rem;
     padding: 10px;
-    border-bottom: 2px solid #000000;
+    border-bottom: 2px solid $color-dark;
 }
 
 .cssDivDiv {
@@ -18,7 +21,7 @@ mat-card-title {
     flex-wrap: wrap;
     gap: 5px;
     padding: 10px 0;
-    border-bottom: 2px solid #000000;
+    border-bottom: 2px solid $color-dark;
     p: {
         display: flex;
         align-items: center;
@@ -38,3 +41,19 @@ mat-card-title {
         }
     }
 }
+
+.cssSpanObg{
+    color: red;
+}
+
+// Estilo para o botão
+button {
+    margin-top: 15px;
+    background-color: $color-blue-light;
+    color: $color-white;
+    font-size: 1em;
+    padding: 5px 10px;
+    &:hover {
+      background-color: darken($color-blue-light, 10%);
+    }
+  }
