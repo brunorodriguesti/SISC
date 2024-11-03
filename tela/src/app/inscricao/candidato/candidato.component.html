@@ -21,6 +21,23 @@
           </p>
         </div>
         <div class="cssDivDiv">
+          <p>:
+            <span class="cssSpanObg">*CEP</span>
+            <input type="text" [(ngModel)]="cep"
+              name="cep"
+              maxlength="8"
+              (blur)="obterEndereco()"
+              placeholder="00000000"
+              required>
+          </p>
+          <p>
+            <span>Bairro:</span>
+            <input type="text" [(ngModel)]="bairro"
+              name="bairro"
+              required>
+          </p>
+        </div>
+        <div class="cssDivDiv">
           <p>
             <span>Endereço (Rua / Av / Bc):</span>
             <input type="text" [(ngModel)]="logradouro"
@@ -37,23 +54,6 @@
             <span>Complemento:</span>
             <input type="text" [(ngModel)]="complemento"
               name="complemento"
-              required>
-          </p>
-        </div>
-        <div class="cssDivDiv">
-          <p>
-            <span>Bairro:</span>
-            <input type="text" [(ngModel)]="bairro"
-              name="bairro"
-              required>
-          </p>
-          <p>:
-            <span class="cssSpanObg">*CEP</span>
-            <input type="text" [(ngModel)]="cep"
-              name="cep"
-              maxlength="8"
-              (blur)="obterEndereco()"
-              placeholder="00000000"
               required>
           </p>
         </div>
@@ -76,31 +76,9 @@
               required>
           </p>
           <p>
-            <span>Recado:</span>
-            <input type="text"
-              name="recado"
-              required>
-          </p>
-          <p>
-            <span>Falar com:</span>
-            <input type="text"
-              name="falarCom"
-              required>
-          </p>
-        </div>
-        <div class="cssDivDiv">
-          <p>
             <span>E-mail:</span>
             <input type="email" [(ngModel)]="email"
               name="email"
-              required>
-          </p>
-        </div>
-        <div class="cssDivDiv">
-          <p>
-            <span class="cssSpanObg">*Nome da Mãe:</span>
-            <input type="text" [(ngModel)]="nomeMae"
-              name="nomeMae"
               required>
           </p>
         </div>
@@ -123,10 +101,13 @@
             <input type="radio" id="sexo2" name="sexo" [(ngModel)]="sexo" value="f">
             <label for="sexo2">Feminino</label>
           </p>
-        </div>          
-      </div>
-      <mat-card-title>02 - Documentação</mat-card-title>
-      <div>
+          <p>
+            <span class="cssSpanObg">*Nome da Mãe:</span>
+            <input type="text" [(ngModel)]="nomeMae"
+              name="nomeMae"
+              required>
+          </p>
+        </div>
         <div class="cssDivDiv">
           <p>
             <span>N° Carteira de Identidade (RG):</span>

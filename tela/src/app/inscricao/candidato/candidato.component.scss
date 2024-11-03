@@ -1,11 +1,14 @@
 $color-blue-light: #3a8ae6;
 $color-dark: #000000;
 $color-white: #f0f0f0;
+$color-h3-blue: lighten($color-blue-light, 15%); // Define uma cor azul mais clara para os inputs
+
 /* Remover bordas e sombra do mat-card */
 mat-card {
     box-shadow: none;
     border: none;
 }
+
 /* Estilizar o mat-card-title */
 mat-card-title {
     background-color: $color-white;
@@ -15,6 +18,7 @@ mat-card-title {
     border-bottom: 2px solid $color-dark;
 }
 
+/* Estilização da estrutura */
 .cssDivDiv {
     display: flex;
     align-items: center;
@@ -22,38 +26,108 @@ mat-card-title {
     gap: 5px;
     padding: 10px 0;
     border-bottom: 2px solid $color-dark;
-    p: {
+
+    p {
         display: flex;
         align-items: center;
-        input: {
+
+        span {
+            font-weight: bold;
+        }
+
+        input {
             flex: 1;
             margin-left: 5px;
+            padding: 8px;
+            border: 1px solid $color-dark;
+            border-radius: 4px;
+            color: $color-dark;
+            background-color: $color-white;
         }
     }
 }
 
-#div1{
-    p: {
-        input: {
-            min-width: 120px;
-            flex-grow: 1;
-            max-width: 100%;
-        }
-    }
+/* Estilos específicos para inputs */
+input[name="cpf"] {
+    width: 100px;
+    color: $color-h3-blue;
+}
+
+input[name="nome"] {
+    width: 500px;
+    color: $color-h3-blue;
+}
+
+input[name="logradouro"] {
+    width: 500px;
+    color: $color-h3-blue;
+}
+
+input[name="numeroLocalidade"] {
+    width: 60px;
+    color: $color-h3-blue;
+}
+
+input[name="complemento"] {
+    width: 150px;
+    color: $color-h3-blue;
+}
+
+input[name="bairro"] {
+    width: 300px;
+    color: $color-h3-blue;
+}
+
+input[name="cep"] {
+    width: 100px;
+    color: $color-h3-blue;
+}
+
+input[name="telefone"],
+input[name="celular"] {
+    width: 80px;
+    color: $color-h3-blue;
+}
+
+input[name="email"] {
+    width: 250px;
+    color: $color-h3-blue;
+}
+
+input[name="carteiraIdentidade"] {
+    width: 150px;
+    color: $color-h3-blue;
+}
+
+input[name="orgaoEmissor"],
+input[name="numeroCTPS"]{
+    width: 60px;
+    color: $color-h3-blue;
+}
+
+input[name="serieCTPS"]{
+    width: 30px;
+    color: $color-h3-blue;
+}
+
+input[name="pisPasep"] {
+    width: 90px;
+    color: $color-h3-blue;
 }
 
 .cssSpanObg{
     color: red;
 }
 
-// Estilo para o botão
+/* Estilo para o botão */
 button {
     margin-top: 15px;
     background-color: $color-blue-light;
     color: $color-white;
     font-size: 1em;
     padding: 5px 10px;
+
     &:hover {
-      background-color: darken($color-blue-light, 10%);
+        background-color: darken($color-blue-light, 10%);
     }
-  }
+}
