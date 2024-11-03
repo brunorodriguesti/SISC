@@ -8,14 +8,14 @@ import { objCursoId } from '../DTO';
 })
 export class CursoService {
 
+  private apiClient = api()
   private apiUrlGetCursos = environment.API_CURSOS_TODOS;
 
   constructor() { }
 
   async getTodosCursos(): Promise<objCursoId[]> {
     try {
-      const apiClient = api()
-      const response = await apiClient.get<objCursoId[]>(this.apiUrlGetCursos);
+      const response = await this.apiClient.get<objCursoId[]>(this.apiUrlGetCursos);
       const dados = response.data;
       return dados
     }catch(error){
@@ -26,8 +26,7 @@ export class CursoService {
 
   async getTurmaById(): Promise<objCursoId> {
     try {
-      const apiClient = api()
-      const response = await apiClient.get<objCursoId>(this.apiUrlGetCursos);
+      const response = await this.apiClient.get<objCursoId>(this.apiUrlGetCursos);
       const dados = response.data;
       return dados
     }catch(error){

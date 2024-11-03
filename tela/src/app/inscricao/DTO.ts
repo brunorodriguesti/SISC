@@ -71,3 +71,14 @@ export interface objTurma {
     cadastroAlunoDTOList: objPessoaId[],
     cursoDTO: objCursoId
 }
+
+export interface objParametrosId {
+    id: number,
+    descricao: string,
+    peso: number
+}
+
+export interface objParametros {
+    descricao: string,
+    peso: number
+}
