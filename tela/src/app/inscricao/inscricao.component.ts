@@ -59,9 +59,19 @@ export class InscricaoComponent {
   }
 
   async handleGetCandidato(): Promise<void> {
+    await this.delay(3000);
+    let contador: number = 1;
     console.log("Obtendo ID do candidato...", this.candidatoObjeto.cpf)
     this.id = await this.inscricaoService.getCPF(this.candidatoObjeto.cpf)
     console.log(this.id)
+    while (this.id == null) {
+      console.log("Obtendo ID do candidato novamente...", contador+1, this.candidatoObjeto.cpf)
+      await this.delay(3000);
+      this.id = await this.inscricaoService.getCPF(this.candidatoObjeto.cpf)
+      console.log(this.id)
+      if (contador == 10) break;
+      contador++;
+    }
   }
 
   delay(ms: number): Promise<void> {
@@ -124,13 +134,13 @@ export class InscricaoComponent {
       console.log(this.candidatoObjeto)
       this.handlePostCandidato()
       this.handleGetCandidato()
-        .then(async () => {
-          await this.delay(2000);
+        .then(() => {
           this.handlePostAlunoTurma();
         })
         .catch(error => {
           console.error('Erro ao buscar candidato:', error);
-        });
+        }
+      );
     } else {
       console.log(`Candidato já cadastrado: ${this.id} ${this.candidatoObjeto.nome}`)
       this.handlePostAlunoTurma();

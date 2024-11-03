@@ -21,6 +21,7 @@ export class InscricaoService {
         }
       });
       const dados = response.data;
+      console.log("Obtendo dados do candidato:", dados)
       return dados.id
     }catch(error){
       console.error('Erro ao fazer a requisição:', error)
