@@ -1,8 +1,10 @@
-<div>
+<div class="div-centralizada">
     <mat-card-title class="titulo-centralizado">Formulario de Inscrição</mat-card-title>
-    <app-candidato (candidatoData)="receberDadosCandidato($event)"></app-candidato>
-    <app-curso *ngIf="dadosRecebidos" (cursoData)="receberDadosCurso($event)"></app-curso>
-    <app-turma *ngIf="cursoSelecionado" [inputData]="cursoSelecionado" (turmaData)="receberDadosTurma($event)"></app-turma>
-    <app-pergunta *ngIf="cursoSelecionado"></app-pergunta>
+    <div>
+        <app-candidato (candidatoData)="receberDadosCandidato($event)"></app-candidato>
+        <app-curso *ngIf="dadosRecebidos" (cursoData)="receberDadosCurso($event)"></app-curso>
+        <app-turma *ngIf="cursoSelecionado" [inputData]="cursoSelecionado" (turmaData)="receberDadosTurma($event)"></app-turma>
+        <app-pergunta *ngIf="cursoSelecionado"></app-pergunta>
+    </div>
     <button mat-raised-button color="primary" type="button" (click)="handleCadastro()">Cadastrar</button>
 </div>
