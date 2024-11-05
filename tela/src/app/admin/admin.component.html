@@ -1,5 +1,6 @@
+<app-menu></app-menu>
 <div class="divPrincipal" *ngIf="content">
-    <h1>{{ content.title }}</h1>
+    <h1>Tela Administração</h1>
     <h3>{{ content.subtitle }}</h3>
 
     <div *ngFor="let section of content.sections; let i = index" class="divSegundaria">
@@ -10,7 +11,7 @@
         </div>
     </div>
 
-    <button class="button-container" mat-raised-button color="primary" (click)="openIframeModal()">
+    <button class="button-container" mat-raised-button color="primary" (click)="openCourses()">
         Abrir Formulario de cadastro
     </button>
 </div>

@@ -1,0 +1,31 @@
+{
+    "title": "Ação Social Técnica",
+    "subtitle": "A Ação Social Técnica qualifica jovens e adultos para o mundo do trabalho",
+    "sections": [
+      {
+        "heading": "A formação humana vem antes da formação profissional",
+        "text": "Nossa missão é atender todas as pessoas com excelência e respeito de modo a capacitá-las para o mundo do trabalho com a construção de saberes que vão além do técnico. As qualificações contam com um percurso formativo que potencializa os conhecimentos construídos na área escolhida pelo/a educando/a, sendo possível também a construção de uma visão crítica do mundo em que vive.",
+        "image": "assets/images/FormacaoHumana.jpg"
+      },
+      {
+        "heading": "Trabalhamos com transparência",
+        "text": "Somos uma Organização da Sociedade Civil (OSC), sem fins lucrativos e os nossos cursos de qualificação profissional são financiados por meio de parcerias específicas. Por isso, a transparência quanto aos recursos e investimentos realizados é primordial para nós.",
+        "image": "assets/images/Transparencia_TioBeijo.jpg"
+      },
+      {
+        "heading": "Contribua com a Ação Social Técnica",
+        "text": "Capacitamos pessoas com idade a partir de 16 anos para o exercício profissional e contamos com parceiros que financiam nossas atividades. Você também pode ser um parceiro direto ou indireto, contribuindo financeiramente ou por meio de atividades voluntárias. Também realizamos campanhas para diferentes finalidades que complementam recursos a fim de mantermos o compromisso de qualificar pessoas para o mercado de trabalho.",
+        "image": "assets/images/Contribua_TioBeijo.jpg"
+      }
+    ],
+    "buttons": [
+      {
+        "text": "Conheça os cursos",
+        "action": "openCourses()"
+      },
+      {
+        "text": "Abrir Formulario de cadastro",
+        "action": "openIframeModal()"
+      }
+    ]
+}  
