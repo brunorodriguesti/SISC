@@ -10,14 +10,15 @@ import { objCursoId, objTurmaId, objPessoaId } from '../DTO';
 
 @Component({
   selector: 'app-admin-cadastro',
+  templateUrl: './admin-cadastro.component.html',
+  styleUrls: ['./admin-cadastro.component.scss'],
   standalone: true,
   imports: [
     MenuComponent,
     CommonModule,
   ],
-  templateUrl: './admin-cadastro.component.html',
-  styleUrls: ['./admin-cadastro.component.scss']
 })
+
 export class AdminCadastroComponent implements OnInit {
   dataCurso: objCursoId[] = [];
   dataTurma: { [key: number]: objTurmaId[] } = {};

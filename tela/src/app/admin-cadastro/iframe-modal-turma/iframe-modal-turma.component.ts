@@ -35,17 +35,15 @@ export class IframeModalTurmaComponent {
 
   onCadastroSucesso(): void {
     if (!this.dataInicio || !this.dataFim || !this.hora || !this.numeroMaximoAlunos || !this.cursoId) { "Dados nulos para o cadastro do candidato do curso" ; return};
-    console.log('Dados para o cadastro da turma:')
     let turma = {
       dataInicio: this.cadastroService.formatarDataParaEnvio(this.dataInicio),
       dataFim: this.cadastroService.formatarDataParaEnvio(this.dataFim),
       hora: this.cadastroService.formatToTime(this.hora),
       numeroMaximoAlunos: this.numeroMaximoAlunos,
-      cursoId: this.cursoId
+      idCurso: this.cursoId
     }
     console.log(turma)
     this.cadastroService.postTurma(turma).then(() => {
-      console.log('Cadastro realizado com sucesso!');
       // Fecha o modal
       this.fecharModal();
     }).catch(error => {

@@ -73,7 +73,7 @@ export interface objTurmaPost {
     dataFim: string,
     hora: string,
     numeroMaximoAlunos: number,
-    cursoId: number
+    idCurso: number
 }
 
 export interface objTurma {
