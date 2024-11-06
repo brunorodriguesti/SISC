@@ -1,0 +1,21 @@
+<div mat-dialog-content>
+    <div mat-dialog-actions class="modal-header">
+        <h1>Cadastrar Curso</h1>
+        <button mat-button (click)="fecharModal()" class="fechar-botao">X</button>
+    </div>
+    <div>
+        <p>
+            <span>Curso:</span> 
+            <input type="text" [(ngModel)]="nome"
+              name="cpf"
+              required>
+          </p>
+          <p>
+            <span>Objetico:</span>
+            <input type="text" [(ngModel)]="objetivo"
+              name="nome"
+              required>
+          </p>
+          <button mat-button (click)="onCadastroSucesso()">Cadastrar</button>
+    </div>
+</div>
