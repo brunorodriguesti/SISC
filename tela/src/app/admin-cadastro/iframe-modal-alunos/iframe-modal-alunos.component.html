@@ -4,8 +4,17 @@
         <button mat-button (click)="fecharModal()" class="fechar-botao">X</button>
     </div>
     <div>
-        <div >
-
+        <div  *ngFor="let aluno of objPessoaId; let j = index">
+            <details>
+                <summary>Nome: {{ aluno.nome }}</summary>
+                <p>CPF: {{ aluno.cpf }}</p>
+                <p>Data de Nascimento: {{ aluno.dataNascimento }}</p>
+                <p>Sexo: {{ aluno.sexo }}</p>
+                <p>Email: {{ aluno.email }}</p>
+                <p>Telefone: {{ aluno.telefone }}</p>
+                <p>Celular: {{ aluno.celular }}</p>
+                <p>Endereço: {{ aluno.cep }}</p>
+            </details>
         </div>
     </div>
 </div>

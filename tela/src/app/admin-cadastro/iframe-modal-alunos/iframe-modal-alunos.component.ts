@@ -1,4 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
@@ -10,6 +11,7 @@ import { objPessoaId } from '../../DTO';
   standalone: true,
   imports: [
     MatFormFieldModule,
+    CommonModule,
     FormsModule,
     NgxMaskDirective,
     NgxMaskPipe,
