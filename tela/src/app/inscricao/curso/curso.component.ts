@@ -3,7 +3,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { CommonModule } from '@angular/common';
 import { CursoService } from './curso.service';
-import { objCursoId, objTurmaId } from '../DTO';
+import { objCursoId } from '../../DTO';
 
 @Component({
   selector: 'app-curso',

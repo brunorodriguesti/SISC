@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { PerguntaService } from './pergunta.service';
-import { objParametrosId } from '../DTO';
+import { objParametrosId } from '../../DTO';
 
 @Component({
   selector: 'app-pergunta',

@@ -7,7 +7,7 @@ import { CandidatoComponent } from './candidato/candidato.component'
 import { CursoComponent } from './curso/curso.component'
 import { TurmaComponent } from './turma/turma.component'
 import { PerguntaComponent } from './pergunta/pergunta.component'
-import { objPessoaPost } from './DTO';
+import { objPessoaPost } from '../DTO';
 
 @Component({
   selector: 'app-inscricao',

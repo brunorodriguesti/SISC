@@ -3,7 +3,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { CommonModule } from '@angular/common';
 import { TurmaService } from './turma.service';
-import { objTurma, objTurmaId } from '../DTO';
+import { objTurma, objTurmaId } from '../../DTO';
 
 @Component({
   selector: 'app-turma',

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { api } from '../../api';
 import { environment } from '../../../environments/environment';
-import { objTurma, objTurmaId } from '../DTO';
+import { objTurma, objTurmaId } from '../../DTO';
 
 @Injectable({
   providedIn: 'root'

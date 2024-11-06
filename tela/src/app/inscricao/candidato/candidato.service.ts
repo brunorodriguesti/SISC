@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { api } from '../../api';
-import { objEndereco, objPessoaId } from '../DTO';
+import { objEndereco, objPessoaId } from '../../DTO';
 import { environment } from '../../../environments/environment';
 
 @Injectable({

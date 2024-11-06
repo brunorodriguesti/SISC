@@ -5,8 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 import { CandidatoService } from './candidato.service';
-// import { objPessoaPost, objPessoaId, objEndereco } from '../DTO';
-import { objPessoaPost } from '../DTO';
+import { objPessoaPost } from '../../DTO';
 
 @Component({
   selector: 'app-candidato',

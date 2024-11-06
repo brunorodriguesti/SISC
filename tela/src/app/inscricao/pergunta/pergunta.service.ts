@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { api } from '../../api';
 import { environment } from '../../../environments/environment';
-import { objParametrosId } from '../DTO';
+import { objParametrosId } from '../../DTO';
 
 @Injectable({
   providedIn: 'root'
