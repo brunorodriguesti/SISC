@@ -20,7 +20,7 @@ import { objCursoId, objTurmaId, objPessoaId } from '../DTO';
 })
 export class AdminCadastroComponent implements OnInit {
   dataCurso: objCursoId[] = [];
-  dataTurma: { [key: number]: objTurmaId[] } = {}; // Armazenamento das turmas por curso
+  dataTurma: { [key: number]: objTurmaId[] } = {};
 
   constructor(
     private cadastroService: CadastroService,
@@ -45,15 +45,15 @@ export class AdminCadastroComponent implements OnInit {
 
   openIframeModalCurso() {
     this.dialog.open(IframeModalComponent, {
-      width: '350px',
-      height: '200px',
+      width: '500px',
+      height: '350px',
     });
   }
 
   openIframeModalTurma(idCurso: number) {
     this.dialog.open(IframeModalTurmaComponent, {
-      width: '500px',
-      height: '300px',
+      width: '450px',
+      height: '370px',
       data: { idCurso }
     });
   }
@@ -64,10 +64,9 @@ export class AdminCadastroComponent implements OnInit {
 
   VisualizarAlunos(listaAlunos: objPessoaId[]): void {
     this.dialog.open(IframeModalAlunosComponent, {
-      width: '500px',
-      height: '300px',
+      width: '550px',
+      height: '60%',
       data: { listaAlunos }
     });
   }
-
 }

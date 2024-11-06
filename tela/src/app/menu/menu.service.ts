@@ -13,8 +13,7 @@ export class MenuService {
   getMenuItems(): MenuItem[] {
     return [
       { label: 'Home', path: '/admin' },
-      { label: 'Cadastrar', path: '/admin/cadastrar' },
-      { label: 'Visualizar', path: '/admin/visualizar' },
+      { label: 'Cursos/Turmas', path: '/admin/cadastrar' },
     ];
   }
 }

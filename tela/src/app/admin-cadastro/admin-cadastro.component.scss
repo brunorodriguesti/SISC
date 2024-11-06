@@ -1,0 +1,73 @@
+.admin-container {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    color: #333;
+
+    .admin-header {
+        font-size: 1.8rem;
+        color: #2A3E69;
+        margin-bottom: 20px;
+        font-weight: 600;
+    }
+
+    .action-buttons {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 20px;
+    }
+
+    .course-details {
+        background-color: #f5f7fa;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 15px;
+        margin-bottom: 15px;
+    }
+
+    .course-summary {
+        font-size: 1.5rem;
+        color: #2A3E69;
+        cursor: pointer;
+        margin-bottom: 5px;
+    }
+
+    .course-objective {
+        font-size: 1rem;
+        margin: 5px 0 15px;
+    }
+
+    .turma-container {
+        margin-top: 10px;
+
+        .turma-header {
+            font-size: 1.2rem;
+            color: #555;
+            font-weight: bold;
+        }
+
+        .turma-info {
+            list-style-type: none;
+            padding-left: 0;
+            font-size: 0.9rem;
+
+            li {
+                padding: 3px 0;
+            }
+        }
+    }
+
+    .no-turmas {
+        color: #999;
+        font-style: italic;
+    }
+}
+
+button {
+    background-color: #3a8ae6;
+    color: white;
+    font-size: 1em;
+    padding: 10px 20px;
+    &:hover {
+      background-color: darken(#3a8ae6, 10%);
+    }
+}

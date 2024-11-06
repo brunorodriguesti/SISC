@@ -1,29 +1,36 @@
 <app-menu></app-menu>
-<div>
-    <h1>Administração dos Cursos e Turmas</h1>
-    <div>
+<div class="admin-container">
+    <h1 class="admin-header">Administração dos Cursos e Turmas</h1>
+    <div class="action-buttons">
         <button mat-raised-button color="primary" type="button" (click)="openIframeModalCurso()">Cadastrar Curso</button>
         <button mat-raised-button color="primary" (click)="refreshPage()">Atualizar</button>
     </div>
-    <details *ngFor="let curso of dataCurso; let i = index">
-        <summary>{{ curso.nome }}</summary>
-        <p>{{ curso.objetivo }}</p>
+
+    <details *ngFor="let curso of dataCurso; let i = index" class="course-details">
+        <summary class="course-summary">{{ curso.nome }}</summary>
+        <p class="course-objective">{{ curso.objetivo }}</p>
+        
         <div *ngIf="dataTurma[curso.id]?.length">
-            <div  *ngFor="let turma of dataTurma[curso.id]; let j = index">
-                <p>Turma {{ j + 1 }}:</p>
-                <ul>
-                    <li>Data Inicio: {{ turma.dataInicio }}
-                    <li>Data Fim: {{ turma.dataFim }}
-                    <li>Hora: {{ turma.hora }}
-                    <li>Numero Maximo de Alunos: {{ turma.numeroMaximoAlunos }}
+            <div *ngFor="let turma of dataTurma[curso.id]; let j = index" class="turma-container">
+                <p class="turma-header">Turma {{ j + 1 }}:</p>
+                <ul class="turma-info">
+                    <li>Data Início: {{ turma.dataInicio }}</li>
+                    <li>Data Fim: {{ turma.dataFim }}</li>
+                    <li>Hora: {{ turma.hora }}</li>
+                    <li>Número Máximo de Alunos: {{ turma.numeroMaximoAlunos }}</li>
                 </ul>
-                <button *ngIf="turma.cadastroAlunoDTOList?.length" mat-raised-button color="primary" (click)="VisualizarAlunos(turma.cadastroAlunoDTOList)">{{ turma.cadastroAlunoDTOList.length }} visualizar Alunos.</button>
-                <p *ngIf="!turma.cadastroAlunoDTOList?.length">{{ turma.cadastroAlunoDTOList.length }} Alunos cadastrado na turma.</p>
+                <button *ngIf="turma.cadastroAlunoDTOList?.length" mat-raised-button color="primary" 
+                        (click)="VisualizarAlunos(turma.cadastroAlunoDTOList)">
+                    {{ turma.cadastroAlunoDTOList.length }} visualizar Alunos
+                </button>
+                <p *ngIf="!turma.cadastroAlunoDTOList?.length">{{ turma.cadastroAlunoDTOList.length }} Alunos cadastrados na turma.</p>
             </div>
         </div>
-        <div *ngIf="!dataTurma[curso.id]?.length">
+
+        <div *ngIf="!dataTurma[curso.id]?.length" class="no-turmas">
             <p>Não há turmas para este curso.</p>
         </div>
+
         <button mat-raised-button color="primary" type="button" (click)="openIframeModalTurma(curso.id)">Cadastrar Turma</button>
     </details>
 </div>

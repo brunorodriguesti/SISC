@@ -1,33 +1,75 @@
-$color-blue-dark: #003366;
+.modal-container {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    max-width: 500px;
 
-/* Fundo azul do modal */
-.mat-dialog-container {
-    background-color: $color-blue-dark;
-    color: white;
-    border-radius: 8px;
-}
+    .modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
 
-/* Estilização para o cabeçalho do modal e posicionamento do botão de fechar */
-.modal-header {
-    background-color: $color-blue-dark;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 8px;
-}
+        h1 {
+            font-size: 1.5rem;
+            color: #2A3E69;
+            font-weight: 600;
+            margin: 0;
+        }
 
-/* Botão de fechar estilizado */
-.fechar-botao {
-    background-color: #F87171; /* Vermelho claro para o fundo */
-    color: #B91C1C; /* Vermelho escuro para o 'X' */
-    border: none;
-    font-size: 1em;
-    cursor: pointer;
-    padding: 4px 10px;
-    border-radius: 4px;
-    transition: background-color 0.3s ease;
-}
+        .fechar-botao {
+            font-size: 1.2rem;
+            color: #999;
+            background: none;
+            border: none;
+            cursor: pointer;
+            transition: color 0.3s ease;
 
-.fechar-botao:hover {
-    background-color: #EF4444; /* Mais escuro ao passar o mouse */
+            &:hover {
+                color: #2A3E69;
+            }
+        }
+    }
+
+    .modal-body {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            font-size: 0.9rem;
+
+            label {
+                margin-bottom: 5px;
+                font-weight: bold;
+                color: #555;
+            }
+
+            input {
+                padding: 8px;
+                font-size: 1rem;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                transition: border-color 0.3s ease;
+
+                &:focus {
+                    border-color: #2A3E69;
+                    outline: none;
+                }
+            }
+        }
+
+        button {
+            align-self: center;
+            margin-top: 20px;
+            background-color: #3a8ae6;
+            color: white;
+            font-size: 1em;
+            padding: 10px 20px;
+            &:hover {
+            background-color: darken(#3a8ae6, 10%);
+            }
+        }
+    }
 }
