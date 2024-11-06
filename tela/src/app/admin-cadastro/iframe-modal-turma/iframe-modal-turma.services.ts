@@ -19,10 +19,12 @@ export class CadastroCursoService {
     // Verifica se a data está no formato ddMMyyyy
     const regex = /^(\d{2})(\d{2})(\d{4})$/;
     const partes = data.match(regex);
+    console.log(partes)
     if (partes) {
       const dia = partes[1];
       const mes = partes[2];
       const ano = partes[3];
+      console.log(`IF: ${ano}-${mes}-${dia}`)
       return `${ano}-${mes}-${dia}`;
     }
     // Se não puder formatar, retorna a data atual do dia do cadastro
@@ -30,7 +32,12 @@ export class CadastroCursoService {
     const anoAtual = dataAtual.getFullYear();
     const mesAtual = String(dataAtual.getMonth() + 1).padStart(2, '0');
     const diaAtual = String(dataAtual.getDate()).padStart(2, '0');
+    console.log(`ELSE:${anoAtual}-${mesAtual}-${diaAtual}`)
     return `${anoAtual}-${mesAtual}-${diaAtual}`;
+  }
+
+  formatToTime(input: string): string {
+    return input.replace(/(\d{2})(\d{2})(\d{2})/, "$1:$2:$3");
   }
 
   async postTurma(turma: objTurmaPost): Promise<void> {

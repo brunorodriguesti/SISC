@@ -3,9 +3,10 @@ import { CommonModule } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { IframeModalComponent } from './iframe-modal/iframe-modal.component';
 import { IframeModalTurmaComponent } from './iframe-modal-turma/iframe-modal-turma.component';
+import { IframeModalAlunosComponent } from './iframe-modal-alunos/iframe-modal-alunos.component';
 import { MenuComponent } from '../menu/menu.component';
 import { CadastroService } from './admin-cadastro.services';
-import { objCursoId, objTurmaId } from '../DTO';
+import { objCursoId, objTurmaId, objPessoaId } from '../DTO';
 
 @Component({
   selector: 'app-admin-cadastro',
@@ -54,6 +55,18 @@ export class AdminCadastroComponent implements OnInit {
       width: '500px',
       height: '300px',
       data: { idCurso }
+    });
+  }
+
+  refreshPage(): void {
+    this.handleGetCursos();
+  }
+
+  VisualizarAlunos(listaAlunos: objPessoaId[]): void {
+    this.dialog.open(IframeModalAlunosComponent, {
+      width: '500px',
+      height: '300px',
+      data: { listaAlunos }
     });
   }
 

@@ -39,7 +39,7 @@ export class IframeModalTurmaComponent {
     let turma = {
       dataInicio: this.cadastroService.formatarDataParaEnvio(this.dataInicio),
       dataFim: this.cadastroService.formatarDataParaEnvio(this.dataFim),
-      hora: this.hora,
+      hora: this.cadastroService.formatToTime(this.hora),
       numeroMaximoAlunos: this.numeroMaximoAlunos,
       cursoId: this.cursoId
     }
