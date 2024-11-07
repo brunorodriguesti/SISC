@@ -5,12 +5,10 @@
         <button mat-raised-button color="primary" type="button" (click)="openIframeModalCurso()">Cadastrar Curso</button>
         <button mat-raised-button color="primary" (click)="refreshPage()">Atualizar</button>
     </div>
-
     <details *ngFor="let curso of dataCurso; let i = index" class="course-details">
         <summary class="course-summary">{{ curso.nome }}</summary>
         <p class="course-objective">{{ curso.objetivo }}</p>
-        
-        <div *ngIf="dataTurma[curso.id]?.length">
+        <div *ngIf="dataTurma[curso.id].length > 0">
             <div *ngFor="let turma of dataTurma[curso.id]; let j = index" class="turma-container">
                 <p class="turma-header">Turma {{ j + 1 }}:</p>
                 <ul class="turma-info">
@@ -19,18 +17,16 @@
                     <li>Hora: {{ turma.hora }}</li>
                     <li>Número Máximo de Alunos: {{ turma.numeroMaximoAlunos }}</li>
                 </ul>
-                <button *ngIf="turma.cadastroAlunoDTOList?.length" mat-raised-button color="primary" 
+                <button *ngIf="turma.cadastroAlunoDTOList.length > 0" mat-raised-button color="primary" 
                         (click)="VisualizarAlunos(turma.cadastroAlunoDTOList)">
                     {{ turma.cadastroAlunoDTOList.length }} visualizar Alunos
                 </button>
-                <p *ngIf="!turma.cadastroAlunoDTOList?.length">{{ turma.cadastroAlunoDTOList.length }} Alunos cadastrados na turma.</p>
+                <p *ngIf="turma.cadastroAlunoDTOList.length === 0">{{ turma.cadastroAlunoDTOList.length }} Alunos cadastrados na turma.</p>
             </div>
         </div>
-
-        <div *ngIf="!dataTurma[curso.id]?.length" class="no-turmas">
+        <div *ngIf="dataTurma[curso.id].length === 0" class="no-turmas">
             <p>Não há turmas para este curso.</p>
         </div>
-
         <button mat-raised-button color="primary" type="button" (click)="openIframeModalTurma(curso.id)">Cadastrar Turma</button>
     </details>
 </div>
